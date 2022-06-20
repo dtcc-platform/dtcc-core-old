@@ -20,10 +20,14 @@
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_dtcc_2eproto {
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Simplex2D;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Vector2D;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Vector3D;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_BoundingBox2D;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_BoundingBox3D;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Building;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Grid2D;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Grid3D;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_dtcc_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Polygon;
 }  // namespace protobuf_dtcc_2eproto
 namespace DTCC {
@@ -32,11 +36,31 @@ class Vector2DDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<Vector2D>
       _instance;
 } _Vector2D_default_instance_;
+class Vector3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Vector3D>
+      _instance;
+} _Vector3D_default_instance_;
+class Simplex2DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Simplex2D>
+      _instance;
+} _Simplex2D_default_instance_;
+class Simplex3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Simplex3D>
+      _instance;
+} _Simplex3D_default_instance_;
 class BoundingBox2DDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<BoundingBox2D>
       _instance;
 } _BoundingBox2D_default_instance_;
+class BoundingBox3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<BoundingBox3D>
+      _instance;
+} _BoundingBox3D_default_instance_;
 class PolygonDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Polygon>
@@ -47,11 +71,26 @@ class Grid2DDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<Grid2D>
       _instance;
 } _Grid2D_default_instance_;
+class Grid3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Grid3D>
+      _instance;
+} _Grid3D_default_instance_;
+class Surface3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Surface3D>
+      _instance;
+} _Surface3D_default_instance_;
 class GridField2DDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<GridField2D>
       _instance;
 } _GridField2D_default_instance_;
+class GridField3DDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<GridField3D>
+      _instance;
+} _GridField3D_default_instance_;
 class BuildingDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Building>
@@ -78,6 +117,48 @@ static void InitDefaultsVector2D() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_Vector2D =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsVector2D}, {}};
 
+static void InitDefaultsVector3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_Vector3D_default_instance_;
+    new (ptr) ::DTCC::Vector3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::Vector3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_Vector3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsVector3D}, {}};
+
+static void InitDefaultsSimplex2D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_Simplex2D_default_instance_;
+    new (ptr) ::DTCC::Simplex2D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::Simplex2D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_Simplex2D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSimplex2D}, {}};
+
+static void InitDefaultsSimplex3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_Simplex3D_default_instance_;
+    new (ptr) ::DTCC::Simplex3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::Simplex3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_Simplex3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSimplex3D}, {}};
+
 static void InitDefaultsBoundingBox2D() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -92,6 +173,21 @@ static void InitDefaultsBoundingBox2D() {
 ::google::protobuf::internal::SCCInfo<1> scc_info_BoundingBox2D =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsBoundingBox2D}, {
       &protobuf_dtcc_2eproto::scc_info_Vector2D.base,}};
+
+static void InitDefaultsBoundingBox3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_BoundingBox3D_default_instance_;
+    new (ptr) ::DTCC::BoundingBox3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::BoundingBox3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_BoundingBox3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsBoundingBox3D}, {
+      &protobuf_dtcc_2eproto::scc_info_Vector3D.base,}};
 
 static void InitDefaultsPolygon() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -123,6 +219,37 @@ static void InitDefaultsGrid2D() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGrid2D}, {
       &protobuf_dtcc_2eproto::scc_info_BoundingBox2D.base,}};
 
+static void InitDefaultsGrid3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_Grid3D_default_instance_;
+    new (ptr) ::DTCC::Grid3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::Grid3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_Grid3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGrid3D}, {
+      &protobuf_dtcc_2eproto::scc_info_BoundingBox3D.base,}};
+
+static void InitDefaultsSurface3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_Surface3D_default_instance_;
+    new (ptr) ::DTCC::Surface3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::Surface3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<2> scc_info_Surface3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsSurface3D}, {
+      &protobuf_dtcc_2eproto::scc_info_Vector3D.base,
+      &protobuf_dtcc_2eproto::scc_info_Simplex2D.base,}};
+
 static void InitDefaultsGridField2D() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -137,6 +264,21 @@ static void InitDefaultsGridField2D() {
 ::google::protobuf::internal::SCCInfo<1> scc_info_GridField2D =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGridField2D}, {
       &protobuf_dtcc_2eproto::scc_info_Grid2D.base,}};
+
+static void InitDefaultsGridField3D() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_GridField3D_default_instance_;
+    new (ptr) ::DTCC::GridField3D();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::GridField3D::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_GridField3D =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGridField3D}, {
+      &protobuf_dtcc_2eproto::scc_info_Grid3D.base,}};
 
 static void InitDefaultsBuilding() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -170,15 +312,22 @@ static void InitDefaultsCityModel() {
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_Vector2D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Vector3D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Simplex2D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Simplex3D.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BoundingBox2D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_BoundingBox3D.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Polygon.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Grid2D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Grid3D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Surface3D.base);
   ::google::protobuf::internal::InitSCC(&scc_info_GridField2D.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_GridField3D.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Building.base);
   ::google::protobuf::internal::InitSCC(&scc_info_CityModel.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[7];
+::google::protobuf::Metadata file_level_metadata[14];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -189,12 +338,44 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector2D, x_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector2D, y_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector3D, x_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector3D, y_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Vector3D, z_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex2D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex2D, v0_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex2D, v1_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex2D, v2_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex3D, v0_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex3D, v1_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex3D, v2_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Simplex3D, v3_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox2D, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox2D, p_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox2D, q_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox3D, p_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::BoundingBox3D, q_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Polygon, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -212,12 +393,39 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid2D, xstep_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid2D, ystep_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, boundingbox_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, xsize_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, ysize_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, zsize_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, xstep_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, ystep_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Grid3D, zstep_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Surface3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Surface3D, vertices_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Surface3D, normals_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Surface3D, faces_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField2D, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField2D, grid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField2D, values_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField3D, grid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::GridField3D, values_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DTCC::Building, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -236,20 +444,34 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::DTCC::Vector2D)},
-  { 7, -1, sizeof(::DTCC::BoundingBox2D)},
-  { 14, -1, sizeof(::DTCC::Polygon)},
-  { 20, -1, sizeof(::DTCC::Grid2D)},
-  { 30, -1, sizeof(::DTCC::GridField2D)},
-  { 37, -1, sizeof(::DTCC::Building)},
-  { 46, -1, sizeof(::DTCC::CityModel)},
+  { 7, -1, sizeof(::DTCC::Vector3D)},
+  { 15, -1, sizeof(::DTCC::Simplex2D)},
+  { 23, -1, sizeof(::DTCC::Simplex3D)},
+  { 32, -1, sizeof(::DTCC::BoundingBox2D)},
+  { 39, -1, sizeof(::DTCC::BoundingBox3D)},
+  { 46, -1, sizeof(::DTCC::Polygon)},
+  { 52, -1, sizeof(::DTCC::Grid2D)},
+  { 62, -1, sizeof(::DTCC::Grid3D)},
+  { 74, -1, sizeof(::DTCC::Surface3D)},
+  { 82, -1, sizeof(::DTCC::GridField2D)},
+  { 89, -1, sizeof(::DTCC::GridField3D)},
+  { 96, -1, sizeof(::DTCC::Building)},
+  { 105, -1, sizeof(::DTCC::CityModel)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Vector2D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Vector3D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Simplex2D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Simplex3D_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_BoundingBox2D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_BoundingBox3D_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Polygon_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Grid2D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Grid3D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Surface3D_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_GridField2D_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_GridField3D_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_Building_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::DTCC::_CityModel_default_instance_),
 };
@@ -269,28 +491,41 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 7);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 14);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\ndtcc.proto\022\004DTCC\" \n\010Vector2D\022\t\n\001x\030\001 \001("
-      "\002\022\t\n\001y\030\002 \001(\002\"E\n\rBoundingBox2D\022\031\n\001p\030\001 \001(\013"
-      "2\016.DTCC.Vector2D\022\031\n\001q\030\002 \001(\0132\016.DTCC.Vecto"
-      "r2D\"+\n\007Polygon\022 \n\010vertices\030\001 \003(\0132\016.DTCC."
-      "Vector2D\"n\n\006Grid2D\022(\n\013boundingBox\030\001 \001(\0132"
-      "\023.DTCC.BoundingBox2D\022\r\n\005xSize\030\002 \001(\005\022\r\n\005y"
-      "Size\030\003 \001(\005\022\r\n\005xStep\030\004 \001(\002\022\r\n\005yStep\030\005 \001(\002"
-      "\"9\n\013GridField2D\022\032\n\004grid\030\001 \001(\0132\014.DTCC.Gri"
-      "d2D\022\016\n\006values\030\002 \003(\002\"`\n\010Building\022\014\n\004uuid\030"
-      "\001 \001(\t\022 \n\tfootPrint\030\002 \001(\0132\r.DTCC.Polygon\022"
-      "\016\n\006height\030\003 \001(\001\022\024\n\014groundHeight\030\004 \001(\001\".\n"
-      "\tCityModel\022!\n\tbuildings\030\004 \003(\0132\016.DTCC.Bui"
-      "ldingb\006proto3"
+      "\002\022\t\n\001y\030\002 \001(\002\"+\n\010Vector3D\022\t\n\001x\030\001 \001(\002\022\t\n\001y"
+      "\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\"/\n\tSimplex2D\022\n\n\002v0\030\001 \001"
+      "(\005\022\n\n\002v1\030\002 \001(\005\022\n\n\002v2\030\003 \001(\005\";\n\tSimplex3D\022"
+      "\n\n\002v0\030\001 \001(\005\022\n\n\002v1\030\002 \001(\005\022\n\n\002v2\030\003 \001(\005\022\n\n\002v"
+      "3\030\004 \001(\005\"E\n\rBoundingBox2D\022\031\n\001p\030\001 \001(\0132\016.DT"
+      "CC.Vector2D\022\031\n\001q\030\002 \001(\0132\016.DTCC.Vector2D\"E"
+      "\n\rBoundingBox3D\022\031\n\001p\030\001 \001(\0132\016.DTCC.Vector"
+      "3D\022\031\n\001q\030\002 \001(\0132\016.DTCC.Vector3D\"+\n\007Polygon"
+      "\022 \n\010vertices\030\001 \003(\0132\016.DTCC.Vector2D\"n\n\006Gr"
+      "id2D\022(\n\013boundingBox\030\001 \001(\0132\023.DTCC.Boundin"
+      "gBox2D\022\r\n\005xSize\030\002 \001(\005\022\r\n\005ySize\030\003 \001(\005\022\r\n\005"
+      "xStep\030\004 \001(\002\022\r\n\005yStep\030\005 \001(\002\"\214\001\n\006Grid3D\022(\n"
+      "\013boundingBox\030\001 \001(\0132\023.DTCC.BoundingBox3D\022"
+      "\r\n\005xSize\030\002 \001(\005\022\r\n\005ySize\030\003 \001(\005\022\r\n\005zSize\030\004"
+      " \001(\005\022\r\n\005xStep\030\005 \001(\002\022\r\n\005yStep\030\006 \001(\002\022\r\n\005zS"
+      "tep\030\007 \001(\002\"n\n\tSurface3D\022 \n\010vertices\030\001 \003(\013"
+      "2\016.DTCC.Vector3D\022\037\n\007normals\030\002 \003(\0132\016.DTCC"
+      ".Vector3D\022\036\n\005faces\030\003 \003(\0132\017.DTCC.Simplex2"
+      "D\"9\n\013GridField2D\022\032\n\004grid\030\001 \001(\0132\014.DTCC.Gr"
+      "id2D\022\016\n\006values\030\002 \003(\002\"9\n\013GridField3D\022\032\n\004g"
+      "rid\030\001 \001(\0132\014.DTCC.Grid3D\022\016\n\006values\030\002 \003(\002\""
+      "`\n\010Building\022\014\n\004uuid\030\001 \001(\t\022 \n\tfootPrint\030\002"
+      " \001(\0132\r.DTCC.Polygon\022\016\n\006height\030\003 \001(\001\022\024\n\014g"
+      "roundHeight\030\004 \001(\001\".\n\tCityModel\022!\n\tbuildi"
+      "ngs\030\004 \003(\0132\016.DTCC.Buildingb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 493);
+      descriptor, 1033);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dtcc.proto", &protobuf_RegisterTypes);
 }
@@ -564,6 +799,939 @@ void Vector2D::InternalSwap(Vector2D* other) {
 }
 
 ::google::protobuf::Metadata Vector2D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Vector3D::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Vector3D::kXFieldNumber;
+const int Vector3D::kYFieldNumber;
+const int Vector3D::kZFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Vector3D::Vector3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_Vector3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.Vector3D)
+}
+Vector3D::Vector3D(const Vector3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&x_, &from.x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(z_));
+  // @@protoc_insertion_point(copy_constructor:DTCC.Vector3D)
+}
+
+void Vector3D::SharedCtor() {
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
+}
+
+Vector3D::~Vector3D() {
+  // @@protoc_insertion_point(destructor:DTCC.Vector3D)
+  SharedDtor();
+}
+
+void Vector3D::SharedDtor() {
+}
+
+void Vector3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Vector3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Vector3D& Vector3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_Vector3D.base);
+  return *internal_default_instance();
+}
+
+
+void Vector3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.Vector3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
+  _internal_metadata_.Clear();
+}
+
+bool Vector3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.Vector3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // float x = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(13u /* 13 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &x_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float y = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(21u /* 21 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &y_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float z = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(29u /* 29 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &z_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.Vector3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.Vector3D)
+  return false;
+#undef DO_
+}
+
+void Vector3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.Vector3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float x = 1;
+  if (this->x() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->x(), output);
+  }
+
+  // float y = 2;
+  if (this->y() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->y(), output);
+  }
+
+  // float z = 3;
+  if (this->z() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->z(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.Vector3D)
+}
+
+::google::protobuf::uint8* Vector3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.Vector3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float x = 1;
+  if (this->x() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->x(), target);
+  }
+
+  // float y = 2;
+  if (this->y() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->y(), target);
+  }
+
+  // float z = 3;
+  if (this->z() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->z(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.Vector3D)
+  return target;
+}
+
+size_t Vector3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.Vector3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // float x = 1;
+  if (this->x() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float y = 2;
+  if (this->y() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float z = 3;
+  if (this->z() != 0) {
+    total_size += 1 + 4;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Vector3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.Vector3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Vector3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Vector3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.Vector3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.Vector3D)
+    MergeFrom(*source);
+  }
+}
+
+void Vector3D::MergeFrom(const Vector3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.Vector3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.x() != 0) {
+    set_x(from.x());
+  }
+  if (from.y() != 0) {
+    set_y(from.y());
+  }
+  if (from.z() != 0) {
+    set_z(from.z());
+  }
+}
+
+void Vector3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.Vector3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Vector3D::CopyFrom(const Vector3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.Vector3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Vector3D::IsInitialized() const {
+  return true;
+}
+
+void Vector3D::Swap(Vector3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Vector3D::InternalSwap(Vector3D* other) {
+  using std::swap;
+  swap(x_, other->x_);
+  swap(y_, other->y_);
+  swap(z_, other->z_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Vector3D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Simplex2D::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Simplex2D::kV0FieldNumber;
+const int Simplex2D::kV1FieldNumber;
+const int Simplex2D::kV2FieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Simplex2D::Simplex2D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_Simplex2D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.Simplex2D)
+}
+Simplex2D::Simplex2D(const Simplex2D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&v0_, &from.v0_,
+    static_cast<size_t>(reinterpret_cast<char*>(&v2_) -
+    reinterpret_cast<char*>(&v0_)) + sizeof(v2_));
+  // @@protoc_insertion_point(copy_constructor:DTCC.Simplex2D)
+}
+
+void Simplex2D::SharedCtor() {
+  ::memset(&v0_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&v2_) -
+      reinterpret_cast<char*>(&v0_)) + sizeof(v2_));
+}
+
+Simplex2D::~Simplex2D() {
+  // @@protoc_insertion_point(destructor:DTCC.Simplex2D)
+  SharedDtor();
+}
+
+void Simplex2D::SharedDtor() {
+}
+
+void Simplex2D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Simplex2D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Simplex2D& Simplex2D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_Simplex2D.base);
+  return *internal_default_instance();
+}
+
+
+void Simplex2D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.Simplex2D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&v0_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&v2_) -
+      reinterpret_cast<char*>(&v0_)) + sizeof(v2_));
+  _internal_metadata_.Clear();
+}
+
+bool Simplex2D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.Simplex2D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 v0 = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v0_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 v1 = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v1_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 v2 = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v2_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.Simplex2D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.Simplex2D)
+  return false;
+#undef DO_
+}
+
+void Simplex2D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.Simplex2D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->v0(), output);
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->v1(), output);
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->v2(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.Simplex2D)
+}
+
+::google::protobuf::uint8* Simplex2D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.Simplex2D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->v0(), target);
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->v1(), target);
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->v2(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.Simplex2D)
+  return target;
+}
+
+size_t Simplex2D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.Simplex2D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v0());
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v1());
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v2());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Simplex2D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.Simplex2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Simplex2D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Simplex2D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.Simplex2D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.Simplex2D)
+    MergeFrom(*source);
+  }
+}
+
+void Simplex2D::MergeFrom(const Simplex2D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.Simplex2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.v0() != 0) {
+    set_v0(from.v0());
+  }
+  if (from.v1() != 0) {
+    set_v1(from.v1());
+  }
+  if (from.v2() != 0) {
+    set_v2(from.v2());
+  }
+}
+
+void Simplex2D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.Simplex2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Simplex2D::CopyFrom(const Simplex2D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.Simplex2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Simplex2D::IsInitialized() const {
+  return true;
+}
+
+void Simplex2D::Swap(Simplex2D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Simplex2D::InternalSwap(Simplex2D* other) {
+  using std::swap;
+  swap(v0_, other->v0_);
+  swap(v1_, other->v1_);
+  swap(v2_, other->v2_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Simplex2D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Simplex3D::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Simplex3D::kV0FieldNumber;
+const int Simplex3D::kV1FieldNumber;
+const int Simplex3D::kV2FieldNumber;
+const int Simplex3D::kV3FieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Simplex3D::Simplex3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_Simplex3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.Simplex3D)
+}
+Simplex3D::Simplex3D(const Simplex3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&v0_, &from.v0_,
+    static_cast<size_t>(reinterpret_cast<char*>(&v3_) -
+    reinterpret_cast<char*>(&v0_)) + sizeof(v3_));
+  // @@protoc_insertion_point(copy_constructor:DTCC.Simplex3D)
+}
+
+void Simplex3D::SharedCtor() {
+  ::memset(&v0_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&v3_) -
+      reinterpret_cast<char*>(&v0_)) + sizeof(v3_));
+}
+
+Simplex3D::~Simplex3D() {
+  // @@protoc_insertion_point(destructor:DTCC.Simplex3D)
+  SharedDtor();
+}
+
+void Simplex3D::SharedDtor() {
+}
+
+void Simplex3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Simplex3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Simplex3D& Simplex3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_Simplex3D.base);
+  return *internal_default_instance();
+}
+
+
+void Simplex3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.Simplex3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&v0_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&v3_) -
+      reinterpret_cast<char*>(&v0_)) + sizeof(v3_));
+  _internal_metadata_.Clear();
+}
+
+bool Simplex3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.Simplex3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 v0 = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v0_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 v1 = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v1_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 v2 = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v2_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 v3 = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v3_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.Simplex3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.Simplex3D)
+  return false;
+#undef DO_
+}
+
+void Simplex3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.Simplex3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->v0(), output);
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->v1(), output);
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->v2(), output);
+  }
+
+  // int32 v3 = 4;
+  if (this->v3() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->v3(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.Simplex3D)
+}
+
+::google::protobuf::uint8* Simplex3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.Simplex3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->v0(), target);
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->v1(), target);
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->v2(), target);
+  }
+
+  // int32 v3 = 4;
+  if (this->v3() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->v3(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.Simplex3D)
+  return target;
+}
+
+size_t Simplex3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.Simplex3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // int32 v0 = 1;
+  if (this->v0() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v0());
+  }
+
+  // int32 v1 = 2;
+  if (this->v1() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v1());
+  }
+
+  // int32 v2 = 3;
+  if (this->v2() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v2());
+  }
+
+  // int32 v3 = 4;
+  if (this->v3() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->v3());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Simplex3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.Simplex3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Simplex3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Simplex3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.Simplex3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.Simplex3D)
+    MergeFrom(*source);
+  }
+}
+
+void Simplex3D::MergeFrom(const Simplex3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.Simplex3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.v0() != 0) {
+    set_v0(from.v0());
+  }
+  if (from.v1() != 0) {
+    set_v1(from.v1());
+  }
+  if (from.v2() != 0) {
+    set_v2(from.v2());
+  }
+  if (from.v3() != 0) {
+    set_v3(from.v3());
+  }
+}
+
+void Simplex3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.Simplex3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Simplex3D::CopyFrom(const Simplex3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.Simplex3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Simplex3D::IsInitialized() const {
+  return true;
+}
+
+void Simplex3D::Swap(Simplex3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Simplex3D::InternalSwap(Simplex3D* other) {
+  using std::swap;
+  swap(v0_, other->v0_);
+  swap(v1_, other->v1_);
+  swap(v2_, other->v2_);
+  swap(v3_, other->v3_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Simplex3D::GetMetadata() const {
   protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -849,6 +2017,291 @@ void BoundingBox2D::InternalSwap(BoundingBox2D* other) {
 }
 
 ::google::protobuf::Metadata BoundingBox2D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void BoundingBox3D::InitAsDefaultInstance() {
+  ::DTCC::_BoundingBox3D_default_instance_._instance.get_mutable()->p_ = const_cast< ::DTCC::Vector3D*>(
+      ::DTCC::Vector3D::internal_default_instance());
+  ::DTCC::_BoundingBox3D_default_instance_._instance.get_mutable()->q_ = const_cast< ::DTCC::Vector3D*>(
+      ::DTCC::Vector3D::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int BoundingBox3D::kPFieldNumber;
+const int BoundingBox3D::kQFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+BoundingBox3D::BoundingBox3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_BoundingBox3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.BoundingBox3D)
+}
+BoundingBox3D::BoundingBox3D(const BoundingBox3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_p()) {
+    p_ = new ::DTCC::Vector3D(*from.p_);
+  } else {
+    p_ = NULL;
+  }
+  if (from.has_q()) {
+    q_ = new ::DTCC::Vector3D(*from.q_);
+  } else {
+    q_ = NULL;
+  }
+  // @@protoc_insertion_point(copy_constructor:DTCC.BoundingBox3D)
+}
+
+void BoundingBox3D::SharedCtor() {
+  ::memset(&p_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&q_) -
+      reinterpret_cast<char*>(&p_)) + sizeof(q_));
+}
+
+BoundingBox3D::~BoundingBox3D() {
+  // @@protoc_insertion_point(destructor:DTCC.BoundingBox3D)
+  SharedDtor();
+}
+
+void BoundingBox3D::SharedDtor() {
+  if (this != internal_default_instance()) delete p_;
+  if (this != internal_default_instance()) delete q_;
+}
+
+void BoundingBox3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* BoundingBox3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const BoundingBox3D& BoundingBox3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_BoundingBox3D.base);
+  return *internal_default_instance();
+}
+
+
+void BoundingBox3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.BoundingBox3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == NULL && p_ != NULL) {
+    delete p_;
+  }
+  p_ = NULL;
+  if (GetArenaNoVirtual() == NULL && q_ != NULL) {
+    delete q_;
+  }
+  q_ = NULL;
+  _internal_metadata_.Clear();
+}
+
+bool BoundingBox3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.BoundingBox3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .DTCC.Vector3D p = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_p()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .DTCC.Vector3D q = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_q()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.BoundingBox3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.BoundingBox3D)
+  return false;
+#undef DO_
+}
+
+void BoundingBox3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.BoundingBox3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Vector3D p = 1;
+  if (this->has_p()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_p(), output);
+  }
+
+  // .DTCC.Vector3D q = 2;
+  if (this->has_q()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->_internal_q(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.BoundingBox3D)
+}
+
+::google::protobuf::uint8* BoundingBox3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.BoundingBox3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Vector3D p = 1;
+  if (this->has_p()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_p(), deterministic, target);
+  }
+
+  // .DTCC.Vector3D q = 2;
+  if (this->has_q()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->_internal_q(), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.BoundingBox3D)
+  return target;
+}
+
+size_t BoundingBox3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.BoundingBox3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // .DTCC.Vector3D p = 1;
+  if (this->has_p()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *p_);
+  }
+
+  // .DTCC.Vector3D q = 2;
+  if (this->has_q()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *q_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void BoundingBox3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.BoundingBox3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BoundingBox3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BoundingBox3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.BoundingBox3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.BoundingBox3D)
+    MergeFrom(*source);
+  }
+}
+
+void BoundingBox3D::MergeFrom(const BoundingBox3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.BoundingBox3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_p()) {
+    mutable_p()->::DTCC::Vector3D::MergeFrom(from.p());
+  }
+  if (from.has_q()) {
+    mutable_q()->::DTCC::Vector3D::MergeFrom(from.q());
+  }
+}
+
+void BoundingBox3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.BoundingBox3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void BoundingBox3D::CopyFrom(const BoundingBox3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.BoundingBox3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BoundingBox3D::IsInitialized() const {
+  return true;
+}
+
+void BoundingBox3D::Swap(BoundingBox3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void BoundingBox3D::InternalSwap(BoundingBox3D* other) {
+  using std::swap;
+  swap(p_, other->p_);
+  swap(q_, other->q_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata BoundingBox3D::GetMetadata() const {
   protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -1467,6 +2920,777 @@ void Grid2D::InternalSwap(Grid2D* other) {
 
 // ===================================================================
 
+void Grid3D::InitAsDefaultInstance() {
+  ::DTCC::_Grid3D_default_instance_._instance.get_mutable()->boundingbox_ = const_cast< ::DTCC::BoundingBox3D*>(
+      ::DTCC::BoundingBox3D::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Grid3D::kBoundingBoxFieldNumber;
+const int Grid3D::kXSizeFieldNumber;
+const int Grid3D::kYSizeFieldNumber;
+const int Grid3D::kZSizeFieldNumber;
+const int Grid3D::kXStepFieldNumber;
+const int Grid3D::kYStepFieldNumber;
+const int Grid3D::kZStepFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Grid3D::Grid3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_Grid3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.Grid3D)
+}
+Grid3D::Grid3D(const Grid3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_boundingbox()) {
+    boundingbox_ = new ::DTCC::BoundingBox3D(*from.boundingbox_);
+  } else {
+    boundingbox_ = NULL;
+  }
+  ::memcpy(&xsize_, &from.xsize_,
+    static_cast<size_t>(reinterpret_cast<char*>(&zstep_) -
+    reinterpret_cast<char*>(&xsize_)) + sizeof(zstep_));
+  // @@protoc_insertion_point(copy_constructor:DTCC.Grid3D)
+}
+
+void Grid3D::SharedCtor() {
+  ::memset(&boundingbox_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&zstep_) -
+      reinterpret_cast<char*>(&boundingbox_)) + sizeof(zstep_));
+}
+
+Grid3D::~Grid3D() {
+  // @@protoc_insertion_point(destructor:DTCC.Grid3D)
+  SharedDtor();
+}
+
+void Grid3D::SharedDtor() {
+  if (this != internal_default_instance()) delete boundingbox_;
+}
+
+void Grid3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Grid3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Grid3D& Grid3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_Grid3D.base);
+  return *internal_default_instance();
+}
+
+
+void Grid3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.Grid3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == NULL && boundingbox_ != NULL) {
+    delete boundingbox_;
+  }
+  boundingbox_ = NULL;
+  ::memset(&xsize_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&zstep_) -
+      reinterpret_cast<char*>(&xsize_)) + sizeof(zstep_));
+  _internal_metadata_.Clear();
+}
+
+bool Grid3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.Grid3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .DTCC.BoundingBox3D boundingBox = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_boundingbox()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 xSize = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &xsize_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 ySize = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &ysize_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 zSize = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &zsize_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float xStep = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(45u /* 45 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &xstep_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float yStep = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(53u /* 53 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ystep_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float zStep = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(61u /* 61 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &zstep_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.Grid3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.Grid3D)
+  return false;
+#undef DO_
+}
+
+void Grid3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.Grid3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.BoundingBox3D boundingBox = 1;
+  if (this->has_boundingbox()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_boundingbox(), output);
+  }
+
+  // int32 xSize = 2;
+  if (this->xsize() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->xsize(), output);
+  }
+
+  // int32 ySize = 3;
+  if (this->ysize() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->ysize(), output);
+  }
+
+  // int32 zSize = 4;
+  if (this->zsize() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->zsize(), output);
+  }
+
+  // float xStep = 5;
+  if (this->xstep() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(5, this->xstep(), output);
+  }
+
+  // float yStep = 6;
+  if (this->ystep() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->ystep(), output);
+  }
+
+  // float zStep = 7;
+  if (this->zstep() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->zstep(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.Grid3D)
+}
+
+::google::protobuf::uint8* Grid3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.Grid3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.BoundingBox3D boundingBox = 1;
+  if (this->has_boundingbox()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_boundingbox(), deterministic, target);
+  }
+
+  // int32 xSize = 2;
+  if (this->xsize() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->xsize(), target);
+  }
+
+  // int32 ySize = 3;
+  if (this->ysize() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->ysize(), target);
+  }
+
+  // int32 zSize = 4;
+  if (this->zsize() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->zsize(), target);
+  }
+
+  // float xStep = 5;
+  if (this->xstep() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(5, this->xstep(), target);
+  }
+
+  // float yStep = 6;
+  if (this->ystep() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->ystep(), target);
+  }
+
+  // float zStep = 7;
+  if (this->zstep() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->zstep(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.Grid3D)
+  return target;
+}
+
+size_t Grid3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.Grid3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // .DTCC.BoundingBox3D boundingBox = 1;
+  if (this->has_boundingbox()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *boundingbox_);
+  }
+
+  // int32 xSize = 2;
+  if (this->xsize() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->xsize());
+  }
+
+  // int32 ySize = 3;
+  if (this->ysize() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->ysize());
+  }
+
+  // int32 zSize = 4;
+  if (this->zsize() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->zsize());
+  }
+
+  // float xStep = 5;
+  if (this->xstep() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yStep = 6;
+  if (this->ystep() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float zStep = 7;
+  if (this->zstep() != 0) {
+    total_size += 1 + 4;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Grid3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.Grid3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Grid3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Grid3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.Grid3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.Grid3D)
+    MergeFrom(*source);
+  }
+}
+
+void Grid3D::MergeFrom(const Grid3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.Grid3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_boundingbox()) {
+    mutable_boundingbox()->::DTCC::BoundingBox3D::MergeFrom(from.boundingbox());
+  }
+  if (from.xsize() != 0) {
+    set_xsize(from.xsize());
+  }
+  if (from.ysize() != 0) {
+    set_ysize(from.ysize());
+  }
+  if (from.zsize() != 0) {
+    set_zsize(from.zsize());
+  }
+  if (from.xstep() != 0) {
+    set_xstep(from.xstep());
+  }
+  if (from.ystep() != 0) {
+    set_ystep(from.ystep());
+  }
+  if (from.zstep() != 0) {
+    set_zstep(from.zstep());
+  }
+}
+
+void Grid3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.Grid3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Grid3D::CopyFrom(const Grid3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.Grid3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Grid3D::IsInitialized() const {
+  return true;
+}
+
+void Grid3D::Swap(Grid3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Grid3D::InternalSwap(Grid3D* other) {
+  using std::swap;
+  swap(boundingbox_, other->boundingbox_);
+  swap(xsize_, other->xsize_);
+  swap(ysize_, other->ysize_);
+  swap(zsize_, other->zsize_);
+  swap(xstep_, other->xstep_);
+  swap(ystep_, other->ystep_);
+  swap(zstep_, other->zstep_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Grid3D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Surface3D::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Surface3D::kVerticesFieldNumber;
+const int Surface3D::kNormalsFieldNumber;
+const int Surface3D::kFacesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Surface3D::Surface3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_Surface3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.Surface3D)
+}
+Surface3D::Surface3D(const Surface3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      vertices_(from.vertices_),
+      normals_(from.normals_),
+      faces_(from.faces_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:DTCC.Surface3D)
+}
+
+void Surface3D::SharedCtor() {
+}
+
+Surface3D::~Surface3D() {
+  // @@protoc_insertion_point(destructor:DTCC.Surface3D)
+  SharedDtor();
+}
+
+void Surface3D::SharedDtor() {
+}
+
+void Surface3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Surface3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Surface3D& Surface3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_Surface3D.base);
+  return *internal_default_instance();
+}
+
+
+void Surface3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.Surface3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  vertices_.Clear();
+  normals_.Clear();
+  faces_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool Surface3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.Surface3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .DTCC.Vector3D vertices = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_vertices()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .DTCC.Vector3D normals = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_normals()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .DTCC.Simplex2D faces = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_faces()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.Surface3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.Surface3D)
+  return false;
+#undef DO_
+}
+
+void Surface3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.Surface3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .DTCC.Vector3D vertices = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->vertices_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->vertices(static_cast<int>(i)),
+      output);
+  }
+
+  // repeated .DTCC.Vector3D normals = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->normals_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2,
+      this->normals(static_cast<int>(i)),
+      output);
+  }
+
+  // repeated .DTCC.Simplex2D faces = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->faces_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3,
+      this->faces(static_cast<int>(i)),
+      output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.Surface3D)
+}
+
+::google::protobuf::uint8* Surface3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.Surface3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .DTCC.Vector3D vertices = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->vertices_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->vertices(static_cast<int>(i)), deterministic, target);
+  }
+
+  // repeated .DTCC.Vector3D normals = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->normals_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->normals(static_cast<int>(i)), deterministic, target);
+  }
+
+  // repeated .DTCC.Simplex2D faces = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->faces_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        3, this->faces(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.Surface3D)
+  return target;
+}
+
+size_t Surface3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.Surface3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .DTCC.Vector3D vertices = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->vertices_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->vertices(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .DTCC.Vector3D normals = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->normals_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->normals(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .DTCC.Simplex2D faces = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->faces_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->faces(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Surface3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.Surface3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Surface3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Surface3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.Surface3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.Surface3D)
+    MergeFrom(*source);
+  }
+}
+
+void Surface3D::MergeFrom(const Surface3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.Surface3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  vertices_.MergeFrom(from.vertices_);
+  normals_.MergeFrom(from.normals_);
+  faces_.MergeFrom(from.faces_);
+}
+
+void Surface3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.Surface3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Surface3D::CopyFrom(const Surface3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.Surface3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Surface3D::IsInitialized() const {
+  return true;
+}
+
+void Surface3D::Swap(Surface3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Surface3D::InternalSwap(Surface3D* other) {
+  using std::swap;
+  CastToBase(&vertices_)->InternalSwap(CastToBase(&other->vertices_));
+  CastToBase(&normals_)->InternalSwap(CastToBase(&other->normals_));
+  CastToBase(&faces_)->InternalSwap(CastToBase(&other->faces_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Surface3D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
 void GridField2D::InitAsDefaultInstance() {
   ::DTCC::_GridField2D_default_instance_._instance.get_mutable()->grid_ = const_cast< ::DTCC::Grid2D*>(
       ::DTCC::Grid2D::internal_default_instance());
@@ -1756,6 +3980,302 @@ void GridField2D::InternalSwap(GridField2D* other) {
 }
 
 ::google::protobuf::Metadata GridField2D::GetMetadata() const {
+  protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void GridField3D::InitAsDefaultInstance() {
+  ::DTCC::_GridField3D_default_instance_._instance.get_mutable()->grid_ = const_cast< ::DTCC::Grid3D*>(
+      ::DTCC::Grid3D::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GridField3D::kGridFieldNumber;
+const int GridField3D::kValuesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GridField3D::GridField3D()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_dtcc_2eproto::scc_info_GridField3D.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DTCC.GridField3D)
+}
+GridField3D::GridField3D(const GridField3D& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      values_(from.values_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_grid()) {
+    grid_ = new ::DTCC::Grid3D(*from.grid_);
+  } else {
+    grid_ = NULL;
+  }
+  // @@protoc_insertion_point(copy_constructor:DTCC.GridField3D)
+}
+
+void GridField3D::SharedCtor() {
+  grid_ = NULL;
+}
+
+GridField3D::~GridField3D() {
+  // @@protoc_insertion_point(destructor:DTCC.GridField3D)
+  SharedDtor();
+}
+
+void GridField3D::SharedDtor() {
+  if (this != internal_default_instance()) delete grid_;
+}
+
+void GridField3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* GridField3D::descriptor() {
+  ::protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const GridField3D& GridField3D::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_dtcc_2eproto::scc_info_GridField3D.base);
+  return *internal_default_instance();
+}
+
+
+void GridField3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.GridField3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  values_.Clear();
+  if (GetArenaNoVirtual() == NULL && grid_ != NULL) {
+    delete grid_;
+  }
+  grid_ = NULL;
+  _internal_metadata_.Clear();
+}
+
+bool GridField3D::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DTCC.GridField3D)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .DTCC.Grid3D grid = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_grid()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated float values = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, this->mutable_values())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(21u /* 21 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 1, 18u, input, this->mutable_values())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DTCC.GridField3D)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DTCC.GridField3D)
+  return false;
+#undef DO_
+}
+
+void GridField3D::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DTCC.GridField3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Grid3D grid = 1;
+  if (this->has_grid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_grid(), output);
+  }
+
+  // repeated float values = 2;
+  if (this->values_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(2, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _values_cached_byte_size_));
+    ::google::protobuf::internal::WireFormatLite::WriteFloatArray(
+      this->values().data(), this->values_size(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:DTCC.GridField3D)
+}
+
+::google::protobuf::uint8* GridField3D::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.GridField3D)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Grid3D grid = 1;
+  if (this->has_grid()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_grid(), deterministic, target);
+  }
+
+  // repeated float values = 2;
+  if (this->values_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      2,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::int32>(
+            _values_cached_byte_size_), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteFloatNoTagToArray(this->values_, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.GridField3D)
+  return target;
+}
+
+size_t GridField3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.GridField3D)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated float values = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->values_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _values_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
+  }
+
+  // .DTCC.Grid3D grid = 1;
+  if (this->has_grid()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *grid_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GridField3D::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.GridField3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GridField3D* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const GridField3D>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.GridField3D)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.GridField3D)
+    MergeFrom(*source);
+  }
+}
+
+void GridField3D::MergeFrom(const GridField3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.GridField3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  values_.MergeFrom(from.values_);
+  if (from.has_grid()) {
+    mutable_grid()->::DTCC::Grid3D::MergeFrom(from.grid());
+  }
+}
+
+void GridField3D::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.GridField3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GridField3D::CopyFrom(const GridField3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.GridField3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GridField3D::IsInitialized() const {
+  return true;
+}
+
+void GridField3D::Swap(GridField3D* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GridField3D::InternalSwap(GridField3D* other) {
+  using std::swap;
+  values_.InternalSwap(&other->values_);
+  swap(grid_, other->grid_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata GridField3D::GetMetadata() const {
   protobuf_dtcc_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_dtcc_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -2365,8 +4885,20 @@ namespace protobuf {
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Vector2D* Arena::CreateMaybeMessage< ::DTCC::Vector2D >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::Vector2D >(arena);
 }
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Vector3D* Arena::CreateMaybeMessage< ::DTCC::Vector3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::Vector3D >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Simplex2D* Arena::CreateMaybeMessage< ::DTCC::Simplex2D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::Simplex2D >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Simplex3D* Arena::CreateMaybeMessage< ::DTCC::Simplex3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::Simplex3D >(arena);
+}
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::BoundingBox2D* Arena::CreateMaybeMessage< ::DTCC::BoundingBox2D >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::BoundingBox2D >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::BoundingBox3D* Arena::CreateMaybeMessage< ::DTCC::BoundingBox3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::BoundingBox3D >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Polygon* Arena::CreateMaybeMessage< ::DTCC::Polygon >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::Polygon >(arena);
@@ -2374,8 +4906,17 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Polygon* Arena::CreateMayb
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Grid2D* Arena::CreateMaybeMessage< ::DTCC::Grid2D >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::Grid2D >(arena);
 }
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Grid3D* Arena::CreateMaybeMessage< ::DTCC::Grid3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::Grid3D >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Surface3D* Arena::CreateMaybeMessage< ::DTCC::Surface3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::Surface3D >(arena);
+}
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::GridField2D* Arena::CreateMaybeMessage< ::DTCC::GridField2D >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::GridField2D >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::GridField3D* Arena::CreateMaybeMessage< ::DTCC::GridField3D >(Arena* arena) {
+  return Arena::CreateInternal< ::DTCC::GridField3D >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DTCC::Building* Arena::CreateMaybeMessage< ::DTCC::Building >(Arena* arena) {
   return Arena::CreateInternal< ::DTCC::Building >(arena);

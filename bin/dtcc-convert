@@ -41,6 +41,37 @@ def ReadJSON(fileName):
             buildings.append(building)
         cityModel.buildings.extend(buildings)
         return cityModel
+    elif jsonData['Type'] == 'Surface3D':
+        print('Creating Surface3D object...')
+        surface = Surface3D()
+        jsonVertices = jsonData['Vertices']
+        vertices = []
+        for i in range(0, len(jsonVertices), 3):
+            v = Vector3D()
+            v.x = jsonVertices[i]
+            v.y = jsonVertices[i + 1]
+            v.z = jsonVertices[i + 2]
+            vertices.append(v)
+        surface.vertices.extend(vertices)
+        jsonFaces = jsonData['Faces']
+        faces = []
+        for i in range(0, len(jsonFaces), 3):
+            f = Simplex2D()
+            f.v0 = jsonFaces[i]
+            f.v1 = jsonFaces[i + 1]
+            f.v2 = jsonFaces[i + 2]
+            faces.append(f)
+        surface.faces.extend(faces)
+        jsonNormals = jsonData['Normals']
+        normals = []
+        for i in range(0, len(jsonNormals), 3):
+            n = Vector3D()
+            n.x = jsonNormals[i]
+            n.y = jsonNormals[i + 1]
+            n.z = jsonNormals[i + 2]
+            normals.append(n)
+        surface.normals.extend(normals)
+        return surface
     elif jsonData['Type'] == 'GridField2D':
         print('Creating GridField2D object...')
         gridField = GridField2D()

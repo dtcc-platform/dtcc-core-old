@@ -8,10 +8,38 @@ message Vector2D
   float y = 2;
 }
 
+message Vector3D
+{
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message Simplex2D
+{
+  int32 v0 = 1;
+  int32 v1 = 2;
+  int32 v2 = 3;
+}
+
+message Simplex3D
+{
+  int32 v0 = 1;
+  int32 v1 = 2;
+  int32 v2 = 3;
+  int32 v3 = 4;
+}
+
 message BoundingBox2D
 {
   Vector2D p = 1;
   Vector2D q = 2;
+}
+
+message BoundingBox3D
+{
+  Vector3D p = 1;
+  Vector3D q = 2;
 }
 
 message Polygon
@@ -28,9 +56,33 @@ message Grid2D
   float yStep = 5;
 }
 
+message Grid3D
+{
+  BoundingBox3D boundingBox = 1;
+  int32 xSize = 2;
+  int32 ySize = 3;
+  int32 zSize = 4;
+  float xStep = 5;
+  float yStep = 6;
+  float zStep = 7;
+}
+
+message Surface3D
+{
+  repeated Vector3D vertices = 1;
+  repeated Vector3D normals = 2;
+  repeated Simplex2D faces = 3;
+}
+
 message GridField2D
 {
   Grid2D grid = 1;
+  repeated float values = 2;
+}
+
+message GridField3D
+{
+  Grid3D grid = 1;
   repeated float values = 2;
 }
 

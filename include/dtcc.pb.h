@@ -38,7 +38,7 @@ namespace protobuf_dtcc_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[7];
+  static const ::google::protobuf::internal::ParseTable schema[14];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -49,6 +49,9 @@ namespace DTCC {
 class BoundingBox2D;
 class BoundingBox2DDefaultTypeInternal;
 extern BoundingBox2DDefaultTypeInternal _BoundingBox2D_default_instance_;
+class BoundingBox3D;
+class BoundingBox3DDefaultTypeInternal;
+extern BoundingBox3DDefaultTypeInternal _BoundingBox3D_default_instance_;
 class Building;
 class BuildingDefaultTypeInternal;
 extern BuildingDefaultTypeInternal _Building_default_instance_;
@@ -58,25 +61,50 @@ extern CityModelDefaultTypeInternal _CityModel_default_instance_;
 class Grid2D;
 class Grid2DDefaultTypeInternal;
 extern Grid2DDefaultTypeInternal _Grid2D_default_instance_;
+class Grid3D;
+class Grid3DDefaultTypeInternal;
+extern Grid3DDefaultTypeInternal _Grid3D_default_instance_;
 class GridField2D;
 class GridField2DDefaultTypeInternal;
 extern GridField2DDefaultTypeInternal _GridField2D_default_instance_;
+class GridField3D;
+class GridField3DDefaultTypeInternal;
+extern GridField3DDefaultTypeInternal _GridField3D_default_instance_;
 class Polygon;
 class PolygonDefaultTypeInternal;
 extern PolygonDefaultTypeInternal _Polygon_default_instance_;
+class Simplex2D;
+class Simplex2DDefaultTypeInternal;
+extern Simplex2DDefaultTypeInternal _Simplex2D_default_instance_;
+class Simplex3D;
+class Simplex3DDefaultTypeInternal;
+extern Simplex3DDefaultTypeInternal _Simplex3D_default_instance_;
+class Surface3D;
+class Surface3DDefaultTypeInternal;
+extern Surface3DDefaultTypeInternal _Surface3D_default_instance_;
 class Vector2D;
 class Vector2DDefaultTypeInternal;
 extern Vector2DDefaultTypeInternal _Vector2D_default_instance_;
+class Vector3D;
+class Vector3DDefaultTypeInternal;
+extern Vector3DDefaultTypeInternal _Vector3D_default_instance_;
 }  // namespace DTCC
 namespace google {
 namespace protobuf {
 template<> ::DTCC::BoundingBox2D* Arena::CreateMaybeMessage<::DTCC::BoundingBox2D>(Arena*);
+template<> ::DTCC::BoundingBox3D* Arena::CreateMaybeMessage<::DTCC::BoundingBox3D>(Arena*);
 template<> ::DTCC::Building* Arena::CreateMaybeMessage<::DTCC::Building>(Arena*);
 template<> ::DTCC::CityModel* Arena::CreateMaybeMessage<::DTCC::CityModel>(Arena*);
 template<> ::DTCC::Grid2D* Arena::CreateMaybeMessage<::DTCC::Grid2D>(Arena*);
+template<> ::DTCC::Grid3D* Arena::CreateMaybeMessage<::DTCC::Grid3D>(Arena*);
 template<> ::DTCC::GridField2D* Arena::CreateMaybeMessage<::DTCC::GridField2D>(Arena*);
+template<> ::DTCC::GridField3D* Arena::CreateMaybeMessage<::DTCC::GridField3D>(Arena*);
 template<> ::DTCC::Polygon* Arena::CreateMaybeMessage<::DTCC::Polygon>(Arena*);
+template<> ::DTCC::Simplex2D* Arena::CreateMaybeMessage<::DTCC::Simplex2D>(Arena*);
+template<> ::DTCC::Simplex3D* Arena::CreateMaybeMessage<::DTCC::Simplex3D>(Arena*);
+template<> ::DTCC::Surface3D* Arena::CreateMaybeMessage<::DTCC::Surface3D>(Arena*);
 template<> ::DTCC::Vector2D* Arena::CreateMaybeMessage<::DTCC::Vector2D>(Arena*);
+template<> ::DTCC::Vector3D* Arena::CreateMaybeMessage<::DTCC::Vector3D>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace DTCC {
@@ -193,6 +221,364 @@ class Vector2D : public ::google::protobuf::Message /* @@protoc_insertion_point(
 };
 // -------------------------------------------------------------------
 
+class Vector3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Vector3D) */ {
+ public:
+  Vector3D();
+  virtual ~Vector3D();
+
+  Vector3D(const Vector3D& from);
+
+  inline Vector3D& operator=(const Vector3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Vector3D(Vector3D&& from) noexcept
+    : Vector3D() {
+    *this = ::std::move(from);
+  }
+
+  inline Vector3D& operator=(Vector3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Vector3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Vector3D* internal_default_instance() {
+    return reinterpret_cast<const Vector3D*>(
+               &_Vector3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(Vector3D* other);
+  friend void swap(Vector3D& a, Vector3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Vector3D* New() const final {
+    return CreateMaybeMessage<Vector3D>(NULL);
+  }
+
+  Vector3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Vector3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Vector3D& from);
+  void MergeFrom(const Vector3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Vector3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // float x = 1;
+  void clear_x();
+  static const int kXFieldNumber = 1;
+  float x() const;
+  void set_x(float value);
+
+  // float y = 2;
+  void clear_y();
+  static const int kYFieldNumber = 2;
+  float y() const;
+  void set_y(float value);
+
+  // float z = 3;
+  void clear_z();
+  static const int kZFieldNumber = 3;
+  float z() const;
+  void set_z(float value);
+
+  // @@protoc_insertion_point(class_scope:DTCC.Vector3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  float x_;
+  float y_;
+  float z_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Simplex2D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Simplex2D) */ {
+ public:
+  Simplex2D();
+  virtual ~Simplex2D();
+
+  Simplex2D(const Simplex2D& from);
+
+  inline Simplex2D& operator=(const Simplex2D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Simplex2D(Simplex2D&& from) noexcept
+    : Simplex2D() {
+    *this = ::std::move(from);
+  }
+
+  inline Simplex2D& operator=(Simplex2D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Simplex2D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Simplex2D* internal_default_instance() {
+    return reinterpret_cast<const Simplex2D*>(
+               &_Simplex2D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(Simplex2D* other);
+  friend void swap(Simplex2D& a, Simplex2D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Simplex2D* New() const final {
+    return CreateMaybeMessage<Simplex2D>(NULL);
+  }
+
+  Simplex2D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Simplex2D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Simplex2D& from);
+  void MergeFrom(const Simplex2D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Simplex2D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 v0 = 1;
+  void clear_v0();
+  static const int kV0FieldNumber = 1;
+  ::google::protobuf::int32 v0() const;
+  void set_v0(::google::protobuf::int32 value);
+
+  // int32 v1 = 2;
+  void clear_v1();
+  static const int kV1FieldNumber = 2;
+  ::google::protobuf::int32 v1() const;
+  void set_v1(::google::protobuf::int32 value);
+
+  // int32 v2 = 3;
+  void clear_v2();
+  static const int kV2FieldNumber = 3;
+  ::google::protobuf::int32 v2() const;
+  void set_v2(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:DTCC.Simplex2D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 v0_;
+  ::google::protobuf::int32 v1_;
+  ::google::protobuf::int32 v2_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Simplex3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Simplex3D) */ {
+ public:
+  Simplex3D();
+  virtual ~Simplex3D();
+
+  Simplex3D(const Simplex3D& from);
+
+  inline Simplex3D& operator=(const Simplex3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Simplex3D(Simplex3D&& from) noexcept
+    : Simplex3D() {
+    *this = ::std::move(from);
+  }
+
+  inline Simplex3D& operator=(Simplex3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Simplex3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Simplex3D* internal_default_instance() {
+    return reinterpret_cast<const Simplex3D*>(
+               &_Simplex3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  void Swap(Simplex3D* other);
+  friend void swap(Simplex3D& a, Simplex3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Simplex3D* New() const final {
+    return CreateMaybeMessage<Simplex3D>(NULL);
+  }
+
+  Simplex3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Simplex3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Simplex3D& from);
+  void MergeFrom(const Simplex3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Simplex3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 v0 = 1;
+  void clear_v0();
+  static const int kV0FieldNumber = 1;
+  ::google::protobuf::int32 v0() const;
+  void set_v0(::google::protobuf::int32 value);
+
+  // int32 v1 = 2;
+  void clear_v1();
+  static const int kV1FieldNumber = 2;
+  ::google::protobuf::int32 v1() const;
+  void set_v1(::google::protobuf::int32 value);
+
+  // int32 v2 = 3;
+  void clear_v2();
+  static const int kV2FieldNumber = 3;
+  ::google::protobuf::int32 v2() const;
+  void set_v2(::google::protobuf::int32 value);
+
+  // int32 v3 = 4;
+  void clear_v3();
+  static const int kV3FieldNumber = 4;
+  ::google::protobuf::int32 v3() const;
+  void set_v3(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:DTCC.Simplex3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 v0_;
+  ::google::protobuf::int32 v1_;
+  ::google::protobuf::int32 v2_;
+  ::google::protobuf::int32 v3_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class BoundingBox2D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.BoundingBox2D) */ {
  public:
   BoundingBox2D();
@@ -228,7 +614,7 @@ class BoundingBox2D : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_BoundingBox2D_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    4;
 
   void Swap(BoundingBox2D* other);
   friend void swap(BoundingBox2D& a, BoundingBox2D& b) {
@@ -315,6 +701,128 @@ class BoundingBox2D : public ::google::protobuf::Message /* @@protoc_insertion_p
 };
 // -------------------------------------------------------------------
 
+class BoundingBox3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.BoundingBox3D) */ {
+ public:
+  BoundingBox3D();
+  virtual ~BoundingBox3D();
+
+  BoundingBox3D(const BoundingBox3D& from);
+
+  inline BoundingBox3D& operator=(const BoundingBox3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BoundingBox3D(BoundingBox3D&& from) noexcept
+    : BoundingBox3D() {
+    *this = ::std::move(from);
+  }
+
+  inline BoundingBox3D& operator=(BoundingBox3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BoundingBox3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BoundingBox3D* internal_default_instance() {
+    return reinterpret_cast<const BoundingBox3D*>(
+               &_BoundingBox3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  void Swap(BoundingBox3D* other);
+  friend void swap(BoundingBox3D& a, BoundingBox3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BoundingBox3D* New() const final {
+    return CreateMaybeMessage<BoundingBox3D>(NULL);
+  }
+
+  BoundingBox3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BoundingBox3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const BoundingBox3D& from);
+  void MergeFrom(const BoundingBox3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BoundingBox3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .DTCC.Vector3D p = 1;
+  bool has_p() const;
+  void clear_p();
+  static const int kPFieldNumber = 1;
+  private:
+  const ::DTCC::Vector3D& _internal_p() const;
+  public:
+  const ::DTCC::Vector3D& p() const;
+  ::DTCC::Vector3D* release_p();
+  ::DTCC::Vector3D* mutable_p();
+  void set_allocated_p(::DTCC::Vector3D* p);
+
+  // .DTCC.Vector3D q = 2;
+  bool has_q() const;
+  void clear_q();
+  static const int kQFieldNumber = 2;
+  private:
+  const ::DTCC::Vector3D& _internal_q() const;
+  public:
+  const ::DTCC::Vector3D& q() const;
+  ::DTCC::Vector3D* release_q();
+  ::DTCC::Vector3D* mutable_q();
+  void set_allocated_q(::DTCC::Vector3D* q);
+
+  // @@protoc_insertion_point(class_scope:DTCC.BoundingBox3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::DTCC::Vector3D* p_;
+  ::DTCC::Vector3D* q_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Polygon : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Polygon) */ {
  public:
   Polygon();
@@ -350,7 +858,7 @@ class Polygon : public ::google::protobuf::Message /* @@protoc_insertion_point(c
                &_Polygon_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    6;
 
   void Swap(Polygon* other);
   friend void swap(Polygon& a, Polygon& b) {
@@ -459,7 +967,7 @@ class Grid2D : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
                &_Grid2D_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    7;
 
   void Swap(Grid2D* other);
   friend void swap(Grid2D& a, Grid2D& b) {
@@ -561,6 +1069,292 @@ class Grid2D : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 };
 // -------------------------------------------------------------------
 
+class Grid3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Grid3D) */ {
+ public:
+  Grid3D();
+  virtual ~Grid3D();
+
+  Grid3D(const Grid3D& from);
+
+  inline Grid3D& operator=(const Grid3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Grid3D(Grid3D&& from) noexcept
+    : Grid3D() {
+    *this = ::std::move(from);
+  }
+
+  inline Grid3D& operator=(Grid3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Grid3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Grid3D* internal_default_instance() {
+    return reinterpret_cast<const Grid3D*>(
+               &_Grid3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  void Swap(Grid3D* other);
+  friend void swap(Grid3D& a, Grid3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Grid3D* New() const final {
+    return CreateMaybeMessage<Grid3D>(NULL);
+  }
+
+  Grid3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Grid3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Grid3D& from);
+  void MergeFrom(const Grid3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Grid3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .DTCC.BoundingBox3D boundingBox = 1;
+  bool has_boundingbox() const;
+  void clear_boundingbox();
+  static const int kBoundingBoxFieldNumber = 1;
+  private:
+  const ::DTCC::BoundingBox3D& _internal_boundingbox() const;
+  public:
+  const ::DTCC::BoundingBox3D& boundingbox() const;
+  ::DTCC::BoundingBox3D* release_boundingbox();
+  ::DTCC::BoundingBox3D* mutable_boundingbox();
+  void set_allocated_boundingbox(::DTCC::BoundingBox3D* boundingbox);
+
+  // int32 xSize = 2;
+  void clear_xsize();
+  static const int kXSizeFieldNumber = 2;
+  ::google::protobuf::int32 xsize() const;
+  void set_xsize(::google::protobuf::int32 value);
+
+  // int32 ySize = 3;
+  void clear_ysize();
+  static const int kYSizeFieldNumber = 3;
+  ::google::protobuf::int32 ysize() const;
+  void set_ysize(::google::protobuf::int32 value);
+
+  // int32 zSize = 4;
+  void clear_zsize();
+  static const int kZSizeFieldNumber = 4;
+  ::google::protobuf::int32 zsize() const;
+  void set_zsize(::google::protobuf::int32 value);
+
+  // float xStep = 5;
+  void clear_xstep();
+  static const int kXStepFieldNumber = 5;
+  float xstep() const;
+  void set_xstep(float value);
+
+  // float yStep = 6;
+  void clear_ystep();
+  static const int kYStepFieldNumber = 6;
+  float ystep() const;
+  void set_ystep(float value);
+
+  // float zStep = 7;
+  void clear_zstep();
+  static const int kZStepFieldNumber = 7;
+  float zstep() const;
+  void set_zstep(float value);
+
+  // @@protoc_insertion_point(class_scope:DTCC.Grid3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::DTCC::BoundingBox3D* boundingbox_;
+  ::google::protobuf::int32 xsize_;
+  ::google::protobuf::int32 ysize_;
+  ::google::protobuf::int32 zsize_;
+  float xstep_;
+  float ystep_;
+  float zstep_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Surface3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Surface3D) */ {
+ public:
+  Surface3D();
+  virtual ~Surface3D();
+
+  Surface3D(const Surface3D& from);
+
+  inline Surface3D& operator=(const Surface3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Surface3D(Surface3D&& from) noexcept
+    : Surface3D() {
+    *this = ::std::move(from);
+  }
+
+  inline Surface3D& operator=(Surface3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Surface3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Surface3D* internal_default_instance() {
+    return reinterpret_cast<const Surface3D*>(
+               &_Surface3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  void Swap(Surface3D* other);
+  friend void swap(Surface3D& a, Surface3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Surface3D* New() const final {
+    return CreateMaybeMessage<Surface3D>(NULL);
+  }
+
+  Surface3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Surface3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Surface3D& from);
+  void MergeFrom(const Surface3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Surface3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .DTCC.Vector3D vertices = 1;
+  int vertices_size() const;
+  void clear_vertices();
+  static const int kVerticesFieldNumber = 1;
+  ::DTCC::Vector3D* mutable_vertices(int index);
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >*
+      mutable_vertices();
+  const ::DTCC::Vector3D& vertices(int index) const;
+  ::DTCC::Vector3D* add_vertices();
+  const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >&
+      vertices() const;
+
+  // repeated .DTCC.Vector3D normals = 2;
+  int normals_size() const;
+  void clear_normals();
+  static const int kNormalsFieldNumber = 2;
+  ::DTCC::Vector3D* mutable_normals(int index);
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >*
+      mutable_normals();
+  const ::DTCC::Vector3D& normals(int index) const;
+  ::DTCC::Vector3D* add_normals();
+  const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >&
+      normals() const;
+
+  // repeated .DTCC.Simplex2D faces = 3;
+  int faces_size() const;
+  void clear_faces();
+  static const int kFacesFieldNumber = 3;
+  ::DTCC::Simplex2D* mutable_faces(int index);
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Simplex2D >*
+      mutable_faces();
+  const ::DTCC::Simplex2D& faces(int index) const;
+  ::DTCC::Simplex2D* add_faces();
+  const ::google::protobuf::RepeatedPtrField< ::DTCC::Simplex2D >&
+      faces() const;
+
+  // @@protoc_insertion_point(class_scope:DTCC.Surface3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D > vertices_;
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D > normals_;
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Simplex2D > faces_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class GridField2D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.GridField2D) */ {
  public:
   GridField2D();
@@ -596,7 +1390,7 @@ class GridField2D : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_GridField2D_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    10;
 
   void Swap(GridField2D* other);
   friend void swap(GridField2D& a, GridField2D& b) {
@@ -684,6 +1478,129 @@ class GridField2D : public ::google::protobuf::Message /* @@protoc_insertion_poi
 };
 // -------------------------------------------------------------------
 
+class GridField3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.GridField3D) */ {
+ public:
+  GridField3D();
+  virtual ~GridField3D();
+
+  GridField3D(const GridField3D& from);
+
+  inline GridField3D& operator=(const GridField3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  GridField3D(GridField3D&& from) noexcept
+    : GridField3D() {
+    *this = ::std::move(from);
+  }
+
+  inline GridField3D& operator=(GridField3D&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GridField3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GridField3D* internal_default_instance() {
+    return reinterpret_cast<const GridField3D*>(
+               &_GridField3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  void Swap(GridField3D* other);
+  friend void swap(GridField3D& a, GridField3D& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GridField3D* New() const final {
+    return CreateMaybeMessage<GridField3D>(NULL);
+  }
+
+  GridField3D* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<GridField3D>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const GridField3D& from);
+  void MergeFrom(const GridField3D& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GridField3D* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated float values = 2;
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 2;
+  float values(int index) const;
+  void set_values(int index, float value);
+  void add_values(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      values() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_values();
+
+  // .DTCC.Grid3D grid = 1;
+  bool has_grid() const;
+  void clear_grid();
+  static const int kGridFieldNumber = 1;
+  private:
+  const ::DTCC::Grid3D& _internal_grid() const;
+  public:
+  const ::DTCC::Grid3D& grid() const;
+  ::DTCC::Grid3D* release_grid();
+  ::DTCC::Grid3D* mutable_grid();
+  void set_allocated_grid(::DTCC::Grid3D* grid);
+
+  // @@protoc_insertion_point(class_scope:DTCC.GridField3D)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< float > values_;
+  mutable int _values_cached_byte_size_;
+  ::DTCC::Grid3D* grid_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Building : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Building) */ {
  public:
   Building();
@@ -719,7 +1636,7 @@ class Building : public ::google::protobuf::Message /* @@protoc_insertion_point(
                &_Building_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    12;
 
   void Swap(Building* other);
   friend void swap(Building& a, Building& b) {
@@ -857,7 +1774,7 @@ class CityModel : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_CityModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    13;
 
   void Swap(CityModel* other);
   friend void swap(CityModel& a, CityModel& b) {
@@ -970,6 +1887,158 @@ inline void Vector2D::set_y(float value) {
 
 // -------------------------------------------------------------------
 
+// Vector3D
+
+// float x = 1;
+inline void Vector3D::clear_x() {
+  x_ = 0;
+}
+inline float Vector3D::x() const {
+  // @@protoc_insertion_point(field_get:DTCC.Vector3D.x)
+  return x_;
+}
+inline void Vector3D::set_x(float value) {
+  
+  x_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Vector3D.x)
+}
+
+// float y = 2;
+inline void Vector3D::clear_y() {
+  y_ = 0;
+}
+inline float Vector3D::y() const {
+  // @@protoc_insertion_point(field_get:DTCC.Vector3D.y)
+  return y_;
+}
+inline void Vector3D::set_y(float value) {
+  
+  y_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Vector3D.y)
+}
+
+// float z = 3;
+inline void Vector3D::clear_z() {
+  z_ = 0;
+}
+inline float Vector3D::z() const {
+  // @@protoc_insertion_point(field_get:DTCC.Vector3D.z)
+  return z_;
+}
+inline void Vector3D::set_z(float value) {
+  
+  z_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Vector3D.z)
+}
+
+// -------------------------------------------------------------------
+
+// Simplex2D
+
+// int32 v0 = 1;
+inline void Simplex2D::clear_v0() {
+  v0_ = 0;
+}
+inline ::google::protobuf::int32 Simplex2D::v0() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex2D.v0)
+  return v0_;
+}
+inline void Simplex2D::set_v0(::google::protobuf::int32 value) {
+  
+  v0_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex2D.v0)
+}
+
+// int32 v1 = 2;
+inline void Simplex2D::clear_v1() {
+  v1_ = 0;
+}
+inline ::google::protobuf::int32 Simplex2D::v1() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex2D.v1)
+  return v1_;
+}
+inline void Simplex2D::set_v1(::google::protobuf::int32 value) {
+  
+  v1_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex2D.v1)
+}
+
+// int32 v2 = 3;
+inline void Simplex2D::clear_v2() {
+  v2_ = 0;
+}
+inline ::google::protobuf::int32 Simplex2D::v2() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex2D.v2)
+  return v2_;
+}
+inline void Simplex2D::set_v2(::google::protobuf::int32 value) {
+  
+  v2_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex2D.v2)
+}
+
+// -------------------------------------------------------------------
+
+// Simplex3D
+
+// int32 v0 = 1;
+inline void Simplex3D::clear_v0() {
+  v0_ = 0;
+}
+inline ::google::protobuf::int32 Simplex3D::v0() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex3D.v0)
+  return v0_;
+}
+inline void Simplex3D::set_v0(::google::protobuf::int32 value) {
+  
+  v0_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex3D.v0)
+}
+
+// int32 v1 = 2;
+inline void Simplex3D::clear_v1() {
+  v1_ = 0;
+}
+inline ::google::protobuf::int32 Simplex3D::v1() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex3D.v1)
+  return v1_;
+}
+inline void Simplex3D::set_v1(::google::protobuf::int32 value) {
+  
+  v1_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex3D.v1)
+}
+
+// int32 v2 = 3;
+inline void Simplex3D::clear_v2() {
+  v2_ = 0;
+}
+inline ::google::protobuf::int32 Simplex3D::v2() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex3D.v2)
+  return v2_;
+}
+inline void Simplex3D::set_v2(::google::protobuf::int32 value) {
+  
+  v2_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex3D.v2)
+}
+
+// int32 v3 = 4;
+inline void Simplex3D::clear_v3() {
+  v3_ = 0;
+}
+inline ::google::protobuf::int32 Simplex3D::v3() const {
+  // @@protoc_insertion_point(field_get:DTCC.Simplex3D.v3)
+  return v3_;
+}
+inline void Simplex3D::set_v3(::google::protobuf::int32 value) {
+  
+  v3_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Simplex3D.v3)
+}
+
+// -------------------------------------------------------------------
+
 // BoundingBox2D
 
 // .DTCC.Vector2D p = 1;
@@ -1078,6 +2147,118 @@ inline void BoundingBox2D::set_allocated_q(::DTCC::Vector2D* q) {
   }
   q_ = q;
   // @@protoc_insertion_point(field_set_allocated:DTCC.BoundingBox2D.q)
+}
+
+// -------------------------------------------------------------------
+
+// BoundingBox3D
+
+// .DTCC.Vector3D p = 1;
+inline bool BoundingBox3D::has_p() const {
+  return this != internal_default_instance() && p_ != NULL;
+}
+inline void BoundingBox3D::clear_p() {
+  if (GetArenaNoVirtual() == NULL && p_ != NULL) {
+    delete p_;
+  }
+  p_ = NULL;
+}
+inline const ::DTCC::Vector3D& BoundingBox3D::_internal_p() const {
+  return *p_;
+}
+inline const ::DTCC::Vector3D& BoundingBox3D::p() const {
+  const ::DTCC::Vector3D* p = p_;
+  // @@protoc_insertion_point(field_get:DTCC.BoundingBox3D.p)
+  return p != NULL ? *p : *reinterpret_cast<const ::DTCC::Vector3D*>(
+      &::DTCC::_Vector3D_default_instance_);
+}
+inline ::DTCC::Vector3D* BoundingBox3D::release_p() {
+  // @@protoc_insertion_point(field_release:DTCC.BoundingBox3D.p)
+  
+  ::DTCC::Vector3D* temp = p_;
+  p_ = NULL;
+  return temp;
+}
+inline ::DTCC::Vector3D* BoundingBox3D::mutable_p() {
+  
+  if (p_ == NULL) {
+    auto* p = CreateMaybeMessage<::DTCC::Vector3D>(GetArenaNoVirtual());
+    p_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:DTCC.BoundingBox3D.p)
+  return p_;
+}
+inline void BoundingBox3D::set_allocated_p(::DTCC::Vector3D* p) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete p_;
+  }
+  if (p) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      p = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, p, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  p_ = p;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.BoundingBox3D.p)
+}
+
+// .DTCC.Vector3D q = 2;
+inline bool BoundingBox3D::has_q() const {
+  return this != internal_default_instance() && q_ != NULL;
+}
+inline void BoundingBox3D::clear_q() {
+  if (GetArenaNoVirtual() == NULL && q_ != NULL) {
+    delete q_;
+  }
+  q_ = NULL;
+}
+inline const ::DTCC::Vector3D& BoundingBox3D::_internal_q() const {
+  return *q_;
+}
+inline const ::DTCC::Vector3D& BoundingBox3D::q() const {
+  const ::DTCC::Vector3D* p = q_;
+  // @@protoc_insertion_point(field_get:DTCC.BoundingBox3D.q)
+  return p != NULL ? *p : *reinterpret_cast<const ::DTCC::Vector3D*>(
+      &::DTCC::_Vector3D_default_instance_);
+}
+inline ::DTCC::Vector3D* BoundingBox3D::release_q() {
+  // @@protoc_insertion_point(field_release:DTCC.BoundingBox3D.q)
+  
+  ::DTCC::Vector3D* temp = q_;
+  q_ = NULL;
+  return temp;
+}
+inline ::DTCC::Vector3D* BoundingBox3D::mutable_q() {
+  
+  if (q_ == NULL) {
+    auto* p = CreateMaybeMessage<::DTCC::Vector3D>(GetArenaNoVirtual());
+    q_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:DTCC.BoundingBox3D.q)
+  return q_;
+}
+inline void BoundingBox3D::set_allocated_q(::DTCC::Vector3D* q) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete q_;
+  }
+  if (q) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      q = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, q, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  q_ = q;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.BoundingBox3D.q)
 }
 
 // -------------------------------------------------------------------
@@ -1230,6 +2411,242 @@ inline void Grid2D::set_ystep(float value) {
 
 // -------------------------------------------------------------------
 
+// Grid3D
+
+// .DTCC.BoundingBox3D boundingBox = 1;
+inline bool Grid3D::has_boundingbox() const {
+  return this != internal_default_instance() && boundingbox_ != NULL;
+}
+inline void Grid3D::clear_boundingbox() {
+  if (GetArenaNoVirtual() == NULL && boundingbox_ != NULL) {
+    delete boundingbox_;
+  }
+  boundingbox_ = NULL;
+}
+inline const ::DTCC::BoundingBox3D& Grid3D::_internal_boundingbox() const {
+  return *boundingbox_;
+}
+inline const ::DTCC::BoundingBox3D& Grid3D::boundingbox() const {
+  const ::DTCC::BoundingBox3D* p = boundingbox_;
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.boundingBox)
+  return p != NULL ? *p : *reinterpret_cast<const ::DTCC::BoundingBox3D*>(
+      &::DTCC::_BoundingBox3D_default_instance_);
+}
+inline ::DTCC::BoundingBox3D* Grid3D::release_boundingbox() {
+  // @@protoc_insertion_point(field_release:DTCC.Grid3D.boundingBox)
+  
+  ::DTCC::BoundingBox3D* temp = boundingbox_;
+  boundingbox_ = NULL;
+  return temp;
+}
+inline ::DTCC::BoundingBox3D* Grid3D::mutable_boundingbox() {
+  
+  if (boundingbox_ == NULL) {
+    auto* p = CreateMaybeMessage<::DTCC::BoundingBox3D>(GetArenaNoVirtual());
+    boundingbox_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:DTCC.Grid3D.boundingBox)
+  return boundingbox_;
+}
+inline void Grid3D::set_allocated_boundingbox(::DTCC::BoundingBox3D* boundingbox) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete boundingbox_;
+  }
+  if (boundingbox) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      boundingbox = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, boundingbox, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  boundingbox_ = boundingbox;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.Grid3D.boundingBox)
+}
+
+// int32 xSize = 2;
+inline void Grid3D::clear_xsize() {
+  xsize_ = 0;
+}
+inline ::google::protobuf::int32 Grid3D::xsize() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.xSize)
+  return xsize_;
+}
+inline void Grid3D::set_xsize(::google::protobuf::int32 value) {
+  
+  xsize_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.xSize)
+}
+
+// int32 ySize = 3;
+inline void Grid3D::clear_ysize() {
+  ysize_ = 0;
+}
+inline ::google::protobuf::int32 Grid3D::ysize() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.ySize)
+  return ysize_;
+}
+inline void Grid3D::set_ysize(::google::protobuf::int32 value) {
+  
+  ysize_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.ySize)
+}
+
+// int32 zSize = 4;
+inline void Grid3D::clear_zsize() {
+  zsize_ = 0;
+}
+inline ::google::protobuf::int32 Grid3D::zsize() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.zSize)
+  return zsize_;
+}
+inline void Grid3D::set_zsize(::google::protobuf::int32 value) {
+  
+  zsize_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.zSize)
+}
+
+// float xStep = 5;
+inline void Grid3D::clear_xstep() {
+  xstep_ = 0;
+}
+inline float Grid3D::xstep() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.xStep)
+  return xstep_;
+}
+inline void Grid3D::set_xstep(float value) {
+  
+  xstep_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.xStep)
+}
+
+// float yStep = 6;
+inline void Grid3D::clear_ystep() {
+  ystep_ = 0;
+}
+inline float Grid3D::ystep() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.yStep)
+  return ystep_;
+}
+inline void Grid3D::set_ystep(float value) {
+  
+  ystep_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.yStep)
+}
+
+// float zStep = 7;
+inline void Grid3D::clear_zstep() {
+  zstep_ = 0;
+}
+inline float Grid3D::zstep() const {
+  // @@protoc_insertion_point(field_get:DTCC.Grid3D.zStep)
+  return zstep_;
+}
+inline void Grid3D::set_zstep(float value) {
+  
+  zstep_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Grid3D.zStep)
+}
+
+// -------------------------------------------------------------------
+
+// Surface3D
+
+// repeated .DTCC.Vector3D vertices = 1;
+inline int Surface3D::vertices_size() const {
+  return vertices_.size();
+}
+inline void Surface3D::clear_vertices() {
+  vertices_.Clear();
+}
+inline ::DTCC::Vector3D* Surface3D::mutable_vertices(int index) {
+  // @@protoc_insertion_point(field_mutable:DTCC.Surface3D.vertices)
+  return vertices_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >*
+Surface3D::mutable_vertices() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.Surface3D.vertices)
+  return &vertices_;
+}
+inline const ::DTCC::Vector3D& Surface3D::vertices(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.Surface3D.vertices)
+  return vertices_.Get(index);
+}
+inline ::DTCC::Vector3D* Surface3D::add_vertices() {
+  // @@protoc_insertion_point(field_add:DTCC.Surface3D.vertices)
+  return vertices_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >&
+Surface3D::vertices() const {
+  // @@protoc_insertion_point(field_list:DTCC.Surface3D.vertices)
+  return vertices_;
+}
+
+// repeated .DTCC.Vector3D normals = 2;
+inline int Surface3D::normals_size() const {
+  return normals_.size();
+}
+inline void Surface3D::clear_normals() {
+  normals_.Clear();
+}
+inline ::DTCC::Vector3D* Surface3D::mutable_normals(int index) {
+  // @@protoc_insertion_point(field_mutable:DTCC.Surface3D.normals)
+  return normals_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >*
+Surface3D::mutable_normals() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.Surface3D.normals)
+  return &normals_;
+}
+inline const ::DTCC::Vector3D& Surface3D::normals(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.Surface3D.normals)
+  return normals_.Get(index);
+}
+inline ::DTCC::Vector3D* Surface3D::add_normals() {
+  // @@protoc_insertion_point(field_add:DTCC.Surface3D.normals)
+  return normals_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector3D >&
+Surface3D::normals() const {
+  // @@protoc_insertion_point(field_list:DTCC.Surface3D.normals)
+  return normals_;
+}
+
+// repeated .DTCC.Simplex2D faces = 3;
+inline int Surface3D::faces_size() const {
+  return faces_.size();
+}
+inline void Surface3D::clear_faces() {
+  faces_.Clear();
+}
+inline ::DTCC::Simplex2D* Surface3D::mutable_faces(int index) {
+  // @@protoc_insertion_point(field_mutable:DTCC.Surface3D.faces)
+  return faces_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::DTCC::Simplex2D >*
+Surface3D::mutable_faces() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.Surface3D.faces)
+  return &faces_;
+}
+inline const ::DTCC::Simplex2D& Surface3D::faces(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.Surface3D.faces)
+  return faces_.Get(index);
+}
+inline ::DTCC::Simplex2D* Surface3D::add_faces() {
+  // @@protoc_insertion_point(field_add:DTCC.Surface3D.faces)
+  return faces_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DTCC::Simplex2D >&
+Surface3D::faces() const {
+  // @@protoc_insertion_point(field_list:DTCC.Surface3D.faces)
+  return faces_;
+}
+
+// -------------------------------------------------------------------
+
 // GridField2D
 
 // .DTCC.Grid2D grid = 1;
@@ -1313,6 +2730,94 @@ GridField2D::values() const {
 inline ::google::protobuf::RepeatedField< float >*
 GridField2D::mutable_values() {
   // @@protoc_insertion_point(field_mutable_list:DTCC.GridField2D.values)
+  return &values_;
+}
+
+// -------------------------------------------------------------------
+
+// GridField3D
+
+// .DTCC.Grid3D grid = 1;
+inline bool GridField3D::has_grid() const {
+  return this != internal_default_instance() && grid_ != NULL;
+}
+inline void GridField3D::clear_grid() {
+  if (GetArenaNoVirtual() == NULL && grid_ != NULL) {
+    delete grid_;
+  }
+  grid_ = NULL;
+}
+inline const ::DTCC::Grid3D& GridField3D::_internal_grid() const {
+  return *grid_;
+}
+inline const ::DTCC::Grid3D& GridField3D::grid() const {
+  const ::DTCC::Grid3D* p = grid_;
+  // @@protoc_insertion_point(field_get:DTCC.GridField3D.grid)
+  return p != NULL ? *p : *reinterpret_cast<const ::DTCC::Grid3D*>(
+      &::DTCC::_Grid3D_default_instance_);
+}
+inline ::DTCC::Grid3D* GridField3D::release_grid() {
+  // @@protoc_insertion_point(field_release:DTCC.GridField3D.grid)
+  
+  ::DTCC::Grid3D* temp = grid_;
+  grid_ = NULL;
+  return temp;
+}
+inline ::DTCC::Grid3D* GridField3D::mutable_grid() {
+  
+  if (grid_ == NULL) {
+    auto* p = CreateMaybeMessage<::DTCC::Grid3D>(GetArenaNoVirtual());
+    grid_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:DTCC.GridField3D.grid)
+  return grid_;
+}
+inline void GridField3D::set_allocated_grid(::DTCC::Grid3D* grid) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete grid_;
+  }
+  if (grid) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      grid = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, grid, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  grid_ = grid;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.GridField3D.grid)
+}
+
+// repeated float values = 2;
+inline int GridField3D::values_size() const {
+  return values_.size();
+}
+inline void GridField3D::clear_values() {
+  values_.Clear();
+}
+inline float GridField3D::values(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.GridField3D.values)
+  return values_.Get(index);
+}
+inline void GridField3D::set_values(int index, float value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:DTCC.GridField3D.values)
+}
+inline void GridField3D::add_values(float value) {
+  values_.Add(value);
+  // @@protoc_insertion_point(field_add:DTCC.GridField3D.values)
+}
+inline const ::google::protobuf::RepeatedField< float >&
+GridField3D::values() const {
+  // @@protoc_insertion_point(field_list:DTCC.GridField3D.values)
+  return values_;
+}
+inline ::google::protobuf::RepeatedField< float >*
+GridField3D::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.GridField3D.values)
   return &values_;
 }
 
@@ -1492,6 +2997,20 @@ CityModel::buildings() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
