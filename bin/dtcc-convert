@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+import sys, json
+
+from dtcc.dtcc_pb2 import *
+
+def Error(message):
+    print('*** Error:', str(message))
+    exit(1)
+
+def Help():
+    print('Usage: dtcc-convert <infile> <outfile>')
+
+def ReadJSON(fileName):
+    'Read from JSON file'
+    print('Reading JSON data from %s...' % fileName)
+
+    # Read data from file
+    with open(fileName) as f:
+        jsonData = json.load(f)
+
+    # Check for type information
+    if not 'Type' in jsonData:
+        Error('JSON data has missing type information')
+    elif jsonData['Type'] == 'CityModel':
+        print('Creating CityModel object...')
+        cityModel = CityModel()
+        buildings = []
+        for jsonBuilding in jsonData['Buildings']:
+            building = Building()
+            building.uuid = jsonBuilding['UUID']
+            building.height = jsonBuilding['Height']
+            building.groundHeight = jsonBuilding['GroundHeight']
+            vertices = []
+            for jsonVertex in jsonBuilding['Footprint']:
+                vertex = Vector2D()
+                vertex.x = jsonVertex['x']
+                vertex.y = jsonVertex['y']
+                vertices.append(vertex)
+            building.footPrint.vertices.extend(vertices)
+            buildings.append(building)
+        cityModel.buildings.extend(buildings)
+        return cityModel
+    else:
+        Error('Unknown data type %s' % jsonData['Type'])
+
+def WriteProtobuf(object, fileName):
+    'Write to Protobuf file'
+    print('Writing Protobuf data to %s...' % fileName)
+    with open(fileName, 'wb') as f:
+        protobuf = object.SerializeToString()
+        f.write(protobuf)
+
+# Check command-line arguments
+if len(sys.argv) != 3:
+    Help()
+    exit(1)
+inFileName = sys.argv[1]
+outFileName = sys.argv[2]
+
+# Read input
+inFileSuffix = inFileName.split('.')[-1]
+if inFileSuffix == 'json':
+    object = ReadJSON(inFileName)
+else:
+    Error('Unknown input data format .%s' % inFileSuffix)
+
+# Write output
+outFileSuffix = outFileName.split('.')[-1]
+if outFileSuffix == 'pb':
+    WriteProtobuf(object, outFileName)
+else:
+    Error('Unknown output data format .%s' % outFileSuffix)

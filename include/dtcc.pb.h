@@ -38,7 +38,7 @@ namespace protobuf_dtcc_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[2];
+  static const ::google::protobuf::internal::ParseTable schema[4];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -46,17 +46,25 @@ struct TableStruct {
 void AddDescriptors();
 }  // namespace protobuf_dtcc_2eproto
 namespace DTCC {
+class Building;
+class BuildingDefaultTypeInternal;
+extern BuildingDefaultTypeInternal _Building_default_instance_;
+class CityModel;
+class CityModelDefaultTypeInternal;
+extern CityModelDefaultTypeInternal _CityModel_default_instance_;
+class Polygon;
+class PolygonDefaultTypeInternal;
+extern PolygonDefaultTypeInternal _Polygon_default_instance_;
 class Vector2D;
 class Vector2DDefaultTypeInternal;
 extern Vector2DDefaultTypeInternal _Vector2D_default_instance_;
-class Vector3D;
-class Vector3DDefaultTypeInternal;
-extern Vector3DDefaultTypeInternal _Vector3D_default_instance_;
 }  // namespace DTCC
 namespace google {
 namespace protobuf {
+template<> ::DTCC::Building* Arena::CreateMaybeMessage<::DTCC::Building>(Arena*);
+template<> ::DTCC::CityModel* Arena::CreateMaybeMessage<::DTCC::CityModel>(Arena*);
+template<> ::DTCC::Polygon* Arena::CreateMaybeMessage<::DTCC::Polygon>(Arena*);
 template<> ::DTCC::Vector2D* Arena::CreateMaybeMessage<::DTCC::Vector2D>(Arena*);
-template<> ::DTCC::Vector3D* Arena::CreateMaybeMessage<::DTCC::Vector3D>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace DTCC {
@@ -173,24 +181,24 @@ class Vector2D : public ::google::protobuf::Message /* @@protoc_insertion_point(
 };
 // -------------------------------------------------------------------
 
-class Vector3D : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Vector3D) */ {
+class Polygon : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Polygon) */ {
  public:
-  Vector3D();
-  virtual ~Vector3D();
+  Polygon();
+  virtual ~Polygon();
 
-  Vector3D(const Vector3D& from);
+  Polygon(const Polygon& from);
 
-  inline Vector3D& operator=(const Vector3D& from) {
+  inline Polygon& operator=(const Polygon& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  Vector3D(Vector3D&& from) noexcept
-    : Vector3D() {
+  Polygon(Polygon&& from) noexcept
+    : Polygon() {
     *this = ::std::move(from);
   }
 
-  inline Vector3D& operator=(Vector3D&& from) noexcept {
+  inline Polygon& operator=(Polygon&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -200,34 +208,34 @@ class Vector3D : public ::google::protobuf::Message /* @@protoc_insertion_point(
   }
   #endif
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Vector3D& default_instance();
+  static const Polygon& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Vector3D* internal_default_instance() {
-    return reinterpret_cast<const Vector3D*>(
-               &_Vector3D_default_instance_);
+  static inline const Polygon* internal_default_instance() {
+    return reinterpret_cast<const Polygon*>(
+               &_Polygon_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  void Swap(Vector3D* other);
-  friend void swap(Vector3D& a, Vector3D& b) {
+  void Swap(Polygon* other);
+  friend void swap(Polygon& a, Polygon& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline Vector3D* New() const final {
-    return CreateMaybeMessage<Vector3D>(NULL);
+  inline Polygon* New() const final {
+    return CreateMaybeMessage<Polygon>(NULL);
   }
 
-  Vector3D* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<Vector3D>(arena);
+  Polygon* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Polygon>(arena);
   }
   void CopyFrom(const ::google::protobuf::Message& from) final;
   void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const Vector3D& from);
-  void MergeFrom(const Vector3D& from);
+  void CopyFrom(const Polygon& from);
+  void MergeFrom(const Polygon& from);
   void Clear() final;
   bool IsInitialized() const final;
 
@@ -244,7 +252,7 @@ class Vector3D : public ::google::protobuf::Message /* @@protoc_insertion_point(
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Vector3D* other);
+  void InternalSwap(Polygon* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -260,31 +268,270 @@ class Vector3D : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   // accessors -------------------------------------------------------
 
-  // float x = 1;
-  void clear_x();
-  static const int kXFieldNumber = 1;
-  float x() const;
-  void set_x(float value);
+  // repeated .DTCC.Vector2D vertices = 1;
+  int vertices_size() const;
+  void clear_vertices();
+  static const int kVerticesFieldNumber = 1;
+  ::DTCC::Vector2D* mutable_vertices(int index);
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector2D >*
+      mutable_vertices();
+  const ::DTCC::Vector2D& vertices(int index) const;
+  ::DTCC::Vector2D* add_vertices();
+  const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector2D >&
+      vertices() const;
 
-  // float y = 2;
-  void clear_y();
-  static const int kYFieldNumber = 2;
-  float y() const;
-  void set_y(float value);
-
-  // float z = 3;
-  void clear_z();
-  static const int kZFieldNumber = 3;
-  float z() const;
-  void set_z(float value);
-
-  // @@protoc_insertion_point(class_scope:DTCC.Vector3D)
+  // @@protoc_insertion_point(class_scope:DTCC.Polygon)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  float x_;
-  float y_;
-  float z_;
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Vector2D > vertices_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Building : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.Building) */ {
+ public:
+  Building();
+  virtual ~Building();
+
+  Building(const Building& from);
+
+  inline Building& operator=(const Building& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Building(Building&& from) noexcept
+    : Building() {
+    *this = ::std::move(from);
+  }
+
+  inline Building& operator=(Building&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Building& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Building* internal_default_instance() {
+    return reinterpret_cast<const Building*>(
+               &_Building_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(Building* other);
+  friend void swap(Building& a, Building& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Building* New() const final {
+    return CreateMaybeMessage<Building>(NULL);
+  }
+
+  Building* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Building>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Building& from);
+  void MergeFrom(const Building& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Building* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string uuid = 1;
+  void clear_uuid();
+  static const int kUuidFieldNumber = 1;
+  const ::std::string& uuid() const;
+  void set_uuid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_uuid(::std::string&& value);
+  #endif
+  void set_uuid(const char* value);
+  void set_uuid(const char* value, size_t size);
+  ::std::string* mutable_uuid();
+  ::std::string* release_uuid();
+  void set_allocated_uuid(::std::string* uuid);
+
+  // .DTCC.Polygon footPrint = 2;
+  bool has_footprint() const;
+  void clear_footprint();
+  static const int kFootPrintFieldNumber = 2;
+  private:
+  const ::DTCC::Polygon& _internal_footprint() const;
+  public:
+  const ::DTCC::Polygon& footprint() const;
+  ::DTCC::Polygon* release_footprint();
+  ::DTCC::Polygon* mutable_footprint();
+  void set_allocated_footprint(::DTCC::Polygon* footprint);
+
+  // double height = 3;
+  void clear_height();
+  static const int kHeightFieldNumber = 3;
+  double height() const;
+  void set_height(double value);
+
+  // double groundHeight = 4;
+  void clear_groundheight();
+  static const int kGroundHeightFieldNumber = 4;
+  double groundheight() const;
+  void set_groundheight(double value);
+
+  // @@protoc_insertion_point(class_scope:DTCC.Building)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr uuid_;
+  ::DTCC::Polygon* footprint_;
+  double height_;
+  double groundheight_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_dtcc_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CityModel : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DTCC.CityModel) */ {
+ public:
+  CityModel();
+  virtual ~CityModel();
+
+  CityModel(const CityModel& from);
+
+  inline CityModel& operator=(const CityModel& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CityModel(CityModel&& from) noexcept
+    : CityModel() {
+    *this = ::std::move(from);
+  }
+
+  inline CityModel& operator=(CityModel&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CityModel& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CityModel* internal_default_instance() {
+    return reinterpret_cast<const CityModel*>(
+               &_CityModel_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  void Swap(CityModel* other);
+  friend void swap(CityModel& a, CityModel& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CityModel* New() const final {
+    return CreateMaybeMessage<CityModel>(NULL);
+  }
+
+  CityModel* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CityModel>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CityModel& from);
+  void MergeFrom(const CityModel& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CityModel* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .DTCC.Building buildings = 4;
+  int buildings_size() const;
+  void clear_buildings();
+  static const int kBuildingsFieldNumber = 4;
+  ::DTCC::Building* mutable_buildings(int index);
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Building >*
+      mutable_buildings();
+  const ::DTCC::Building& buildings(int index) const;
+  ::DTCC::Building* add_buildings();
+  const ::google::protobuf::RepeatedPtrField< ::DTCC::Building >&
+      buildings() const;
+
+  // @@protoc_insertion_point(class_scope:DTCC.CityModel)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::DTCC::Building > buildings_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_dtcc_2eproto::TableStruct;
 };
@@ -329,53 +576,218 @@ inline void Vector2D::set_y(float value) {
 
 // -------------------------------------------------------------------
 
-// Vector3D
+// Polygon
 
-// float x = 1;
-inline void Vector3D::clear_x() {
-  x_ = 0;
+// repeated .DTCC.Vector2D vertices = 1;
+inline int Polygon::vertices_size() const {
+  return vertices_.size();
 }
-inline float Vector3D::x() const {
-  // @@protoc_insertion_point(field_get:DTCC.Vector3D.x)
-  return x_;
+inline void Polygon::clear_vertices() {
+  vertices_.Clear();
 }
-inline void Vector3D::set_x(float value) {
-  
-  x_ = value;
-  // @@protoc_insertion_point(field_set:DTCC.Vector3D.x)
+inline ::DTCC::Vector2D* Polygon::mutable_vertices(int index) {
+  // @@protoc_insertion_point(field_mutable:DTCC.Polygon.vertices)
+  return vertices_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::DTCC::Vector2D >*
+Polygon::mutable_vertices() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.Polygon.vertices)
+  return &vertices_;
+}
+inline const ::DTCC::Vector2D& Polygon::vertices(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.Polygon.vertices)
+  return vertices_.Get(index);
+}
+inline ::DTCC::Vector2D* Polygon::add_vertices() {
+  // @@protoc_insertion_point(field_add:DTCC.Polygon.vertices)
+  return vertices_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DTCC::Vector2D >&
+Polygon::vertices() const {
+  // @@protoc_insertion_point(field_list:DTCC.Polygon.vertices)
+  return vertices_;
 }
 
-// float y = 2;
-inline void Vector3D::clear_y() {
-  y_ = 0;
+// -------------------------------------------------------------------
+
+// Building
+
+// string uuid = 1;
+inline void Building::clear_uuid() {
+  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline float Vector3D::y() const {
-  // @@protoc_insertion_point(field_get:DTCC.Vector3D.y)
-  return y_;
+inline const ::std::string& Building::uuid() const {
+  // @@protoc_insertion_point(field_get:DTCC.Building.uuid)
+  return uuid_.GetNoArena();
 }
-inline void Vector3D::set_y(float value) {
+inline void Building::set_uuid(const ::std::string& value) {
   
-  y_ = value;
-  // @@protoc_insertion_point(field_set:DTCC.Vector3D.y)
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DTCC.Building.uuid)
+}
+#if LANG_CXX11
+inline void Building::set_uuid(::std::string&& value) {
+  
+  uuid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:DTCC.Building.uuid)
+}
+#endif
+inline void Building::set_uuid(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DTCC.Building.uuid)
+}
+inline void Building::set_uuid(const char* value, size_t size) {
+  
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DTCC.Building.uuid)
+}
+inline ::std::string* Building::mutable_uuid() {
+  
+  // @@protoc_insertion_point(field_mutable:DTCC.Building.uuid)
+  return uuid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Building::release_uuid() {
+  // @@protoc_insertion_point(field_release:DTCC.Building.uuid)
+  
+  return uuid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Building::set_allocated_uuid(::std::string* uuid) {
+  if (uuid != NULL) {
+    
+  } else {
+    
+  }
+  uuid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), uuid);
+  // @@protoc_insertion_point(field_set_allocated:DTCC.Building.uuid)
 }
 
-// float z = 3;
-inline void Vector3D::clear_z() {
-  z_ = 0;
+// .DTCC.Polygon footPrint = 2;
+inline bool Building::has_footprint() const {
+  return this != internal_default_instance() && footprint_ != NULL;
 }
-inline float Vector3D::z() const {
-  // @@protoc_insertion_point(field_get:DTCC.Vector3D.z)
-  return z_;
+inline void Building::clear_footprint() {
+  if (GetArenaNoVirtual() == NULL && footprint_ != NULL) {
+    delete footprint_;
+  }
+  footprint_ = NULL;
 }
-inline void Vector3D::set_z(float value) {
+inline const ::DTCC::Polygon& Building::_internal_footprint() const {
+  return *footprint_;
+}
+inline const ::DTCC::Polygon& Building::footprint() const {
+  const ::DTCC::Polygon* p = footprint_;
+  // @@protoc_insertion_point(field_get:DTCC.Building.footPrint)
+  return p != NULL ? *p : *reinterpret_cast<const ::DTCC::Polygon*>(
+      &::DTCC::_Polygon_default_instance_);
+}
+inline ::DTCC::Polygon* Building::release_footprint() {
+  // @@protoc_insertion_point(field_release:DTCC.Building.footPrint)
   
-  z_ = value;
-  // @@protoc_insertion_point(field_set:DTCC.Vector3D.z)
+  ::DTCC::Polygon* temp = footprint_;
+  footprint_ = NULL;
+  return temp;
+}
+inline ::DTCC::Polygon* Building::mutable_footprint() {
+  
+  if (footprint_ == NULL) {
+    auto* p = CreateMaybeMessage<::DTCC::Polygon>(GetArenaNoVirtual());
+    footprint_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:DTCC.Building.footPrint)
+  return footprint_;
+}
+inline void Building::set_allocated_footprint(::DTCC::Polygon* footprint) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete footprint_;
+  }
+  if (footprint) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      footprint = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, footprint, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  footprint_ = footprint;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.Building.footPrint)
+}
+
+// double height = 3;
+inline void Building::clear_height() {
+  height_ = 0;
+}
+inline double Building::height() const {
+  // @@protoc_insertion_point(field_get:DTCC.Building.height)
+  return height_;
+}
+inline void Building::set_height(double value) {
+  
+  height_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Building.height)
+}
+
+// double groundHeight = 4;
+inline void Building::clear_groundheight() {
+  groundheight_ = 0;
+}
+inline double Building::groundheight() const {
+  // @@protoc_insertion_point(field_get:DTCC.Building.groundHeight)
+  return groundheight_;
+}
+inline void Building::set_groundheight(double value) {
+  
+  groundheight_ = value;
+  // @@protoc_insertion_point(field_set:DTCC.Building.groundHeight)
+}
+
+// -------------------------------------------------------------------
+
+// CityModel
+
+// repeated .DTCC.Building buildings = 4;
+inline int CityModel::buildings_size() const {
+  return buildings_.size();
+}
+inline void CityModel::clear_buildings() {
+  buildings_.Clear();
+}
+inline ::DTCC::Building* CityModel::mutable_buildings(int index) {
+  // @@protoc_insertion_point(field_mutable:DTCC.CityModel.buildings)
+  return buildings_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::DTCC::Building >*
+CityModel::mutable_buildings() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.CityModel.buildings)
+  return &buildings_;
+}
+inline const ::DTCC::Building& CityModel::buildings(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.CityModel.buildings)
+  return buildings_.Get(index);
+}
+inline ::DTCC::Building* CityModel::add_buildings() {
+  // @@protoc_insertion_point(field_add:DTCC.CityModel.buildings)
+  return buildings_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DTCC::Building >&
+CityModel::buildings() const {
+  // @@protoc_insertion_point(field_list:DTCC.CityModel.buildings)
+  return buildings_;
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

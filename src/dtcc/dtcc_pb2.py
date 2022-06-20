@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='DTCC',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"+\n\x08Vector3D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x62\x06proto3')
+  serialized_pb=_b('\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"+\n\x07Polygon\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\"`\n\x08\x42uilding\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12 \n\tfootPrint\x18\x02 \x01(\x0b\x32\r.DTCC.Polygon\x12\x0e\n\x06height\x18\x03 \x01(\x01\x12\x14\n\x0cgroundHeight\x18\x04 \x01(\x01\".\n\tCityModel\x12!\n\tbuildings\x18\x04 \x03(\x0b\x32\x0e.DTCC.Buildingb\x06proto3')
 )
 
 
@@ -63,31 +63,17 @@ _VECTOR2D = _descriptor.Descriptor(
 )
 
 
-_VECTOR3D = _descriptor.Descriptor(
-  name='Vector3D',
-  full_name='DTCC.Vector3D',
+_POLYGON = _descriptor.Descriptor(
+  name='Polygon',
+  full_name='DTCC.Polygon',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='x', full_name='DTCC.Vector3D.x', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='y', full_name='DTCC.Vector3D.y', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='z', full_name='DTCC.Vector3D.z', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='vertices', full_name='DTCC.Polygon.vertices', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -107,8 +93,96 @@ _VECTOR3D = _descriptor.Descriptor(
   serialized_end=97,
 )
 
+
+_BUILDING = _descriptor.Descriptor(
+  name='Building',
+  full_name='DTCC.Building',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='uuid', full_name='DTCC.Building.uuid', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='footPrint', full_name='DTCC.Building.footPrint', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='height', full_name='DTCC.Building.height', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='groundHeight', full_name='DTCC.Building.groundHeight', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=99,
+  serialized_end=195,
+)
+
+
+_CITYMODEL = _descriptor.Descriptor(
+  name='CityModel',
+  full_name='DTCC.CityModel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='buildings', full_name='DTCC.CityModel.buildings', index=0,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=197,
+  serialized_end=243,
+)
+
+_POLYGON.fields_by_name['vertices'].message_type = _VECTOR2D
+_BUILDING.fields_by_name['footPrint'].message_type = _POLYGON
+_CITYMODEL.fields_by_name['buildings'].message_type = _BUILDING
 DESCRIPTOR.message_types_by_name['Vector2D'] = _VECTOR2D
-DESCRIPTOR.message_types_by_name['Vector3D'] = _VECTOR3D
+DESCRIPTOR.message_types_by_name['Polygon'] = _POLYGON
+DESCRIPTOR.message_types_by_name['Building'] = _BUILDING
+DESCRIPTOR.message_types_by_name['CityModel'] = _CITYMODEL
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Vector2D = _reflection.GeneratedProtocolMessageType('Vector2D', (_message.Message,), dict(
@@ -118,12 +192,26 @@ Vector2D = _reflection.GeneratedProtocolMessageType('Vector2D', (_message.Messag
   ))
 _sym_db.RegisterMessage(Vector2D)
 
-Vector3D = _reflection.GeneratedProtocolMessageType('Vector3D', (_message.Message,), dict(
-  DESCRIPTOR = _VECTOR3D,
+Polygon = _reflection.GeneratedProtocolMessageType('Polygon', (_message.Message,), dict(
+  DESCRIPTOR = _POLYGON,
   __module__ = 'dtcc_pb2'
-  # @@protoc_insertion_point(class_scope:DTCC.Vector3D)
+  # @@protoc_insertion_point(class_scope:DTCC.Polygon)
   ))
-_sym_db.RegisterMessage(Vector3D)
+_sym_db.RegisterMessage(Polygon)
+
+Building = _reflection.GeneratedProtocolMessageType('Building', (_message.Message,), dict(
+  DESCRIPTOR = _BUILDING,
+  __module__ = 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.Building)
+  ))
+_sym_db.RegisterMessage(Building)
+
+CityModel = _reflection.GeneratedProtocolMessageType('CityModel', (_message.Message,), dict(
+  DESCRIPTOR = _CITYMODEL,
+  __module__ = 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.CityModel)
+  ))
+_sym_db.RegisterMessage(CityModel)
 
 
 # @@protoc_insertion_point(module_scope)

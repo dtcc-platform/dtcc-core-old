@@ -8,9 +8,20 @@ message Vector2D
   float y = 2;
 }
 
-message Vector3D
+message Polygon
 {
-  float x = 1;
-  float y = 2;
-  float z = 3;
+  repeated Vector2D vertices = 1;
+}
+
+message Building
+{
+  string uuid = 1;
+  Polygon footPrint = 2;
+  double height = 3;
+  double groundHeight = 4;
+}
+
+message CityModel
+{
+  repeated Building buildings = 4;
 }
