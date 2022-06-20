@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='DTCC',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"+\n\x07Polygon\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\"`\n\x08\x42uilding\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12 \n\tfootPrint\x18\x02 \x01(\x0b\x32\r.DTCC.Polygon\x12\x0e\n\x06height\x18\x03 \x01(\x01\x12\x14\n\x0cgroundHeight\x18\x04 \x01(\x01\".\n\tCityModel\x12!\n\tbuildings\x18\x04 \x03(\x0b\x32\x0e.DTCC.Buildingb\x06proto3')
+  serialized_pb=_b('\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"E\n\rBoundingBox2D\x12\x19\n\x01p\x18\x01 \x01(\x0b\x32\x0e.DTCC.Vector2D\x12\x19\n\x01q\x18\x02 \x01(\x0b\x32\x0e.DTCC.Vector2D\"+\n\x07Polygon\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\"n\n\x06Grid2D\x12(\n\x0b\x62oundingBox\x18\x01 \x01(\x0b\x32\x13.DTCC.BoundingBox2D\x12\r\n\x05xSize\x18\x02 \x01(\x05\x12\r\n\x05ySize\x18\x03 \x01(\x05\x12\r\n\x05xStep\x18\x04 \x01(\x02\x12\r\n\x05yStep\x18\x05 \x01(\x02\"9\n\x0bGridField2D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"`\n\x08\x42uilding\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12 \n\tfootPrint\x18\x02 \x01(\x0b\x32\r.DTCC.Polygon\x12\x0e\n\x06height\x18\x03 \x01(\x01\x12\x14\n\x0cgroundHeight\x18\x04 \x01(\x01\".\n\tCityModel\x12!\n\tbuildings\x18\x04 \x03(\x0b\x32\x0e.DTCC.Buildingb\x06proto3')
 )
 
 
@@ -63,6 +63,44 @@ _VECTOR2D = _descriptor.Descriptor(
 )
 
 
+_BOUNDINGBOX2D = _descriptor.Descriptor(
+  name='BoundingBox2D',
+  full_name='DTCC.BoundingBox2D',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='p', full_name='DTCC.BoundingBox2D.p', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='q', full_name='DTCC.BoundingBox2D.q', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=54,
+  serialized_end=123,
+)
+
+
 _POLYGON = _descriptor.Descriptor(
   name='Polygon',
   full_name='DTCC.Polygon',
@@ -89,8 +127,105 @@ _POLYGON = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=54,
-  serialized_end=97,
+  serialized_start=125,
+  serialized_end=168,
+)
+
+
+_GRID2D = _descriptor.Descriptor(
+  name='Grid2D',
+  full_name='DTCC.Grid2D',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='boundingBox', full_name='DTCC.Grid2D.boundingBox', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='xSize', full_name='DTCC.Grid2D.xSize', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='ySize', full_name='DTCC.Grid2D.ySize', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='xStep', full_name='DTCC.Grid2D.xStep', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='yStep', full_name='DTCC.Grid2D.yStep', index=4,
+      number=5, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=170,
+  serialized_end=280,
+)
+
+
+_GRIDFIELD2D = _descriptor.Descriptor(
+  name='GridField2D',
+  full_name='DTCC.GridField2D',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='grid', full_name='DTCC.GridField2D.grid', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='DTCC.GridField2D.values', index=1,
+      number=2, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=282,
+  serialized_end=339,
 )
 
 
@@ -141,8 +276,8 @@ _BUILDING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=99,
-  serialized_end=195,
+  serialized_start=341,
+  serialized_end=437,
 )
 
 
@@ -172,15 +307,22 @@ _CITYMODEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=197,
-  serialized_end=243,
+  serialized_start=439,
+  serialized_end=485,
 )
 
+_BOUNDINGBOX2D.fields_by_name['p'].message_type = _VECTOR2D
+_BOUNDINGBOX2D.fields_by_name['q'].message_type = _VECTOR2D
 _POLYGON.fields_by_name['vertices'].message_type = _VECTOR2D
+_GRID2D.fields_by_name['boundingBox'].message_type = _BOUNDINGBOX2D
+_GRIDFIELD2D.fields_by_name['grid'].message_type = _GRID2D
 _BUILDING.fields_by_name['footPrint'].message_type = _POLYGON
 _CITYMODEL.fields_by_name['buildings'].message_type = _BUILDING
 DESCRIPTOR.message_types_by_name['Vector2D'] = _VECTOR2D
+DESCRIPTOR.message_types_by_name['BoundingBox2D'] = _BOUNDINGBOX2D
 DESCRIPTOR.message_types_by_name['Polygon'] = _POLYGON
+DESCRIPTOR.message_types_by_name['Grid2D'] = _GRID2D
+DESCRIPTOR.message_types_by_name['GridField2D'] = _GRIDFIELD2D
 DESCRIPTOR.message_types_by_name['Building'] = _BUILDING
 DESCRIPTOR.message_types_by_name['CityModel'] = _CITYMODEL
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -192,12 +334,33 @@ Vector2D = _reflection.GeneratedProtocolMessageType('Vector2D', (_message.Messag
   ))
 _sym_db.RegisterMessage(Vector2D)
 
+BoundingBox2D = _reflection.GeneratedProtocolMessageType('BoundingBox2D', (_message.Message,), dict(
+  DESCRIPTOR = _BOUNDINGBOX2D,
+  __module__ = 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.BoundingBox2D)
+  ))
+_sym_db.RegisterMessage(BoundingBox2D)
+
 Polygon = _reflection.GeneratedProtocolMessageType('Polygon', (_message.Message,), dict(
   DESCRIPTOR = _POLYGON,
   __module__ = 'dtcc_pb2'
   # @@protoc_insertion_point(class_scope:DTCC.Polygon)
   ))
 _sym_db.RegisterMessage(Polygon)
+
+Grid2D = _reflection.GeneratedProtocolMessageType('Grid2D', (_message.Message,), dict(
+  DESCRIPTOR = _GRID2D,
+  __module__ = 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.Grid2D)
+  ))
+_sym_db.RegisterMessage(Grid2D)
+
+GridField2D = _reflection.GeneratedProtocolMessageType('GridField2D', (_message.Message,), dict(
+  DESCRIPTOR = _GRIDFIELD2D,
+  __module__ = 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.GridField2D)
+  ))
+_sym_db.RegisterMessage(GridField2D)
 
 Building = _reflection.GeneratedProtocolMessageType('Building', (_message.Message,), dict(
   DESCRIPTOR = _BUILDING,

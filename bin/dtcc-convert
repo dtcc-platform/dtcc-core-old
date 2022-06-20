@@ -41,6 +41,16 @@ def ReadJSON(fileName):
             buildings.append(building)
         cityModel.buildings.extend(buildings)
         return cityModel
+    elif jsonData['Type'] == 'GridField2D':
+        print('Creating GridField2D object...')
+        gridField = GridField2D()
+        jsonGrid = jsonData['Grid']
+        gridField.grid.boundingBox.p.x = jsonGrid['BoundingBox']['P']['x']
+        gridField.grid.boundingBox.p.y = jsonGrid['BoundingBox']['P']['y']
+        gridField.grid.boundingBox.q.x = jsonGrid['BoundingBox']['Q']['x']
+        gridField.grid.boundingBox.q.y = jsonGrid['BoundingBox']['Q']['y']
+        gridField.values.extend(jsonData['Values'])
+        return gridField
     else:
         Error('Unknown data type %s' % jsonData['Type'])
 

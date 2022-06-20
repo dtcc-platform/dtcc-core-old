@@ -8,9 +8,30 @@ message Vector2D
   float y = 2;
 }
 
+message BoundingBox2D
+{
+  Vector2D p = 1;
+  Vector2D q = 2;
+}
+
 message Polygon
 {
   repeated Vector2D vertices = 1;
+}
+
+message Grid2D
+{
+  BoundingBox2D boundingBox = 1;
+  int32 xSize = 2;
+  int32 ySize = 3;
+  float xStep = 4;
+  float yStep = 5;
+}
+
+message GridField2D
+{
+  Grid2D grid = 1;
+  repeated float values = 2;
 }
 
 message Building
