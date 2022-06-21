@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"+\n\x08Vector3D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\"#\n\tSimplex1D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\"/\n\tSimplex2D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\x12\n\n\x02v2\x18\x03 \x01(\x05\";\n\tSimplex3D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\x12\n\n\x02v2\x18\x03 \x01(\x05\x12\n\n\x02v3\x18\x04 \x01(\x05\"E\n\rBoundingBox2D\x12\x19\n\x01p\x18\x01 \x01(\x0b\x32\x0e.DTCC.Vector2D\x12\x19\n\x01q\x18\x02 \x01(\x0b\x32\x0e.DTCC.Vector2D\"E\n\rBoundingBox3D\x12\x19\n\x01p\x18\x01 \x01(\x0b\x32\x0e.DTCC.Vector3D\x12\x19\n\x01q\x18\x02 \x01(\x0b\x32\x0e.DTCC.Vector3D\"+\n\x07Polygon\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\"n\n\x06Grid2D\x12(\n\x0b\x62oundingBox\x18\x01 \x01(\x0b\x32\x13.DTCC.BoundingBox2D\x12\r\n\x05xSize\x18\x02 \x01(\x05\x12\r\n\x05ySize\x18\x03 \x01(\x05\x12\r\n\x05xStep\x18\x04 \x01(\x02\x12\r\n\x05yStep\x18\x05 \x01(\x02\"\x8c\x01\n\x06Grid3D\x12(\n\x0b\x62oundingBox\x18\x01 \x01(\x0b\x32\x13.DTCC.BoundingBox3D\x12\r\n\x05xSize\x18\x02 \x01(\x05\x12\r\n\x05ySize\x18\x03 \x01(\x05\x12\r\n\x05zSize\x18\x04 \x01(\x05\x12\r\n\x05xStep\x18\x05 \x01(\x02\x12\r\n\x05yStep\x18\x06 \x01(\x02\x12\r\n\x05zStep\x18\x07 \x01(\x02\"[\n\x06Mesh2D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1e\n\x05\x63\x65lls\x18\x02 \x03(\x0b\x32\x0f.DTCC.Simplex2D\x12\x0f\n\x07markers\x18\x03 \x03(\x05\"[\n\x06Mesh3D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1e\n\x05\x63\x65lls\x18\x02 \x03(\x0b\x32\x0f.DTCC.Simplex3D\x12\x0f\n\x07markers\x18\x03 \x03(\x05\"n\n\tSurface2D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1f\n\x07normals\x18\x02 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1e\n\x05\x65\x64ges\x18\x03 \x03(\x0b\x32\x0f.DTCC.Simplex1D\"n\n\tSurface3D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1f\n\x07normals\x18\x02 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1e\n\x05\x66\x61\x63\x65s\x18\x03 \x03(\x0b\x32\x0f.DTCC.Simplex2D\"9\n\x0bGridField2D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bGridField3D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11GridVectorField2D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11GridVectorField3D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bMeshField2D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bMeshField3D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11MeshVectorField2D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11MeshVectorField3D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"`\n\x08\x42uilding\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12 \n\tfootPrint\x18\x02 \x01(\x0b\x32\r.DTCC.Polygon\x12\x0e\n\x06height\x18\x03 \x01(\x01\x12\x14\n\x0cgroundHeight\x18\x04 \x01(\x01\".\n\tCityModel\x12!\n\tbuildings\x18\x04 \x03(\x0b\x32\x0e.DTCC.Buildingb\x06proto3'
+  serialized_pb=b'\n\ndtcc.proto\x12\x04\x44TCC\" \n\x08Vector2D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\"+\n\x08Vector3D\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\"#\n\tSimplex1D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\"/\n\tSimplex2D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\x12\n\n\x02v2\x18\x03 \x01(\x05\";\n\tSimplex3D\x12\n\n\x02v0\x18\x01 \x01(\x05\x12\n\n\x02v1\x18\x02 \x01(\x05\x12\n\n\x02v2\x18\x03 \x01(\x05\x12\n\n\x02v3\x18\x04 \x01(\x05\"E\n\rBoundingBox2D\x12\x19\n\x01p\x18\x01 \x01(\x0b\x32\x0e.DTCC.Vector2D\x12\x19\n\x01q\x18\x02 \x01(\x0b\x32\x0e.DTCC.Vector2D\"E\n\rBoundingBox3D\x12\x19\n\x01p\x18\x01 \x01(\x0b\x32\x0e.DTCC.Vector3D\x12\x19\n\x01q\x18\x02 \x01(\x0b\x32\x0e.DTCC.Vector3D\"+\n\x07Polygon\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\"n\n\x06Grid2D\x12(\n\x0b\x62oundingBox\x18\x01 \x01(\x0b\x32\x13.DTCC.BoundingBox2D\x12\r\n\x05xSize\x18\x02 \x01(\x05\x12\r\n\x05ySize\x18\x03 \x01(\x05\x12\r\n\x05xStep\x18\x04 \x01(\x02\x12\r\n\x05yStep\x18\x05 \x01(\x02\"\x8c\x01\n\x06Grid3D\x12(\n\x0b\x62oundingBox\x18\x01 \x01(\x0b\x32\x13.DTCC.BoundingBox3D\x12\r\n\x05xSize\x18\x02 \x01(\x05\x12\r\n\x05ySize\x18\x03 \x01(\x05\x12\r\n\x05zSize\x18\x04 \x01(\x05\x12\r\n\x05xStep\x18\x05 \x01(\x02\x12\r\n\x05yStep\x18\x06 \x01(\x02\x12\r\n\x05zStep\x18\x07 \x01(\x02\"[\n\x06Mesh2D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1e\n\x05\x63\x65lls\x18\x02 \x03(\x0b\x32\x0f.DTCC.Simplex2D\x12\x0f\n\x07markers\x18\x03 \x03(\x05\"[\n\x06Mesh3D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1e\n\x05\x63\x65lls\x18\x02 \x03(\x0b\x32\x0f.DTCC.Simplex3D\x12\x0f\n\x07markers\x18\x03 \x03(\x05\"n\n\tSurface2D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1f\n\x07normals\x18\x02 \x03(\x0b\x32\x0e.DTCC.Vector2D\x12\x1e\n\x05\x65\x64ges\x18\x03 \x03(\x0b\x32\x0f.DTCC.Simplex1D\"n\n\tSurface3D\x12 \n\x08vertices\x18\x01 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1f\n\x07normals\x18\x02 \x03(\x0b\x32\x0e.DTCC.Vector3D\x12\x1e\n\x05\x66\x61\x63\x65s\x18\x03 \x03(\x0b\x32\x0f.DTCC.Simplex2D\"9\n\x0bGridField2D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bGridField3D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11GridVectorField2D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11GridVectorField3D\x12\x1a\n\x04grid\x18\x01 \x01(\x0b\x32\x0c.DTCC.Grid3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bMeshField2D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"9\n\x0bMeshField3D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11MeshVectorField2D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh2D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"?\n\x11MeshVectorField3D\x12\x1a\n\x04mesh\x18\x01 \x01(\x0b\x32\x0c.DTCC.Mesh3D\x12\x0e\n\x06values\x18\x02 \x03(\x02\"B\n\x0eSurfaceField2D\x12 \n\x07surface\x18\x01 \x01(\x0b\x32\x0f.DTCC.Surface2D\x12\x0e\n\x06values\x18\x03 \x03(\x02\"B\n\x0eSurfaceField3D\x12 \n\x07surface\x18\x01 \x01(\x0b\x32\x0f.DTCC.Surface3D\x12\x0e\n\x06values\x18\x03 \x03(\x02\"`\n\x08\x42uilding\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12 \n\tfootPrint\x18\x02 \x01(\x0b\x32\r.DTCC.Polygon\x12\x0e\n\x06height\x18\x03 \x01(\x01\x12\x14\n\x0cgroundHeight\x18\x04 \x01(\x01\".\n\tCityModel\x12!\n\tbuildings\x18\x04 \x03(\x0b\x32\x0e.DTCC.Buildingb\x06proto3'
 )
 
 
@@ -988,6 +988,84 @@ _MESHVECTORFIELD3D = _descriptor.Descriptor(
 )
 
 
+_SURFACEFIELD2D = _descriptor.Descriptor(
+  name='SurfaceField2D',
+  full_name='DTCC.SurfaceField2D',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='surface', full_name='DTCC.SurfaceField2D.surface', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='DTCC.SurfaceField2D.values', index=1,
+      number=3, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1594,
+  serialized_end=1660,
+)
+
+
+_SURFACEFIELD3D = _descriptor.Descriptor(
+  name='SurfaceField3D',
+  full_name='DTCC.SurfaceField3D',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='surface', full_name='DTCC.SurfaceField3D.surface', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='DTCC.SurfaceField3D.values', index=1,
+      number=3, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1662,
+  serialized_end=1728,
+)
+
+
 _BUILDING = _descriptor.Descriptor(
   name='Building',
   full_name='DTCC.Building',
@@ -1036,8 +1114,8 @@ _BUILDING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1594,
-  serialized_end=1690,
+  serialized_start=1730,
+  serialized_end=1826,
 )
 
 
@@ -1068,8 +1146,8 @@ _CITYMODEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1692,
-  serialized_end=1738,
+  serialized_start=1828,
+  serialized_end=1874,
 )
 
 _BOUNDINGBOX2D.fields_by_name['p'].message_type = _VECTOR2D
@@ -1097,6 +1175,8 @@ _MESHFIELD2D.fields_by_name['mesh'].message_type = _MESH2D
 _MESHFIELD3D.fields_by_name['mesh'].message_type = _MESH3D
 _MESHVECTORFIELD2D.fields_by_name['mesh'].message_type = _MESH2D
 _MESHVECTORFIELD3D.fields_by_name['mesh'].message_type = _MESH3D
+_SURFACEFIELD2D.fields_by_name['surface'].message_type = _SURFACE2D
+_SURFACEFIELD3D.fields_by_name['surface'].message_type = _SURFACE3D
 _BUILDING.fields_by_name['footPrint'].message_type = _POLYGON
 _CITYMODEL.fields_by_name['buildings'].message_type = _BUILDING
 DESCRIPTOR.message_types_by_name['Vector2D'] = _VECTOR2D
@@ -1121,6 +1201,8 @@ DESCRIPTOR.message_types_by_name['MeshField2D'] = _MESHFIELD2D
 DESCRIPTOR.message_types_by_name['MeshField3D'] = _MESHFIELD3D
 DESCRIPTOR.message_types_by_name['MeshVectorField2D'] = _MESHVECTORFIELD2D
 DESCRIPTOR.message_types_by_name['MeshVectorField3D'] = _MESHVECTORFIELD3D
+DESCRIPTOR.message_types_by_name['SurfaceField2D'] = _SURFACEFIELD2D
+DESCRIPTOR.message_types_by_name['SurfaceField3D'] = _SURFACEFIELD3D
 DESCRIPTOR.message_types_by_name['Building'] = _BUILDING
 DESCRIPTOR.message_types_by_name['CityModel'] = _CITYMODEL
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -1278,6 +1360,20 @@ MeshVectorField3D = _reflection.GeneratedProtocolMessageType('MeshVectorField3D'
   # @@protoc_insertion_point(class_scope:DTCC.MeshVectorField3D)
   })
 _sym_db.RegisterMessage(MeshVectorField3D)
+
+SurfaceField2D = _reflection.GeneratedProtocolMessageType('SurfaceField2D', (_message.Message,), {
+  'DESCRIPTOR' : _SURFACEFIELD2D,
+  '__module__' : 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.SurfaceField2D)
+  })
+_sym_db.RegisterMessage(SurfaceField2D)
+
+SurfaceField3D = _reflection.GeneratedProtocolMessageType('SurfaceField3D', (_message.Message,), {
+  'DESCRIPTOR' : _SURFACEFIELD3D,
+  '__module__' : 'dtcc_pb2'
+  # @@protoc_insertion_point(class_scope:DTCC.SurfaceField3D)
+  })
+_sym_db.RegisterMessage(SurfaceField3D)
 
 Building = _reflection.GeneratedProtocolMessageType('Building', (_message.Message,), {
   'DESCRIPTOR' : _BUILDING,

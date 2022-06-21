@@ -155,6 +155,18 @@ message MeshVectorField3D
   repeated float values = 2;
 }
 
+message SurfaceField2D
+{
+  Surface2D surface = 1;
+  repeated float values = 3;
+}
+
+message SurfaceField3D
+{
+  Surface3D surface = 1;
+  repeated float values = 3;
+}
+
 //--- City model ---
 
 message Building

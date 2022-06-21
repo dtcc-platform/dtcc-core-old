@@ -47,7 +47,7 @@ struct TableStruct_dtcc_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[24]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[26]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -121,6 +121,12 @@ extern Surface2DDefaultTypeInternal _Surface2D_default_instance_;
 class Surface3D;
 class Surface3DDefaultTypeInternal;
 extern Surface3DDefaultTypeInternal _Surface3D_default_instance_;
+class SurfaceField2D;
+class SurfaceField2DDefaultTypeInternal;
+extern SurfaceField2DDefaultTypeInternal _SurfaceField2D_default_instance_;
+class SurfaceField3D;
+class SurfaceField3DDefaultTypeInternal;
+extern SurfaceField3DDefaultTypeInternal _SurfaceField3D_default_instance_;
 class Vector2D;
 class Vector2DDefaultTypeInternal;
 extern Vector2DDefaultTypeInternal _Vector2D_default_instance_;
@@ -151,6 +157,8 @@ template<> ::DTCC::Simplex2D* Arena::CreateMaybeMessage<::DTCC::Simplex2D>(Arena
 template<> ::DTCC::Simplex3D* Arena::CreateMaybeMessage<::DTCC::Simplex3D>(Arena*);
 template<> ::DTCC::Surface2D* Arena::CreateMaybeMessage<::DTCC::Surface2D>(Arena*);
 template<> ::DTCC::Surface3D* Arena::CreateMaybeMessage<::DTCC::Surface3D>(Arena*);
+template<> ::DTCC::SurfaceField2D* Arena::CreateMaybeMessage<::DTCC::SurfaceField2D>(Arena*);
+template<> ::DTCC::SurfaceField3D* Arena::CreateMaybeMessage<::DTCC::SurfaceField3D>(Arena*);
 template<> ::DTCC::Vector2D* Arena::CreateMaybeMessage<::DTCC::Vector2D>(Arena*);
 template<> ::DTCC::Vector3D* Arena::CreateMaybeMessage<::DTCC::Vector3D>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -3944,6 +3952,348 @@ class MeshVectorField3D PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class SurfaceField2D PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DTCC.SurfaceField2D) */ {
+ public:
+  inline SurfaceField2D() : SurfaceField2D(nullptr) {};
+  virtual ~SurfaceField2D();
+
+  SurfaceField2D(const SurfaceField2D& from);
+  SurfaceField2D(SurfaceField2D&& from) noexcept
+    : SurfaceField2D() {
+    *this = ::std::move(from);
+  }
+
+  inline SurfaceField2D& operator=(const SurfaceField2D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SurfaceField2D& operator=(SurfaceField2D&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SurfaceField2D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SurfaceField2D* internal_default_instance() {
+    return reinterpret_cast<const SurfaceField2D*>(
+               &_SurfaceField2D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(SurfaceField2D& a, SurfaceField2D& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SurfaceField2D* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SurfaceField2D* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SurfaceField2D* New() const final {
+    return CreateMaybeMessage<SurfaceField2D>(nullptr);
+  }
+
+  SurfaceField2D* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SurfaceField2D>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SurfaceField2D& from);
+  void MergeFrom(const SurfaceField2D& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SurfaceField2D* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "DTCC.SurfaceField2D";
+  }
+  protected:
+  explicit SurfaceField2D(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_dtcc_2eproto);
+    return ::descriptor_table_dtcc_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValuesFieldNumber = 3,
+    kSurfaceFieldNumber = 1,
+  };
+  // repeated float values = 3;
+  int values_size() const;
+  private:
+  int _internal_values_size() const;
+  public:
+  void clear_values();
+  private:
+  float _internal_values(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      _internal_values() const;
+  void _internal_add_values(float value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      _internal_mutable_values();
+  public:
+  float values(int index) const;
+  void set_values(int index, float value);
+  void add_values(float value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      values() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      mutable_values();
+
+  // .DTCC.Surface2D surface = 1;
+  bool has_surface() const;
+  private:
+  bool _internal_has_surface() const;
+  public:
+  void clear_surface();
+  const ::DTCC::Surface2D& surface() const;
+  ::DTCC::Surface2D* release_surface();
+  ::DTCC::Surface2D* mutable_surface();
+  void set_allocated_surface(::DTCC::Surface2D* surface);
+  private:
+  const ::DTCC::Surface2D& _internal_surface() const;
+  ::DTCC::Surface2D* _internal_mutable_surface();
+  public:
+  void unsafe_arena_set_allocated_surface(
+      ::DTCC::Surface2D* surface);
+  ::DTCC::Surface2D* unsafe_arena_release_surface();
+
+  // @@protoc_insertion_point(class_scope:DTCC.SurfaceField2D)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > values_;
+  mutable std::atomic<int> _values_cached_byte_size_;
+  ::DTCC::Surface2D* surface_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_dtcc_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SurfaceField3D PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DTCC.SurfaceField3D) */ {
+ public:
+  inline SurfaceField3D() : SurfaceField3D(nullptr) {};
+  virtual ~SurfaceField3D();
+
+  SurfaceField3D(const SurfaceField3D& from);
+  SurfaceField3D(SurfaceField3D&& from) noexcept
+    : SurfaceField3D() {
+    *this = ::std::move(from);
+  }
+
+  inline SurfaceField3D& operator=(const SurfaceField3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SurfaceField3D& operator=(SurfaceField3D&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SurfaceField3D& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SurfaceField3D* internal_default_instance() {
+    return reinterpret_cast<const SurfaceField3D*>(
+               &_SurfaceField3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(SurfaceField3D& a, SurfaceField3D& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SurfaceField3D* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SurfaceField3D* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SurfaceField3D* New() const final {
+    return CreateMaybeMessage<SurfaceField3D>(nullptr);
+  }
+
+  SurfaceField3D* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SurfaceField3D>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SurfaceField3D& from);
+  void MergeFrom(const SurfaceField3D& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SurfaceField3D* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "DTCC.SurfaceField3D";
+  }
+  protected:
+  explicit SurfaceField3D(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_dtcc_2eproto);
+    return ::descriptor_table_dtcc_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValuesFieldNumber = 3,
+    kSurfaceFieldNumber = 1,
+  };
+  // repeated float values = 3;
+  int values_size() const;
+  private:
+  int _internal_values_size() const;
+  public:
+  void clear_values();
+  private:
+  float _internal_values(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      _internal_values() const;
+  void _internal_add_values(float value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      _internal_mutable_values();
+  public:
+  float values(int index) const;
+  void set_values(int index, float value);
+  void add_values(float value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      values() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      mutable_values();
+
+  // .DTCC.Surface3D surface = 1;
+  bool has_surface() const;
+  private:
+  bool _internal_has_surface() const;
+  public:
+  void clear_surface();
+  const ::DTCC::Surface3D& surface() const;
+  ::DTCC::Surface3D* release_surface();
+  ::DTCC::Surface3D* mutable_surface();
+  void set_allocated_surface(::DTCC::Surface3D* surface);
+  private:
+  const ::DTCC::Surface3D& _internal_surface() const;
+  ::DTCC::Surface3D* _internal_mutable_surface();
+  public:
+  void unsafe_arena_set_allocated_surface(
+      ::DTCC::Surface3D* surface);
+  ::DTCC::Surface3D* unsafe_arena_release_surface();
+
+  // @@protoc_insertion_point(class_scope:DTCC.SurfaceField3D)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > values_;
+  mutable std::atomic<int> _values_cached_byte_size_;
+  ::DTCC::Surface3D* surface_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_dtcc_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Building PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DTCC.Building) */ {
  public:
@@ -3986,7 +4336,7 @@ class Building PROTOBUF_FINAL :
                &_Building_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(Building& a, Building& b) {
     a.Swap(&b);
@@ -4181,7 +4531,7 @@ class CityModel PROTOBUF_FINAL :
                &_CityModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(CityModel& a, CityModel& b) {
     a.Swap(&b);
@@ -6893,6 +7243,270 @@ MeshVectorField3D::mutable_values() {
 
 // -------------------------------------------------------------------
 
+// SurfaceField2D
+
+// .DTCC.Surface2D surface = 1;
+inline bool SurfaceField2D::_internal_has_surface() const {
+  return this != internal_default_instance() && surface_ != nullptr;
+}
+inline bool SurfaceField2D::has_surface() const {
+  return _internal_has_surface();
+}
+inline void SurfaceField2D::clear_surface() {
+  if (GetArena() == nullptr && surface_ != nullptr) {
+    delete surface_;
+  }
+  surface_ = nullptr;
+}
+inline const ::DTCC::Surface2D& SurfaceField2D::_internal_surface() const {
+  const ::DTCC::Surface2D* p = surface_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::DTCC::Surface2D*>(
+      &::DTCC::_Surface2D_default_instance_);
+}
+inline const ::DTCC::Surface2D& SurfaceField2D::surface() const {
+  // @@protoc_insertion_point(field_get:DTCC.SurfaceField2D.surface)
+  return _internal_surface();
+}
+inline void SurfaceField2D::unsafe_arena_set_allocated_surface(
+    ::DTCC::Surface2D* surface) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(surface_);
+  }
+  surface_ = surface;
+  if (surface) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:DTCC.SurfaceField2D.surface)
+}
+inline ::DTCC::Surface2D* SurfaceField2D::release_surface() {
+  auto temp = unsafe_arena_release_surface();
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::DTCC::Surface2D* SurfaceField2D::unsafe_arena_release_surface() {
+  // @@protoc_insertion_point(field_release:DTCC.SurfaceField2D.surface)
+  
+  ::DTCC::Surface2D* temp = surface_;
+  surface_ = nullptr;
+  return temp;
+}
+inline ::DTCC::Surface2D* SurfaceField2D::_internal_mutable_surface() {
+  
+  if (surface_ == nullptr) {
+    auto* p = CreateMaybeMessage<::DTCC::Surface2D>(GetArena());
+    surface_ = p;
+  }
+  return surface_;
+}
+inline ::DTCC::Surface2D* SurfaceField2D::mutable_surface() {
+  // @@protoc_insertion_point(field_mutable:DTCC.SurfaceField2D.surface)
+  return _internal_mutable_surface();
+}
+inline void SurfaceField2D::set_allocated_surface(::DTCC::Surface2D* surface) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete surface_;
+  }
+  if (surface) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(surface);
+    if (message_arena != submessage_arena) {
+      surface = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, surface, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  surface_ = surface;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.SurfaceField2D.surface)
+}
+
+// repeated float values = 3;
+inline int SurfaceField2D::_internal_values_size() const {
+  return values_.size();
+}
+inline int SurfaceField2D::values_size() const {
+  return _internal_values_size();
+}
+inline void SurfaceField2D::clear_values() {
+  values_.Clear();
+}
+inline float SurfaceField2D::_internal_values(int index) const {
+  return values_.Get(index);
+}
+inline float SurfaceField2D::values(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.SurfaceField2D.values)
+  return _internal_values(index);
+}
+inline void SurfaceField2D::set_values(int index, float value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:DTCC.SurfaceField2D.values)
+}
+inline void SurfaceField2D::_internal_add_values(float value) {
+  values_.Add(value);
+}
+inline void SurfaceField2D::add_values(float value) {
+  _internal_add_values(value);
+  // @@protoc_insertion_point(field_add:DTCC.SurfaceField2D.values)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+SurfaceField2D::_internal_values() const {
+  return values_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+SurfaceField2D::values() const {
+  // @@protoc_insertion_point(field_list:DTCC.SurfaceField2D.values)
+  return _internal_values();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+SurfaceField2D::_internal_mutable_values() {
+  return &values_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+SurfaceField2D::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.SurfaceField2D.values)
+  return _internal_mutable_values();
+}
+
+// -------------------------------------------------------------------
+
+// SurfaceField3D
+
+// .DTCC.Surface3D surface = 1;
+inline bool SurfaceField3D::_internal_has_surface() const {
+  return this != internal_default_instance() && surface_ != nullptr;
+}
+inline bool SurfaceField3D::has_surface() const {
+  return _internal_has_surface();
+}
+inline void SurfaceField3D::clear_surface() {
+  if (GetArena() == nullptr && surface_ != nullptr) {
+    delete surface_;
+  }
+  surface_ = nullptr;
+}
+inline const ::DTCC::Surface3D& SurfaceField3D::_internal_surface() const {
+  const ::DTCC::Surface3D* p = surface_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::DTCC::Surface3D*>(
+      &::DTCC::_Surface3D_default_instance_);
+}
+inline const ::DTCC::Surface3D& SurfaceField3D::surface() const {
+  // @@protoc_insertion_point(field_get:DTCC.SurfaceField3D.surface)
+  return _internal_surface();
+}
+inline void SurfaceField3D::unsafe_arena_set_allocated_surface(
+    ::DTCC::Surface3D* surface) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(surface_);
+  }
+  surface_ = surface;
+  if (surface) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:DTCC.SurfaceField3D.surface)
+}
+inline ::DTCC::Surface3D* SurfaceField3D::release_surface() {
+  auto temp = unsafe_arena_release_surface();
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::DTCC::Surface3D* SurfaceField3D::unsafe_arena_release_surface() {
+  // @@protoc_insertion_point(field_release:DTCC.SurfaceField3D.surface)
+  
+  ::DTCC::Surface3D* temp = surface_;
+  surface_ = nullptr;
+  return temp;
+}
+inline ::DTCC::Surface3D* SurfaceField3D::_internal_mutable_surface() {
+  
+  if (surface_ == nullptr) {
+    auto* p = CreateMaybeMessage<::DTCC::Surface3D>(GetArena());
+    surface_ = p;
+  }
+  return surface_;
+}
+inline ::DTCC::Surface3D* SurfaceField3D::mutable_surface() {
+  // @@protoc_insertion_point(field_mutable:DTCC.SurfaceField3D.surface)
+  return _internal_mutable_surface();
+}
+inline void SurfaceField3D::set_allocated_surface(::DTCC::Surface3D* surface) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete surface_;
+  }
+  if (surface) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(surface);
+    if (message_arena != submessage_arena) {
+      surface = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, surface, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  surface_ = surface;
+  // @@protoc_insertion_point(field_set_allocated:DTCC.SurfaceField3D.surface)
+}
+
+// repeated float values = 3;
+inline int SurfaceField3D::_internal_values_size() const {
+  return values_.size();
+}
+inline int SurfaceField3D::values_size() const {
+  return _internal_values_size();
+}
+inline void SurfaceField3D::clear_values() {
+  values_.Clear();
+}
+inline float SurfaceField3D::_internal_values(int index) const {
+  return values_.Get(index);
+}
+inline float SurfaceField3D::values(int index) const {
+  // @@protoc_insertion_point(field_get:DTCC.SurfaceField3D.values)
+  return _internal_values(index);
+}
+inline void SurfaceField3D::set_values(int index, float value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:DTCC.SurfaceField3D.values)
+}
+inline void SurfaceField3D::_internal_add_values(float value) {
+  values_.Add(value);
+}
+inline void SurfaceField3D::add_values(float value) {
+  _internal_add_values(value);
+  // @@protoc_insertion_point(field_add:DTCC.SurfaceField3D.values)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+SurfaceField3D::_internal_values() const {
+  return values_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+SurfaceField3D::values() const {
+  // @@protoc_insertion_point(field_list:DTCC.SurfaceField3D.values)
+  return _internal_values();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+SurfaceField3D::_internal_mutable_values() {
+  return &values_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+SurfaceField3D::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:DTCC.SurfaceField3D.values)
+  return _internal_mutable_values();
+}
+
+// -------------------------------------------------------------------
+
 // Building
 
 // string uuid = 1;
@@ -7143,6 +7757,10 @@ CityModel::buildings() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -25,6 +25,8 @@ extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::
 extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Simplex1D_dtcc_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Simplex2D_dtcc_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Simplex3D_dtcc_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Surface2D_dtcc_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Surface3D_dtcc_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector2D_dtcc_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_dtcc_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3D_dtcc_2eproto;
 namespace DTCC {
@@ -116,6 +118,14 @@ class MeshVectorField3DDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MeshVectorField3D> _instance;
 } _MeshVectorField3D_default_instance_;
+class SurfaceField2DDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SurfaceField2D> _instance;
+} _SurfaceField2D_default_instance_;
+class SurfaceField3DDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SurfaceField3D> _instance;
+} _SurfaceField3D_default_instance_;
 class BuildingDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Building> _instance;
@@ -456,6 +466,36 @@ static void InitDefaultsscc_info_Surface3D_dtcc_2eproto() {
       &scc_info_Vector3D_dtcc_2eproto.base,
       &scc_info_Simplex2D_dtcc_2eproto.base,}};
 
+static void InitDefaultsscc_info_SurfaceField2D_dtcc_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_SurfaceField2D_default_instance_;
+    new (ptr) ::DTCC::SurfaceField2D();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::SurfaceField2D::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SurfaceField2D_dtcc_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SurfaceField2D_dtcc_2eproto}, {
+      &scc_info_Surface2D_dtcc_2eproto.base,}};
+
+static void InitDefaultsscc_info_SurfaceField3D_dtcc_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::DTCC::_SurfaceField3D_default_instance_;
+    new (ptr) ::DTCC::SurfaceField3D();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::DTCC::SurfaceField3D::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SurfaceField3D_dtcc_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SurfaceField3D_dtcc_2eproto}, {
+      &scc_info_Surface3D_dtcc_2eproto.base,}};
+
 static void InitDefaultsscc_info_Vector2D_dtcc_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -484,7 +524,7 @@ static void InitDefaultsscc_info_Vector3D_dtcc_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3D_dtcc_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Vector3D_dtcc_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_dtcc_2eproto[24];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_dtcc_2eproto[26];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_dtcc_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_dtcc_2eproto = nullptr;
 
@@ -659,6 +699,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_dtcc_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::DTCC::MeshVectorField3D, mesh_),
   PROTOBUF_FIELD_OFFSET(::DTCC::MeshVectorField3D, values_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField2D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField2D, surface_),
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField2D, values_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField3D, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField3D, surface_),
+  PROTOBUF_FIELD_OFFSET(::DTCC::SurfaceField3D, values_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::DTCC::Building, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -697,8 +751,10 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 148, -1, sizeof(::DTCC::MeshField3D)},
   { 155, -1, sizeof(::DTCC::MeshVectorField2D)},
   { 162, -1, sizeof(::DTCC::MeshVectorField3D)},
-  { 169, -1, sizeof(::DTCC::Building)},
-  { 178, -1, sizeof(::DTCC::CityModel)},
+  { 169, -1, sizeof(::DTCC::SurfaceField2D)},
+  { 176, -1, sizeof(::DTCC::SurfaceField3D)},
+  { 183, -1, sizeof(::DTCC::Building)},
+  { 192, -1, sizeof(::DTCC::CityModel)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -724,6 +780,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_MeshField3D_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_MeshVectorField2D_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_MeshVectorField3D_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_SurfaceField2D_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_SurfaceField3D_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_Building_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::DTCC::_CityModel_default_instance_),
 };
@@ -768,15 +826,19 @@ const char descriptor_table_protodef_dtcc_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "Mesh3D\022\016\n\006values\030\002 \003(\002\"\?\n\021MeshVectorFiel"
   "d2D\022\032\n\004mesh\030\001 \001(\0132\014.DTCC.Mesh2D\022\016\n\006value"
   "s\030\002 \003(\002\"\?\n\021MeshVectorField3D\022\032\n\004mesh\030\001 \001"
-  "(\0132\014.DTCC.Mesh3D\022\016\n\006values\030\002 \003(\002\"`\n\010Buil"
-  "ding\022\014\n\004uuid\030\001 \001(\t\022 \n\tfootPrint\030\002 \001(\0132\r."
-  "DTCC.Polygon\022\016\n\006height\030\003 \001(\001\022\024\n\014groundHe"
-  "ight\030\004 \001(\001\".\n\tCityModel\022!\n\tbuildings\030\004 \003"
-  "(\0132\016.DTCC.Buildingb\006proto3"
+  "(\0132\014.DTCC.Mesh3D\022\016\n\006values\030\002 \003(\002\"B\n\016Surf"
+  "aceField2D\022 \n\007surface\030\001 \001(\0132\017.DTCC.Surfa"
+  "ce2D\022\016\n\006values\030\003 \003(\002\"B\n\016SurfaceField3D\022 "
+  "\n\007surface\030\001 \001(\0132\017.DTCC.Surface3D\022\016\n\006valu"
+  "es\030\003 \003(\002\"`\n\010Building\022\014\n\004uuid\030\001 \001(\t\022 \n\tfo"
+  "otPrint\030\002 \001(\0132\r.DTCC.Polygon\022\016\n\006height\030\003"
+  " \001(\001\022\024\n\014groundHeight\030\004 \001(\001\".\n\tCityModel\022"
+  "!\n\tbuildings\030\004 \003(\0132\016.DTCC.Buildingb\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_dtcc_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_dtcc_2eproto_sccs[24] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_dtcc_2eproto_sccs[26] = {
   &scc_info_BoundingBox2D_dtcc_2eproto.base,
   &scc_info_BoundingBox3D_dtcc_2eproto.base,
   &scc_info_Building_dtcc_2eproto.base,
@@ -799,15 +861,17 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_dtc
   &scc_info_Simplex3D_dtcc_2eproto.base,
   &scc_info_Surface2D_dtcc_2eproto.base,
   &scc_info_Surface3D_dtcc_2eproto.base,
+  &scc_info_SurfaceField2D_dtcc_2eproto.base,
+  &scc_info_SurfaceField3D_dtcc_2eproto.base,
   &scc_info_Vector2D_dtcc_2eproto.base,
   &scc_info_Vector3D_dtcc_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_dtcc_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_dtcc_2eproto = {
-  false, false, descriptor_table_protodef_dtcc_2eproto, "dtcc.proto", 1746,
-  &descriptor_table_dtcc_2eproto_once, descriptor_table_dtcc_2eproto_sccs, descriptor_table_dtcc_2eproto_deps, 24, 0,
+  false, false, descriptor_table_protodef_dtcc_2eproto, "dtcc.proto", 1882,
+  &descriptor_table_dtcc_2eproto_once, descriptor_table_dtcc_2eproto_sccs, descriptor_table_dtcc_2eproto_deps, 26, 0,
   schemas, file_default_instances, TableStruct_dtcc_2eproto::offsets,
-  file_level_metadata_dtcc_2eproto, 24, file_level_enum_descriptors_dtcc_2eproto, file_level_service_descriptors_dtcc_2eproto,
+  file_level_metadata_dtcc_2eproto, 26, file_level_enum_descriptors_dtcc_2eproto, file_level_service_descriptors_dtcc_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -6542,6 +6606,506 @@ void MeshVectorField3D::InternalSwap(MeshVectorField3D* other) {
 
 // ===================================================================
 
+void SurfaceField2D::InitAsDefaultInstance() {
+  ::DTCC::_SurfaceField2D_default_instance_._instance.get_mutable()->surface_ = const_cast< ::DTCC::Surface2D*>(
+      ::DTCC::Surface2D::internal_default_instance());
+}
+class SurfaceField2D::_Internal {
+ public:
+  static const ::DTCC::Surface2D& surface(const SurfaceField2D* msg);
+};
+
+const ::DTCC::Surface2D&
+SurfaceField2D::_Internal::surface(const SurfaceField2D* msg) {
+  return *msg->surface_;
+}
+SurfaceField2D::SurfaceField2D(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  values_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:DTCC.SurfaceField2D)
+}
+SurfaceField2D::SurfaceField2D(const SurfaceField2D& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      values_(from.values_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_surface()) {
+    surface_ = new ::DTCC::Surface2D(*from.surface_);
+  } else {
+    surface_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:DTCC.SurfaceField2D)
+}
+
+void SurfaceField2D::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SurfaceField2D_dtcc_2eproto.base);
+  surface_ = nullptr;
+}
+
+SurfaceField2D::~SurfaceField2D() {
+  // @@protoc_insertion_point(destructor:DTCC.SurfaceField2D)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void SurfaceField2D::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete surface_;
+}
+
+void SurfaceField2D::ArenaDtor(void* object) {
+  SurfaceField2D* _this = reinterpret_cast< SurfaceField2D* >(object);
+  (void)_this;
+}
+void SurfaceField2D::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void SurfaceField2D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SurfaceField2D& SurfaceField2D::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SurfaceField2D_dtcc_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SurfaceField2D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.SurfaceField2D)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  values_.Clear();
+  if (GetArena() == nullptr && surface_ != nullptr) {
+    delete surface_;
+  }
+  surface_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SurfaceField2D::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .DTCC.Surface2D surface = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_surface(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated float values = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_values(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29) {
+          _internal_add_values(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SurfaceField2D::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.SurfaceField2D)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Surface2D surface = 1;
+  if (this->has_surface()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::surface(this), target, stream);
+  }
+
+  // repeated float values = 3;
+  if (this->_internal_values_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_values(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.SurfaceField2D)
+  return target;
+}
+
+size_t SurfaceField2D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.SurfaceField2D)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float values = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_values_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _values_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // .DTCC.Surface2D surface = 1;
+  if (this->has_surface()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *surface_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SurfaceField2D::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.SurfaceField2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SurfaceField2D* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SurfaceField2D>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.SurfaceField2D)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.SurfaceField2D)
+    MergeFrom(*source);
+  }
+}
+
+void SurfaceField2D::MergeFrom(const SurfaceField2D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.SurfaceField2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  values_.MergeFrom(from.values_);
+  if (from.has_surface()) {
+    _internal_mutable_surface()->::DTCC::Surface2D::MergeFrom(from._internal_surface());
+  }
+}
+
+void SurfaceField2D::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.SurfaceField2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SurfaceField2D::CopyFrom(const SurfaceField2D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.SurfaceField2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SurfaceField2D::IsInitialized() const {
+  return true;
+}
+
+void SurfaceField2D::InternalSwap(SurfaceField2D* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  values_.InternalSwap(&other->values_);
+  swap(surface_, other->surface_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SurfaceField2D::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SurfaceField3D::InitAsDefaultInstance() {
+  ::DTCC::_SurfaceField3D_default_instance_._instance.get_mutable()->surface_ = const_cast< ::DTCC::Surface3D*>(
+      ::DTCC::Surface3D::internal_default_instance());
+}
+class SurfaceField3D::_Internal {
+ public:
+  static const ::DTCC::Surface3D& surface(const SurfaceField3D* msg);
+};
+
+const ::DTCC::Surface3D&
+SurfaceField3D::_Internal::surface(const SurfaceField3D* msg) {
+  return *msg->surface_;
+}
+SurfaceField3D::SurfaceField3D(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  values_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:DTCC.SurfaceField3D)
+}
+SurfaceField3D::SurfaceField3D(const SurfaceField3D& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      values_(from.values_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_surface()) {
+    surface_ = new ::DTCC::Surface3D(*from.surface_);
+  } else {
+    surface_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:DTCC.SurfaceField3D)
+}
+
+void SurfaceField3D::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SurfaceField3D_dtcc_2eproto.base);
+  surface_ = nullptr;
+}
+
+SurfaceField3D::~SurfaceField3D() {
+  // @@protoc_insertion_point(destructor:DTCC.SurfaceField3D)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void SurfaceField3D::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete surface_;
+}
+
+void SurfaceField3D::ArenaDtor(void* object) {
+  SurfaceField3D* _this = reinterpret_cast< SurfaceField3D* >(object);
+  (void)_this;
+}
+void SurfaceField3D::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void SurfaceField3D::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SurfaceField3D& SurfaceField3D::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SurfaceField3D_dtcc_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SurfaceField3D::Clear() {
+// @@protoc_insertion_point(message_clear_start:DTCC.SurfaceField3D)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  values_.Clear();
+  if (GetArena() == nullptr && surface_ != nullptr) {
+    delete surface_;
+  }
+  surface_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SurfaceField3D::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .DTCC.Surface3D surface = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_surface(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated float values = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_values(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29) {
+          _internal_add_values(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SurfaceField3D::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DTCC.SurfaceField3D)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .DTCC.Surface3D surface = 1;
+  if (this->has_surface()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::surface(this), target, stream);
+  }
+
+  // repeated float values = 3;
+  if (this->_internal_values_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_values(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:DTCC.SurfaceField3D)
+  return target;
+}
+
+size_t SurfaceField3D::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:DTCC.SurfaceField3D)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float values = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_values_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _values_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // .DTCC.Surface3D surface = 1;
+  if (this->has_surface()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *surface_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SurfaceField3D::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DTCC.SurfaceField3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SurfaceField3D* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SurfaceField3D>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DTCC.SurfaceField3D)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DTCC.SurfaceField3D)
+    MergeFrom(*source);
+  }
+}
+
+void SurfaceField3D::MergeFrom(const SurfaceField3D& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DTCC.SurfaceField3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  values_.MergeFrom(from.values_);
+  if (from.has_surface()) {
+    _internal_mutable_surface()->::DTCC::Surface3D::MergeFrom(from._internal_surface());
+  }
+}
+
+void SurfaceField3D::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DTCC.SurfaceField3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SurfaceField3D::CopyFrom(const SurfaceField3D& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DTCC.SurfaceField3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SurfaceField3D::IsInitialized() const {
+  return true;
+}
+
+void SurfaceField3D::InternalSwap(SurfaceField3D* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  values_.InternalSwap(&other->values_);
+  swap(surface_, other->surface_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SurfaceField3D::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void Building::InitAsDefaultInstance() {
   ::DTCC::_Building_default_instance_._instance.get_mutable()->footprint_ = const_cast< ::DTCC::Polygon*>(
       ::DTCC::Polygon::internal_default_instance());
@@ -7119,6 +7683,12 @@ template<> PROTOBUF_NOINLINE ::DTCC::MeshVectorField2D* Arena::CreateMaybeMessag
 }
 template<> PROTOBUF_NOINLINE ::DTCC::MeshVectorField3D* Arena::CreateMaybeMessage< ::DTCC::MeshVectorField3D >(Arena* arena) {
   return Arena::CreateMessageInternal< ::DTCC::MeshVectorField3D >(arena);
+}
+template<> PROTOBUF_NOINLINE ::DTCC::SurfaceField2D* Arena::CreateMaybeMessage< ::DTCC::SurfaceField2D >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::DTCC::SurfaceField2D >(arena);
+}
+template<> PROTOBUF_NOINLINE ::DTCC::SurfaceField3D* Arena::CreateMaybeMessage< ::DTCC::SurfaceField3D >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::DTCC::SurfaceField3D >(arena);
 }
 template<> PROTOBUF_NOINLINE ::DTCC::Building* Arena::CreateMaybeMessage< ::DTCC::Building >(Arena* arena) {
   return Arena::CreateMessageInternal< ::DTCC::Building >(arena);
