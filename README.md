@@ -22,6 +22,26 @@ git branch -M main
 git push -uf origin main
 ```
 
+
+## Git submodules
+
+### Add submodule
+- `git submodule add <remote_url> <destination_folder>`
+
+### Pull the submodule
+- first time: `git submodule update --init --recursive`
+- every other time: `git pull --recursive-submodules`
+
+### Update the submodule
+- `git submodule update --remote --merge`
+
+### remove a submodule
+- `git submodule deinit <submodule>`
+- `git rm <submodule>`
+
+### Enable submodule summary
+- `git config --global status.submoduleSummary true`
+
 ## Integrate with your tools
 
 - [ ] [Set up project integrations](https://gitlab.com/dtcc-platform/dtcc-core/-/settings/integrations)
