@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package DTCC;
 
+//--- Geometry ---
+
 message Vector2D
 {
   float x = 1;
@@ -13,6 +15,12 @@ message Vector3D
   float x = 1;
   float y = 2;
   float z = 3;
+}
+
+message Simplex1D
+{
+  int32 v0 = 1;
+  int32 v1 = 2;
 }
 
 message Simplex2D
@@ -47,6 +55,8 @@ message Polygon
   repeated Vector2D vertices = 1;
 }
 
+//--- Grids and meshes ---
+
 message Grid2D
 {
   BoundingBox2D boundingBox = 1;
@@ -67,12 +77,35 @@ message Grid3D
   float zStep = 7;
 }
 
+message Mesh2D
+{
+  repeated Vector2D vertices = 1;
+  repeated Simplex2D cells = 2;
+  repeated int32 markers = 3;
+}
+
+message Mesh3D
+{
+  repeated Vector3D vertices = 1;
+  repeated Simplex3D cells = 2;
+  repeated int32 markers = 3;
+}
+
+message Surface2D
+{
+  repeated Vector2D vertices = 1;
+  repeated Vector2D normals = 2;
+  repeated Simplex1D edges = 3;
+}
+
 message Surface3D
 {
   repeated Vector3D vertices = 1;
   repeated Vector3D normals = 2;
   repeated Simplex2D faces = 3;
 }
+
+//--- Fields ---
 
 message GridField2D
 {
@@ -85,6 +118,44 @@ message GridField3D
   Grid3D grid = 1;
   repeated float values = 2;
 }
+
+message GridVectorField2D
+{
+  Grid2D grid = 1;
+  repeated float values = 2;
+}
+
+message GridVectorField3D
+{
+  Grid3D grid = 1;
+  repeated float values = 2;
+}
+
+message MeshField2D
+{
+  Mesh2D mesh = 1;
+  repeated float values = 2;
+}
+
+message MeshField3D
+{
+  Mesh3D mesh = 1;
+  repeated float values = 2;
+}
+
+message MeshVectorField2D
+{
+  Mesh2D mesh = 1;
+  repeated float values = 2;
+}
+
+message MeshVectorField3D
+{
+  Mesh3D mesh = 1;
+  repeated float values = 2;
+}
+
+//--- City model ---
 
 message Building
 {
