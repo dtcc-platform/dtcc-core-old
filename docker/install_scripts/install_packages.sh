@@ -37,3 +37,9 @@ apt-get update && apt-get install -y \
     python3-pip
 
 pip install protobuf==3.20.*
+
+
+./install_assimp.sh
+./install_libgeos.sh
+./install_libLAS.sh
+./install_VTK.sh
