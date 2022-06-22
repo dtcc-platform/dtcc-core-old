@@ -1,0 +1,8 @@
+numpy
+protobuf
+fastapi
+uvicorn[standard]
+tqdm
+redis
+pymongo
+
