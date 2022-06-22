@@ -4,7 +4,7 @@ services:
   
   core:
     build: 
-      context: ./
+      context: ../
       dockerfile: './dtcc-model/docker/Dockerfile'
       target: dev
     working_dir: ${WORKING_DIR}
@@ -13,7 +13,7 @@ services:
     stdin_open: true 
     tty: true 
     volumes:
-      - ./:${WORKING_DIR}
+      - ../:${WORKING_DIR}
     security_opt:
       - seccomp:unconfined
     cap_add:
