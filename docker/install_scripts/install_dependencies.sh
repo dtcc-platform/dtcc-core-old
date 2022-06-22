@@ -1,7 +1,5 @@
 #!/bin/bash
 apt-get update && apt-get install -y \
-    locales \
-    sudo \
     build-essential \
     cmake\
     nano \

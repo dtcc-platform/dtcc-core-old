@@ -5,5 +5,16 @@
 
 from dtcc.core import *
 
-data = GetData()
-print(data)
+c = Core()
+
+# List projects and datasets
+for project in c.GetProjects():
+    print('Project: %s' % project)
+    for dataset in c.GetDataSets(project):
+        print('  Dataset: %s' % dataset)
+
+# Generate data
+c.GenerateData('Majorna2021', 'GroundSurface')
+
+# Get data
+data = c.GetData('Majorna2021', 'GroundSurface')
