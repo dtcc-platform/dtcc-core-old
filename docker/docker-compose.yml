@@ -18,6 +18,9 @@ services:
       - seccomp:unconfined
     cap_add:
       - SYS_PTRACE
+    networks:
+        - dtcc-core-network
+    
 
   redis:
     image: redis:latest
@@ -29,6 +32,8 @@ services:
       - ${REDIS_PORT}:6379
     links:
       - redis-commander
+    networks:
+        - dtcc-core-network
 
   redis-commander:
     image: rediscommander/redis-commander:latest
@@ -42,6 +47,9 @@ services:
       HTTP_PASSWORD: dtcc
     ports:
       - 8081:8081
+    networks:
+        - dtcc-core-network
+    
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -53,13 +61,18 @@ services:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - rabbitmq_aiqu_net
+        - dtcc-core-network
 
 volumes:
   redis_data:
     driver: local
   redis:
   redis-config:
+
+networks:
+  dtcc-core-network:
+    driver: bridge
+
 
 
 
