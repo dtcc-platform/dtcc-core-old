@@ -28,6 +28,7 @@ class Core:
         return dataSets
 
     def GetData(self, project, dataSet):
+        'Return given dataset for project'
 
         # Read from JSON file
         fileName = '%s/%s/%s.json' % (DATA_DIRECTORY, project, dataSet)
