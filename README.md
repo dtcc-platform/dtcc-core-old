@@ -30,7 +30,7 @@ git push -uf origin main
 
 ### Pull the submodule
 - first time: `git submodule update --init --recursive`
-- every other time: `git pull --recursive-submodules`
+- every other time: `git pull --recurse-submodules`
 
 ### Update the submodule
 - `git submodule update --remote --merge`
