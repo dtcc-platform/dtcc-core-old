@@ -38,3 +38,8 @@ class Core:
         pb = object.SerializeToString()
 
         return pb
+
+    def GenerateData(self, project, dataSet):
+        'Generate given dataset for project'
+
+        print('GenerateData: Not implemented')

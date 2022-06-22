@@ -13,5 +13,8 @@ for project in c.GetProjects():
     for dataset in c.GetDataSets(project):
         print('  Dataset: %s' % dataset)
 
+# Generate data
+c.GenerateData('Majorna2021', 'GroundSurface')
+
 # Get data
 data = c.GetData('Majorna2021', 'GroundSurface')
