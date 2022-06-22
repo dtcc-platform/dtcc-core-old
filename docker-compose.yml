@@ -15,22 +15,6 @@ services:
     cap_add:
       - SYS_PTRACE
 
-  clion:
-    build:
-      context: ./
-      dockerfile: './dtcc-model/docker/Dockerfile'
-      target: clion
-    container_name: dtccclion
-    image: dtcc-platform/clion
-    security_opt: # options needed for gdb debugging
-      - seccomp:unconfined
-      - apparmor:unconfined
-    volumes:
-      - ./..:/home/dtcc/core  
-    ports:
-      - "7776:22"
-      - "7777:7777"
-
   redis:
     image: redis:latest
     command: redis-server --requirepass ${REDIS_PASSWORD}
