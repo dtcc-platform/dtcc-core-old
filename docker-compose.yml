@@ -6,12 +6,13 @@ services:
       context: ./
       dockerfile: './dtcc-model/docker/Dockerfile'
       target: dev
+    working_dir: ${WORKING_DIR}
     container_name: dtcc-core
     image: dtcc-core-image
     stdin_open: true 
     tty: true 
     volumes:
-      - ./:/home/dtcc/core
+      - ./:${WORKING_DIR}
     security_opt:
       - seccomp:unconfined
     cap_add:
