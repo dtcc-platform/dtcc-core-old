@@ -7,9 +7,9 @@ services:
       dockerfile: './dtcc-model/docker/Dockerfile'
       target: dev
     container_name: dtcc-core
-    image: dtcc-core-image	
+    image: dtcc-core-image
     volumes:
-      - ./..:/home/dtcc/dtcc-core
+      - ./:/home/dtcc/dtcc-core
     security_opt:
       - seccomp:unconfined
     cap_add:
