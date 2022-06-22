@@ -6,13 +6,13 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from enum import Enum, IntEnum
 
-project_dir = str(pathlib.Path(__file__).resolve().parents[0]) 
+project_dir = str(pathlib.Path(__file__).resolve().parents[0])
 
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="DTCC Core API", 
-    description="API for db access and communication", 
+    title="DTCC Core API",
+    description="API for db access and communication",
     version="1.0"
 )
 
@@ -43,7 +43,3 @@ async def shutdown():
 @app.get("/api/maps/list",response_model=dict)
 async def get_maps_list():
     return []
-
-
-
-    
