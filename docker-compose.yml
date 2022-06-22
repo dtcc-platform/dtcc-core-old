@@ -8,8 +8,10 @@ services:
       target: dev
     container_name: dtcc-core
     image: dtcc-core-image
+    stdin_open: true 
+    tty: true 
     volumes:
-      - ./:/home/dtcc/dtcc-core
+      - ./:/home/dtcc/core
     security_opt:
       - seccomp:unconfined
     cap_add:
