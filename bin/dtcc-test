@@ -10,11 +10,11 @@ c = Core()
 # List projects and datasets
 for project in c.GetProjects():
     print('Project: %s' % project)
-    for dataset in c.GetDataSets(project):
-        print('  Dataset: %s' % dataset)
+for name in c.GetDataSetNames():
+    print('Dataset: %s' % name)
 
 # Generate data
-c.GenerateData('Majorna2021', 'GroundSurface')
+c.GenerateDataSet('Majorna2021', 'GroundSurface')
 
 # Get data
-data = c.GetData('Majorna2021', 'GroundSurface')
+data = c.GetDataSet('Majorna2021', 'GroundSurface')

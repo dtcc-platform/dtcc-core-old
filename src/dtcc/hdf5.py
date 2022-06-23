@@ -1,5 +1,6 @@
 # Copyright (C) 2022 Anders Logg
 # Licensed under the MIT License
+
 def ReadHDF5(fileName):
     'Read from HDF5 file'
     print('Reading JSON data from %s...' % fileName)
