@@ -8,9 +8,9 @@ from dtcc.core import *
 c = Core()
 
 # List projects and datasets
-for project in c.GetProjects():
+for project in c.GetProjects()['data']:
     print('Project: %s' % project)
-for name in c.GetAvailableDataSetNames():
+for name in c.GetAvailableDataSetNames()['data']:
     print('Dataset: %s' % name)
 
 # Generate data
