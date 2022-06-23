@@ -10,7 +10,7 @@ c = Core()
 # List projects and datasets
 for project in c.GetProjects():
     print('Project: %s' % project)
-for name in c.GetDataSetNames():
+for name in c.GetAvailableDataSetNames():
     print('Dataset: %s' % name)
 
 # Generate data

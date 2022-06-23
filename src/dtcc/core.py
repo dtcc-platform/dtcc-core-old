@@ -37,12 +37,12 @@ class Core:
         'Return a list of all available projects'
         return Success(os.listdir(DATA_DIRECTORY), 'Returned list of available projects')
 
-    def GetDataSetNames(self):
-        'Return a list of all datasets that can be generated'
+    def GetAvailableDataSetNames(self):
+        'Return a list of all available datasets (that can be generated)'
         names = []
         for generator in self.generators:
             names += [name for (name, cls) in generator.GetDataSets()]
-        return Success(names, 'Returned list of datasets that can be generated')
+        return Success(names, 'Returned list of available datasets')
 
     def GetGeneratedDataSetNames(self, project):
         'Return a list of all generated datasets for project'
