@@ -75,6 +75,6 @@ class Core:
         generator = self.generatorMap[name]
 
         # Generate data
-        generator.GenerateDataSet(project, name)
+        generator.GenerateDataSet(project, name, DATA_DIRECTORY)
 
         return Success(0, 'DTCC Core: Generated dataset %s for project %s' % (name, project))

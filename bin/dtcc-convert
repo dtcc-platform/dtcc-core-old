@@ -14,13 +14,6 @@ def Error(message):
 def Help():
     print('Usage: dtcc-convert <infile> <outfile>')
 
-def WriteProtobuf(object, fileName):
-    'Write to Protobuf file'
-    print('Writing Protobuf data to %s...' % fileName)
-    with open(fileName, 'wb') as f:
-        protobuf = object.SerializeToString()
-        f.write(protobuf)
-
 # Check command-line arguments
 if len(sys.argv) != 3:
     Help()
