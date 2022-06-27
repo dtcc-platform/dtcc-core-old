@@ -7,11 +7,17 @@ from dtcc.core import *
 
 c = Core()
 
-# List projects and datasets
+# Print projects
 for project in c.GetProjects()['data']:
-    print('Project: %s' % project)
+    print('  Project: %s' % project)
+
+# Print available datasets
 for name in c.GetAvailableDataSetNames()['data']:
-    print('Dataset: %s' % name)
+    print('  Dataset: %s' % name)
+
+# Print generated datasets
+for name in c.GetGeneratedDataSetNames('Majorna2021')['data']:
+    print('  Dataset: %s' % name)
 
 # Generate data
 c.GenerateDataSet('Majorna2021', 'GroundSurface')

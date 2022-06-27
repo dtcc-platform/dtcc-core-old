@@ -4,6 +4,7 @@
 from dtcc.model import *
 from dtcc.logging import *
 import dtcc.json
+import dtcc.protobuf
 
 DATA_SETS = [('CityModel', CityModel),
              ('GroundSurface', Surface3D),
@@ -27,9 +28,10 @@ class Builder():
 
         # FIXME: Temporary implementation, just converting prebaked data
 
-        # Read JSON data
-        fileName = '%s/%s/%s.json' % (dataDirectory, project, name)
-        dataSet = dtcc.json.Read(fileName)
+        # Read JSON
+        inFileName = '%s/%s/%s.json' % (dataDirectory, project, name)
+        dataSet = dtcc.json.Read(inFileName)
 
-        # Serialize
-        pb = dataSet.SerializeToString()
+        # Write Protobuf
+        outFileName = '%s/%s/%s.pb' % (dataDirectory, project, name)
+        dtcc.protobuf.Write(dataSet, outFileName)

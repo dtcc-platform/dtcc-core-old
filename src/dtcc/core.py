@@ -48,18 +48,18 @@ class Core:
         'Return a list of all generated datasets for project'
         fileNames = os.listdir('%s/%s' % (DATA_DIRECTORY, project))
         names = [f.split('.pb')[0] for f in fileNames if f.endswith('.pb')]
-        return Success(names, 'Returned list of generated datasets')
+        return Success(names, 'Returned list of generated datasets for project %s' % project)
 
     def GetDataSet(self, project, name):
         'Return given dataset for project'
 
         # Check if dataset exists
-        if not name in self.GetGeneratedDataSetNames(project):
+        if not name in self.GetGeneratedDataSetNames(project)['data']:
             return Error('Unable to return dataset; dataset %s has not been generated for project %s' % (name, project))
 
         # Read data
         fileName = '%s/%s/%s.pb' % (DATA_DIRECTORY, project, name)
-        with open(fileName, 'rb') as fileName:
+        with open(fileName, 'rb') as f:
             pb = f.read()
 
         return Success(pb, 'Returned dataset %s for project %s' % (name, project))
