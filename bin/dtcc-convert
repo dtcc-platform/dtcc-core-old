@@ -6,6 +6,7 @@
 import sys, json, h5py, numpy
 
 import dtcc.json
+import dtcc.protobuf
 
 def Error(message):
     print('*** Error:', str(message))
@@ -33,6 +34,6 @@ else:
 # Write output
 outFileSuffix = outFileName.split('.')[-1]
 if outFileSuffix == 'pb':
-    WriteProtobuf(object, outFileName)
+    dtcc.protobuf.Write(object, outFileName)
 else:
     Error('Unknown output data format .%s' % outFileSuffix)
