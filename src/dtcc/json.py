@@ -31,7 +31,7 @@ def Read(fileName):
                 vertex.x = jsonVertex['x']
                 vertex.y = jsonVertex['y']
                 vertices.append(vertex)
-            building.footPrint.vertices.extend(vertices)
+            building.footPrint.shell.vertices.extend(vertices)
             buildings.append(building)
         cityModel.buildings.extend(buildings)
         return cityModel
