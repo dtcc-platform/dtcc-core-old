@@ -7,14 +7,28 @@ from dtcc.core import *
 
 c = Core()
 
-# List projects and datasets
+# Print projects
 for project in c.GetProjects()['data']:
-    print('Project: %s' % project)
+    print('  Project: %s' % project)
+
+# Print available datasets
 for name in c.GetAvailableDataSetNames()['data']:
-    print('Dataset: %s' % name)
+    print('  Dataset: %s' % name)
+
+# Print generated datasets
+for name in c.GetGeneratedDataSetNames('Helsingborg2021')['data']:
+    print('  Dataset: %s' % name)
 
 # Generate data
-c.GenerateDataSet('Majorna2021', 'GroundSurface')
+c.GenerateDataSet('Helsingborg2021', 'CityModel')
+c.GenerateDataSet('Helsingborg2021', 'GroundSurface')
+c.GenerateDataSet('Helsingborg2021', 'VelocitySurface')
+c.GenerateDataSet('Helsingborg2021', 'PressureSurface')
+c.GenerateDataSet('Helsingborg2021', 'VelocityMagnitudeSurface')
 
-# Get data
-data = c.GetDataSet('Majorna2021', 'GroundSurface')
+# Get data (as Protobuf)
+cityModel = c.GetDataSet('Helsingborg2021', 'CityModel')
+groundSurface = c.GetDataSet('Helsingborg2021', 'GroundSurface')
+velocitySurface = c.GetDataSet('Helsingborg2021', 'VelocitySurface')
+pressureSurface = c.GetDataSet('Helsingborg2021', 'PressureSurface')
+velocityMagnitudeSurface = c.GetDataSet('Helsingborg2021', 'VelocityMagnitudeSurface')

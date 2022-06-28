@@ -1,19 +1,17 @@
 # Copyright (C) 2022 Anders Logg
 # Licensed under the MIT License
 
-def ReadHDF5(fileName):
+import h5py, numpy
+
+from dtcc.model import *
+from dtcc.logging import *
+
+def Read(fileName):
     'Read from HDF5 file'
-    print('Reading JSON data from %s...' % fileName)
+    Info('Reading HDF5 data from %s...' % fileName)
+    return GenerateFakeData()
 
-    # FIXME: Experimenting with reading HDF5
-    with h5py.File(fileName, 'r') as f:
-        print(f.keys())
-        print(f['Geometry'])
-        print(f['Cell'].keys())
-        print(f['Cell']['VelocityFluid'])
-        u = f['Cell']['VelocityFluid']
-        print(u[100])
-
+def GenerateFakeData():
     # FIXME: This is a temporary hack to generate some data for the viewer
     surfaceField = SurfaceField3D()
     with open('GroundSurface.pb', 'rb') as f:

@@ -18,6 +18,9 @@ services:
       - seccomp:unconfined
     cap_add:
       - SYS_PTRACE
+    ports:
+      - 54321:54321
+      - 8000:8000
     networks:
         - dtcc-core-network
     

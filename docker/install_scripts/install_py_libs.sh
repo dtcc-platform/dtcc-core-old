@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 python3 -m pip install \
 	redis \
 	pika \
@@ -9,8 +7,9 @@ python3 -m pip install \
 	fastapi \
 	uvicorn[standard] \
 	laspy[lazrs] \
-	protobuf 
+	protobuf==3.20.* \
+	h5py
 
-# these libraries require all of gdal-dev to be apt installed if you want to install them via pip
+# These libraries require all of gdal-dev to be apt installed if you want to install them via pip
 # so we install them like this for now
 apt-get update && apt-get install -y python3-fiona python3-rasterio
