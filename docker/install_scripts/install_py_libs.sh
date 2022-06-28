@@ -7,7 +7,7 @@ python3 -m pip install \
 	fastapi \
 	uvicorn[standard] \
 	laspy[lazrs] \
-	protobuf \
+	protobuf==3.20.* \
 	h5py
 
 # These libraries require all of gdal-dev to be apt installed if you want to install them via pip
