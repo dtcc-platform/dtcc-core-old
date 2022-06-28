@@ -35,7 +35,8 @@ class Core:
 
     def GetProjects(self):
         'Return a list of all available projects'
-        return Success(os.listdir(DATA_DIRECTORY), 'Returned list of available projects')
+        dirs = [dir for dir in os.listdir(DATA_DIRECTORY) if os.path.isdir(os.path.join(DATA_DIRECTORY, dir))]
+        return Success(dirs, 'Returned list of available projects')
 
     def GetAvailableDataSetNames(self):
         'Return a list of all available datasets (that can be generated)'
