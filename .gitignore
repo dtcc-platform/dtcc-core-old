@@ -1,8 +1,12 @@
 __pycache__
 *.pyc
+build/
+data/ 
 
 ## IDEs and editors
 .idea
 .vscode
+
+*.so
 
 .DS_Store

@@ -9,6 +9,5 @@ apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libldap2-dev \
     libssl-dev \
     iputils-ping \
-    libgdal26 \
     python3-venv 
 

@@ -2,11 +2,16 @@
 
 apt-get update && apt-get install -y \
     build-essential \
-    cmake\
+    cmake \
     nano \
     net-tools \
     wget \
-    unzip
+    unzip \
+    protobuf-compiler \
+    libprotobuf-dev \
+    pybind11-dev
+
+
 
 #./install_protobuf.sh
 ./install_python.sh
