@@ -9,7 +9,8 @@ import dtcc.hdf5
 import dtcc.protobuf
 
 DATA_SETS = [('VelocitySurface', SurfaceVectorField3D),
-             ('PressureSurface', SurfaceField3D)]
+             ('PressureSurface', SurfaceField3D),
+             ('VelocityMagnitudeSurface', SurfaceField3D)]
 
 class IBOFlow():
     'Interface to IBOFLow'
@@ -32,9 +33,6 @@ class IBOFlow():
         inFileName = '%s/%s/PostProcessedSurface.h5' % (dataDirectory, project)
         with h5py.File(inFileName, 'r') as f:
 
-            # Create empty dataset
-            dataSet = SurfaceVectorField3D()
-
             # Get vertices
             h5Vertices = f['Geometry'][:]
             vertices = []
@@ -44,7 +42,6 @@ class IBOFlow():
                 vertex.y = h5Vertices[i][1]
                 vertex.z = h5Vertices[i][2]
                 vertices.append(vertex)
-            dataSet.surface.vertices.extend(vertices)
 
             # Get faces
             h5Faces = f['Topology'][:]
@@ -55,18 +52,26 @@ class IBOFlow():
                 face.v1 = h5Faces[i][1]
                 face.v2 = h5Faces[i][2]
                 faces.append(face)
-            dataSet.surface.faces.extend(faces)
 
             # Get values
             if name == 'VelocitySurface':
-                h5Values = f['Node']['VelocityFluid'][:].flatten()
+                dataSet = SurfaceVectorField3D()
+                values = f['Node']['VelocityFluid'][:].flatten()
             elif name == 'PressureSurface':
-                h5Values = f['Node']['PressureFluid'][:]
+                dataSet = SurfaceField3D()
+                values = f['Node']['PressureFluid'][:]
+            elif name == 'VelocityMagnitudeSurface':
+                dataSet = SurfaceField3D()
+                v = f['Node']['VelocityFluid'][:]
+                values = numpy.sum(numpy.abs(v)**2, axis=-1)**0.5
             else:
                 # FIXME: How to pass this back as return code to core.py?
                 Error('DTCC IBOFlow: Unknown data set %s' % name)
-            dataSet.values.extend(h5Values)
 
+            # Set data
+            dataSet.surface.vertices.extend(vertices)
+            dataSet.surface.faces.extend(faces)
+            dataSet.values.extend(values)
 
         # Write Protobuf
         outFileName = '%s/%s/%s.pb' % (dataDirectory, project, name)
