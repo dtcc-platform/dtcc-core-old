@@ -8,7 +8,9 @@ from dotenv import load_dotenv
 project_dir = str(pathlib.Path(__file__).resolve().parents[1])
 sys.path.append(project_dir)
 
+from src.common.utils import try_except, timer
 from src.common.logger import getLogger
+from src.common.redis_service import RedisPubSub
 
 logger = getLogger(__file__)
 
@@ -17,10 +19,20 @@ load_dotenv(os.path.join(project_dir, 'docker','.env'))
 docker_working_dir = os.getenv('WORKING_DIR')
 shared_data_dir = os.getenv('SHARED_DATA_DIR')
 
-from src.common.redis_service import RedisPubSub
+#--> defaults
+parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
+destination_folder = os.path.join(shared_data_dir,'vasnas')
+
+
+
+def check_if_path_exists(path:str):
+    if not os.path.exists(path):
+        logger.error(f"path does not exist {path}")
+        sys.exit(1)
 
 def load_sample_file(path:str):
     if os.path.exists(path):
+        logger.info("loading from: "+ path)
         with open(path, mode='r') as f:
             lines = f.readlines()
             logger.info(lines)
@@ -31,6 +43,7 @@ def load_sample_file(path:str):
 def run_binary(parameters_path:str):
     pass
 
+@timer(logger=logger)
 def create_sample_file():
     file_path = os.path.join(shared_data_dir,'sample.txt')
 
@@ -43,6 +56,7 @@ def create_sample_file():
 
     return file_path
 
+@try_except(logger=logger)
 def run_and_notify(host, port,channel,callback,callback_args=[]):
     rps = RedisPubSub(host=host,port=port)
     pool = ThreadPool(processes=4)
@@ -56,36 +70,28 @@ def run_and_notify(host, port,channel,callback,callback_args=[]):
         logger.info("published")
 
 
-def check_if_path_exists(path:str):
-    if not os.path.exists(path):
-        logger.error(f"path does not exist {path}")
-        sys.exit(1)
-
-parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
-destination_folder = os.path.join(shared_data_dir,'vasnas')
-
+@try_except(logger=logger)
 def copy_and_notify(args):
-    try:
-        rps = RedisPubSub(host=args.host,port=args.port)
 
-        src_file_path = args.src
-        
-        check_if_path_exists(src_file_path)
-        check_if_path_exists(shared_data_dir)
+    rps = RedisPubSub(host=args.host,port=args.port)
 
-        dst_folder_path = os.path.join(shared_data_dir,args.dst)
-        os.makedirs(dst_folder_path,exist_ok=True)
+    src_file_path = args.src
+    
+    check_if_path_exists(src_file_path)
+    check_if_path_exists(shared_data_dir)
 
-        dst_file_path = os.path.join(dst_folder_path, os.path.split(src_file_path)[1])
-        shutil.copy(src_file_path, dst_file_path)
+    dst_folder_path = os.path.join(shared_data_dir,args.dst)
+    os.makedirs(dst_folder_path,exist_ok=True)
 
-        logger.info(f"Copied {src_file_path} to {dst_file_path} ")
+    dst_file_path = os.path.join(dst_folder_path, os.path.split(src_file_path)[1])
+    shutil.copy(src_file_path, dst_file_path)
 
-        published = rps.publish(channel=args.channel, message=dst_file_path)
-        if published:
-            logger.info("published")
-    except BaseException as e:
-        logger.exception(str(e))
+    logger.info(f"Copied {src_file_path} to {dst_file_path} ")
+
+    published = rps.publish(channel=args.channel, message=dst_file_path)
+    if published:
+        logger.info("published")
+
 
 if __name__=='__main__':
 
@@ -96,6 +102,9 @@ if __name__=='__main__':
     test = subparser.add_parser('test')
     test.add_argument("--host", "-H", type=str,default='localhost', help="hostname")
     test.add_argument("--port", "-P", type=int,default=6879, help="port")
+    test.add_argument("--channel", "-C", type=str,default='dtcc-core', help="redis channel")
+    test.add_argument("--src", type=str,default=parameters_file_path, help="source file path")
+    test.add_argument("--dst", type=str,default=destination_folder, help="destination folder path")
 
     sub = subparser.add_parser('subscribe')
     sub.add_argument("--host", "-H", type=str,default='redis', help="hostname")
@@ -126,6 +135,8 @@ if __name__=='__main__':
         run_and_notify(host=args.host,port=args.port,channel=args.channel,callback=create_sample_file)
 
     elif args.command == 'copy':
+        copy_and_notify(args)
+    elif args.command == 'test':
         copy_and_notify(args)
     else:
         parser.print_help()

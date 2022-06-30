@@ -171,35 +171,40 @@ def launch_tensorboard(logdir, port=6006):
     print("tensorboard launched at 0.0.0.0:"+ str(port))
 
 
-def timer(func,logger=None):
+def timer(logger=None):
     """Print the runtime of the decorated function"""
-    @functools.wraps(func)
-    def wrapper_timer(*args, **kwargs):
-        start_time = time.perf_counter()    # 1
-        value = func(*args, **kwargs)
-        end_time = time.perf_counter()      # 2
-        run_time = round((end_time - start_time),4)    # 3
-        msg = "Finished " + str(func.__name__) + " in "+ str(run_time) + " secs"
-        if logger:
-            logger.info(msg)
-        else:
-            print(msg)
-        return value
-    return wrapper_timer
-
-def try_except(func, *args, **kwargs):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        try: 
-            return func(*args, **kwargs)
-        except:
-            msg = "from>>"+str(func.__name__)
-            if kwargs.__contains__('logger'):
-                kwargs['logger'].exception(msg)
+    def decorator_timer(func):
+        @functools.wraps(func)
+        def wrapper_timer(*args, **kwargs):
+            start_time = time.perf_counter()    # 1
+            value = func(*args, **kwargs)
+            end_time = time.perf_counter()      # 2
+            run_time = round((end_time - start_time),4)    # 3
+            msg = "Finished " + str(func.__name__) + " in "+ str(run_time) + " secs"
+            if logger != None:
+                logger.info(msg)
             else:
                 print(msg)
-            return False
-    return wrapper
+            return value
+        return wrapper_timer
+    return decorator_timer
+
+def try_except(logger=None):
+    """Wrap the decorated function with exception catch with optional logger"""
+    def decorator_try_except(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            try: 
+                return func(*args, **kwargs)
+            except:
+                msg = "from >> "+str(func.__name__)
+                if logger != None:
+                    logger.exception(msg)
+                else:
+                    print(msg)
+                return False
+        return wrapper
+    return decorator_try_except
 
 class DictStorage():
     def __init__(self,file_name) -> None:
