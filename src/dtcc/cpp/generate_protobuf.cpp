@@ -16,11 +16,21 @@ int add(int i, int j) {
     return i + j;
 }
 
-py::bytes PBPointCloud(py::array_t<double> pts)
+py::bytes PBPointCloud(py::array_t<double> pts,
+py::array_t<u_int8_t> classification,
+py::array_t<u_int16_t> intensity,
+py::array_t<u_int8_t> returnNumber,
+py::array_t<u_int8_t> numberOfReturns)
 {
   auto pts_r = pts.unchecked<2>();
+  auto class_r = classification.unchecked<1>();
+  auto intensity_r = intensity.unchecked<1>();
+  auto retNr_r = returnNumber.unchecked<1>();
+  auto numReturn_r = numberOfReturns.unchecked<1>();
+  
   std::vector<Vector3D> pb_pts;
   size_t pt_count = pts_r.shape(0);
+
   PointCloud pc;
   for (size_t i = 0 ; i < pt_count ; i++)
   {
@@ -29,6 +39,54 @@ py::bytes PBPointCloud(py::array_t<double> pts)
   }
   google::protobuf::RepeatedPtrField<Vector3D> pt_data(pb_pts.begin(), pb_pts.end());
   pc.mutable_points()->Swap(&pt_data);
+
+  size_t num_classes = class_r.shape(0);
+  if (num_classes > 0)
+  {
+    google::protobuf::RepeatedField<uint32_t> cls_data;
+    for (size_t i = 0; i<num_classes; i++)
+    {
+      cls_data.Add(class_r(i));
+    }
+    pc.mutable_classification()->Swap(&cls_data);
+  }
+
+  size_t num_intensity = intensity_r.shape(0);
+  if (num_intensity > 0)
+  {
+    google::protobuf::RepeatedField<uint32_t> int_data;
+    for (size_t i = 0; i<num_intensity; i++)
+    {
+      int_data.Add(intensity_r(i));
+    }
+    pc.mutable_intensity()->Swap(&int_data);
+  }
+
+  size_t num_retnr = retNr_r.shape(0);
+  if (num_retnr > 0)
+  {
+    google::protobuf::RepeatedField<uint32_t> retnr_data;
+    for (size_t i = 0; i<num_retnr; i++)
+    {
+      retnr_data.Add(retNr_r(i));
+    }
+    pc.mutable_returnnumber()->Swap(&retnr_data);
+  }
+
+  size_t num_numret = numReturn_r.shape(0);
+  if (num_numret > 0)
+  {
+    google::protobuf::RepeatedField<uint32_t> numret_data;
+    for (size_t i = 0; i<num_numret; i++)
+    {
+      numret_data.Add(numReturn_r(i));
+    }
+    pc.mutable_numreturns()->Swap(&numret_data);
+  }
+
+
+  
+
   std::string pbString;
   pc.SerializeToString(&pbString);
 
