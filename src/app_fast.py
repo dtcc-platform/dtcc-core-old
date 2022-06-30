@@ -18,7 +18,11 @@ from dtcc.core import *
 #    def GetDataSet(self, project, name):
 #    def GenerateDataSet(self, project, name):
 
-app = FastAPI()
+app = FastAPI(
+    title="DTCC Core API",
+    description="API for db access and communication",
+    version="1.0"
+)
 c = Core()
 
 @app.get("/")
