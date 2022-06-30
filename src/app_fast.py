@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse, StreamingResponse
+import io
 #import sys
 #from pathlib import Path
 
@@ -30,8 +32,17 @@ async def root():
 @app.get("/api/GetAvailableDataSetNames")
 async def availdatasetnames():
     response=c.GetAvailableDataSetNames()
-    return reponse
+    return response
 @app.get("/api/GetGeneratedDataSetNames/{project}")
 async def gendatasetnames(project):
     response=c.GetGeneratedDataSetNames(project)
-    return reponse
+    return response
+#    def GetDataSet(self, project, name):
+@app.get("/api/GetDataSet/{project}/{name}")
+async def dataset(project,name):
+    response=c.GetDataSet(project,name)
+#    print(response)
+#    file = io.BytesIO(response["data"])
+#    return FileResponse(file, media_type="attachment/x-protobuf")
+#    return StreamingResponse(content=response["data"])
+    return StreamingResponse(io.BytesIO(response["data"]), media_type="attachment/x-protobuf")
