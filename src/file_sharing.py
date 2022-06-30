@@ -56,19 +56,36 @@ def run_and_notify(host, port,channel,callback,callback_args=[]):
         logger.info("published")
 
 
-
+def check_if_path_exists(path:str):
+    if not os.path.exists(path):
+        logger.error(f"path does not exist {path}")
+        sys.exit(1)
 
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
 def copy_and_notify(args):
-    rps = RedisPubSub(host=args.host,port=args.port)
-    src_file_path = args.src
-    dst_file_path = os.path.join(args.dst, os.path.split(src_file_path)[1])
-    shutil.copy(src_file_path, dst_file_path)
-    published = rps.publish(channel=args.channel, message=dst_file_path)
-    if published:
-        logger.info("published")
+    try:
+        rps = RedisPubSub(host=args.host,port=args.port)
+
+        src_file_path = args.src
+        
+        check_if_path_exists(src_file_path)
+        check_if_path_exists(shared_data_dir)
+
+        dst_folder_path = os.path.join(shared_data_dir,args.dst)
+        os.makedirs(dst_folder_path,exist_ok=True)
+
+        dst_file_path = os.path.join(dst_folder_path, os.path.split(src_file_path)[1])
+        shutil.copy(src_file_path, dst_file_path)
+
+        logger.info(f"Copied {src_file_path} to {dst_file_path} ")
+
+        published = rps.publish(channel=args.channel, message=dst_file_path)
+        if published:
+            logger.info("published")
+    except BaseException as e:
+        logger.exception(str(e))
 
 if __name__=='__main__':
 
@@ -105,12 +122,14 @@ if __name__=='__main__':
         rps = RedisPubSub(host=args.host,port=args.port)
         rps.subscribe(channel=args.channel,callback=load_sample_file)
 
-    if args.command == 'run':
+    elif args.command == 'run':
         run_and_notify(host=args.host,port=args.port,channel=args.channel,callback=create_sample_file)
 
-    if args.command == 'copy':
+    elif args.command == 'copy':
         copy_and_notify(args)
-        
+    else:
+        parser.print_help()
+        sys.exit(0)
 
 
 

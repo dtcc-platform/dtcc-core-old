@@ -6,14 +6,12 @@ import os, pathlib, sys, argparse, threading, time
 import subprocess
 from multiprocessing.pool import ThreadPool
 
-logger = logging.getLogger(__name__)
+project_dir = str(pathlib.Path(__file__).resolve().parents[2])
+sys.path.append(project_dir)
 
-log_format = "%(asctime)s,%(msecs)d %(levelname)-5s [%(filename)s:%(lineno)d] %(message)s"
-handler = logging.StreamHandler()
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter(log_format)
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+from src.common.logger import getLogger
+
+logger = getLogger(__file__)
 
 class RedisPubSub():
     def __init__(self,host:str, port=6979) -> None:

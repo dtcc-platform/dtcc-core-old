@@ -143,32 +143,6 @@ def extract_archive(filepath):
     shutil.unpack_archive(filepath, extract_dir)
 
 
-import matplotlib.pyplot as plt
-class MultiImagePlotter():
-    def __init__(self, rows=2, columns=2) -> None:
-        self.fig = plt.figure(figsize=(20,20))
-        self.rows = rows
-        self.columns = columns
-        self.counter = 1
-        self.max_plots = self.rows*self.columns
-        self.results_dir = os.path.join(project_dir,'results')
-        mkdir_p(self.results_dir)
-
-    def add(self,img,title=None):
-        if self.counter <= self.max_plots:
-            self.fig.add_subplot(self.rows, self.columns, self.counter)
-            plt.imshow(img)
-            plt.title(title if title else f"Sample #{self.counter}")
-            plt.axis('off')
-            self.counter += 1
-        elif self.counter > self.max_plots:
-            plt.show()
-        else:
-            print('cannot add more subplots')
-    def save(self,title=0):
-        plt.savefig(os.path.join(self.results_dir,f'{title}.png'))
-
-
 class Progress:
     def __init__(self,max_len, process_name):
         self.max_len = max_len
