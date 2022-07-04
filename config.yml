@@ -1,0 +1,10 @@
+appName: dtcc-core
+
+logLevel: DEBUG
+
+databases:
+  redis:
+    host: localhost #redis
+    port: 6879 #6379
+    password: dtcc_redis
+

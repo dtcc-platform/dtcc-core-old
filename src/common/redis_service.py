@@ -13,10 +13,17 @@ from src.common.logger import getLogger
 
 logger = getLogger(__file__)
 
+REDIS_PASSWORD = "dtcc_redis"
 class RedisPubSub():
-    def __init__(self,host:str, port=6979) -> None:
-        self.client = redis.Redis(host=host, port=port, password="dtcc_redis", decode_responses=True)
-    
+    def __init__(self,host:str, port=6379) -> None:
+        self.host = host
+        self.port = port
+        self.client = self.get_connection(host=host, port=port)
+
+    @staticmethod
+    def get_connection(host="localhost", port=6379):
+        return redis.Redis(host=host, port=port, password=REDIS_PASSWORD, decode_responses=True)
+
     def test_redis(self) -> None:
         test_key = 'test'
         test_msg = 'It is working!'
