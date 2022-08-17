@@ -31,7 +31,7 @@ def buildPolygon(geom_coords):
     return polygon
 
 
-def LoadBuildings(filename,uuid_field = 'id'):
+def loadBuildings(filename,uuid_field = 'id',return_serialized=False):
     cityModel = CityModel()
     buildings = []
     with fiona.open(filename) as src:
@@ -45,7 +45,6 @@ def LoadBuildings(filename,uuid_field = 'id'):
                 building.footPrint.CopyFrom(footprint)
                 buildings.append(building)
             if geom_type == 'MultiPolygon':
-                
                 for idx, polygon in enumerate(s['geometry']['coordinates']):
                     building = Building()
                     if uuid_field in s['properties']:
@@ -55,5 +54,8 @@ def LoadBuildings(filename,uuid_field = 'id'):
                     building.footPrint.CopyFrom(footprint)
                     buildings.append(building)
     cityModel.buildings.extend(buildings)
-    return cityModel
+    if return_serialized:
+        return cityModel.SerializeToString()
+    else:
+        return cityModel
 

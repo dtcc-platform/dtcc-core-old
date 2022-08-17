@@ -7,15 +7,6 @@
 namespace py = pybind11;
 using namespace DTCC;
 
-std::string hello()
-{
-  return "Hello World!";
-}
-
-int add(int i, int j) {
-    return i + j;
-}
-
 py::bytes PBPointCloud(py::array_t<double> pts,
 py::array_t<u_int8_t> classification,
 py::array_t<u_int16_t> intensity,
@@ -93,12 +84,18 @@ py::array_t<u_int8_t> numberOfReturns)
   return py::bytes(pbString);
 }
 
+// py::bytes PBCompactPointCloud(py::array_t<double> pts,
+// py::array_t<u_int8_t> classification,
+// py::array_t<u_int16_t> intensity,
+// py::array_t<u_int8_t> returnNumber,
+// py::array_t<u_int8_t> numberOfReturns)
+// {
+// }
+
 
 
 PYBIND11_MODULE(generate_protobuf, m) {
     m.doc() = "generate protobufs of various models"; // optional module docstring
-
-    m.def("add", &add, "A function that adds two numbers");
-    m.def("hello", &hello, "Hello World");
     m.def("PBPointCloud", &PBPointCloud, "Generate PB Pointcloud object");
+    // m.def("PBCompatcPointCloud", &PBCompactPointCloud, "Generate a PB Pointcloud that's smaller");
 }
