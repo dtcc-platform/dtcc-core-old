@@ -193,5 +193,5 @@ PYBIND11_MODULE(generate_protobuf, m)
 {
   m.doc() = "generate protobufs of various models"; // optional module docstring
   m.def("PBPointCloud", &PBPointCloud, "Generate PB Pointcloud object");
-  m.def("PBCompatcPointCloud", &PBCompactPointCloud, "Generate a PB Pointcloud that's smaller, but harder to parse");
+  // m.def("PBCompatcPointCloud", &PBCompactPointCloud, "Generate a PB Pointcloud that's smaller, but harder to parse");
 }

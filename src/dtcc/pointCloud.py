@@ -1,6 +1,6 @@
 import numpy as np
 import laspy
-from .pblib.generate_protobuf import PBPointCloud, PBCompatcPointCloud
+from .pblib.generate_protobuf import PBPointCloud
 
 
 def loadLAS(filename, points_only = False, points_classification_only = False, compact = False):
@@ -17,8 +17,5 @@ def loadLAS(filename, points_only = False, points_classification_only = False, c
         returnNumber = np.array(las.return_num)
         numberOfReturns = np.array(las.num_returns)
     print(classification.shape)
-    if compact:
-        pb = PBCompatcPointCloud(pts, classification, intensity, returnNumber, numberOfReturns)
-    else:
-        pb = PBPointCloud(pts, classification, intensity, returnNumber, numberOfReturns)
-    return pb 
+    pb = PBPointCloud(pts, classification, intensity, returnNumber, numberOfReturns)
+    return pb
