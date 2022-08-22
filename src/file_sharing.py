@@ -1,7 +1,6 @@
 import os, pathlib, sys, argparse, threading, time, shutil
-import subprocess
+import subprocess, shlex
 from multiprocessing.pool import ThreadPool
-import celery
 from dotenv import load_dotenv
 
 
@@ -9,10 +8,10 @@ from dotenv import load_dotenv
 project_dir = str(pathlib.Path(__file__).resolve().parents[1])
 sys.path.append(project_dir)
 
-from src.common.utils import try_except, timer
+from src.common.utils import get_uuid, try_except, timer
 from src.common.logger import getLogger
 from src.common.redis_service import RedisPubSub
-from src.scheduler import JobScheduler
+from src.common.scheduler import JobScheduler
 
 logger = getLogger(__file__)
 
@@ -25,69 +24,48 @@ shared_data_dir = os.getenv('SHARED_DATA_DIR')
 REDIS_HOST = "localhost" #"redis"
 REDIS_PORT =  "6879" # 6379
 REDIS_CHANNEL = 'dtcc-core'
+SCHEDULER_NAME = "core"
 
 #--> defaults
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
-@celery.shared_task
-def test_send_receive(host=REDIS_HOST, port=REDIS_PORT,test_arg='dummy'):
-    logger.info("printing test arg: "+ test_arg)
-    time_dt = subprocess.check_output(['date'])
-    message=time_dt.decode('utf-8').replace('\n','')
-    channel="core"
 
-    rps = RedisPubSub(host=host,port=port)
+#--> Export functions
+
+
+def run_shell_command(command:str,job_id=""):
+    command_args = shlex.split(command)
+
+    logger.info('Subprocess: "' + command + '"')
+
+    try:
+        command_process = subprocess.Popen(
+            command_args,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        pipe, _ =  command_process.communicate()
+
+        # process_output is now a string, not a file,
+        # you may want to do:
+        # process_output = StringIO(process_output)
+        for line in iter(pipe.readline, b''): # b'\n'-separated lines
+            logger.info(job_id + ":" +line)
     
-    pool = ThreadPool(processes=1)
-
-    async_result = pool.apply_async(rps.subscribe_one, args=(channel,))
-
-    time.sleep(5)
-
-    published = rps.publish(channel=channel,message=message)
-    if published:
-        logger.info("published")
-
-    incoming_msg = async_result.get()
-
-    assert message == incoming_msg
-
-    logger.info(incoming_msg)
-
-
-def check_if_path_exists(path:str) -> None:
-    if not os.path.exists(path):
-        logger.error(f"path does not exist {path}")
-        sys.exit(1)
-
-def load_sample_file(path:str) -> None:
-    if os.path.exists(path):
-        logger.info("loading from: "+ path)
-        with open(path, mode='r') as f:
-            lines = f.readlines()
-            logger.info(lines)
-        
+    except (OSError,  subprocess.CalledProcessError) as exception:
+        logger.exception(job_id + ":" +'Exception occured: ' + str(exception))
+        logger.error(job_id + ":" +'Subprocess failed')
+        return False
     else:
-        logger.error(f"path doesn't exist {path}")
+        # no exception was raised
+        logger.info(job_id + ":" +'Subprocess finished')
 
-def run_binary(parameters_path:str):
-    pass
+    return True
+    
 
 
-def create_sample_file() -> str:
-    file_path = os.path.join(project_dir,'logs','sample.txt')
-    logger.info(file_path)
-    with open(file_path, mode='w') as f:
-        f.write('from ' + os.environ.get('USER') + '\n')
-        for i in range(10):
-            time_dt = subprocess.check_output(['date']).decode('utf-8')
-            f.write(time_dt)
-            time.sleep(1)
-
-    logger.info("Success!")
-
-    return file_path
 
 @try_except(logger=logger)
 def run_and_notify(channel:str,callback,callback_args=[],host=REDIS_HOST, port=REDIS_PORT) -> None:
@@ -123,6 +101,91 @@ def copy_and_notify(src_file_path:str,dst_folder:str,channel:str,host=REDIS_HOST
     published = rps.publish(channel=channel, message=dst_file_path)
     if published:
         logger.info("published")
+
+
+@try_except(logger=logger)
+def schedule_job(func,args,kwargs):
+    job_scheduler = JobScheduler(scheduler_name=SCHEDULER_NAME,use_redis_backend=False,max_job_instances=1)
+
+    job = job_scheduler.add_job(func=func, args=args, kwargs=kwargs,job_id=get_uuid(8))
+    job_scheduler.run()
+
+    while job_scheduler.job_exists(func):
+        time.sleep(2)
+
+
+@try_except(logger=logger)
+def run_iboflow(job_id:str):
+
+    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+    message = rps.subscribe_one(REDIS_CHANNEL,wait_forever=True)
+
+    logger.info("received meassge: ", message)
+
+    iboflow_command = 'ls -la -h'
+
+    run_shell_command(command=iboflow_command)
+
+
+
+#--> Helper functions
+
+def check_if_path_exists(path:str) -> None:
+    if not os.path.exists(path):
+        logger.error(f"path does not exist {path}")
+        sys.exit(1)
+
+
+#--> Test functions
+
+def test_send_receive(host=REDIS_HOST, port=REDIS_PORT,test_arg='dummy'):
+    logger.info("printing test arg: "+ test_arg)
+    time_dt = subprocess.check_output(['date'])
+    message=time_dt.decode('utf-8').replace('\n','')
+    channel="core"
+
+    rps = RedisPubSub(host=host,port=port)
+    
+    pool = ThreadPool(processes=1)
+
+    async_result = pool.apply_async(rps.subscribe_one, args=(channel,))
+
+    time.sleep(5)
+
+    published = rps.publish(channel=channel,message=message)
+    if published:
+        logger.info("published")
+
+    incoming_msg = async_result.get()
+
+    assert message == incoming_msg
+
+    logger.info(incoming_msg)
+
+def load_sample_file(path:str) -> None:
+    if os.path.exists(path):
+        logger.info("loading from: "+ path)
+        with open(path, mode='r') as f:
+            lines = f.readlines()
+            logger.info(lines)
+        
+    else:
+        logger.error(f"path doesn't exist {path}")
+
+def create_sample_file() -> str:
+    file_path = os.path.join(project_dir,'logs','sample.txt')
+    logger.info(file_path)
+    with open(file_path, mode='w') as f:
+        f.write('from ' + os.environ.get('USER') + '\n')
+        for i in range(10):
+            time_dt = subprocess.check_output(['date']).decode('utf-8')
+            f.write(time_dt)
+            time.sleep(1)
+
+    logger.info("Success!")
+
+    return file_path
+
 
 
 if __name__=='__main__':
@@ -166,7 +229,7 @@ if __name__=='__main__':
         rps.subscribe(channel=args.channel,callback=load_sample_file)
 
     elif args.command == 'run':
-        # run_and_notify(host=args.host,port=args.port,channel=args.channel,callback=create_sample_file)
+        # run_and_notify(channel=args.channel,callback=create_sample_file)
         job = job_scheduler.add_job(func=run_and_notify, args=[args.channel, create_sample_file])
         job_scheduler.run()
 

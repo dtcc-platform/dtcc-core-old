@@ -5,7 +5,7 @@ project_dir = str(pathlib.Path(__file__).resolve().parents[1])
 sys.path.append(project_dir)
 
 
-from src.scheduler import JobScheduler
+from src.common.scheduler import JobScheduler
 from src.file_sharing import test_send_receive, create_sample_file
 
 
