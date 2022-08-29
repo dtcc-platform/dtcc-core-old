@@ -19,3 +19,11 @@ def loadLAS(filename, points_only = False, points_classification_only = False, c
     print(classification.shape)
     pb = PBPointCloud(pts, classification, intensity, returnNumber, numberOfReturns)
     return pb
+
+def writeLAS(pointcloud, las_file):
+    pass
+    # WIP
+    # hdr = laspy.header.Header()
+    # outfile = laspy.file.File(las_file,mode='w',header=hdr)
+    
+
