@@ -2,8 +2,14 @@ import os, pathlib, sys, argparse, threading, time, shutil
 import subprocess, shlex
 from multiprocessing.pool import ThreadPool
 from dotenv import load_dotenv
-
-
+import asyncio
+from rocketry import Rocketry
+from rocketry.conds import every
+from rocketry.conds import (
+    every, hourly, daily, 
+    after_success, 
+    true, false
+)
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[1])
 sys.path.append(project_dir)
@@ -11,7 +17,6 @@ sys.path.append(project_dir)
 from src.common.utils import get_uuid, try_except, timer
 from src.common.logger import getLogger
 from src.common.redis_service import RedisPubSub
-from src.common.scheduler import JobScheduler
 
 logger = getLogger(__file__)
 
@@ -30,6 +35,21 @@ SCHEDULER_NAME = "core"
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
+
+#--> Rocketry Tasks
+scheduler = Rocketry(config={"task_execution": "async"})
+
+@scheduler.task(execution="thread")
+def do_dummy_task():
+    test_send_receive()
+
+    file_path = create_sample_file()
+
+    return file_path
+
+@scheduler.task(after_success(do_dummy_task),execution="thread")
+def do_after_dummy():
+    run_shell_command(command='ls -la -h')
 
 #--> Export functions
 
@@ -51,7 +71,7 @@ def run_shell_command(command:str,job_id=""):
         # process_output is now a string, not a file,
         # you may want to do:
         # process_output = StringIO(process_output)
-        for line in iter(pipe.readline, b''): # b'\n'-separated lines
+        for line in iter(pipe, b''): # b'\n'-separated lines
             logger.info(job_id + ":" +line)
     
     except (OSError,  subprocess.CalledProcessError) as exception:
@@ -102,16 +122,6 @@ def copy_and_notify(src_file_path:str,dst_folder:str,channel:str,host=REDIS_HOST
     if published:
         logger.info("published")
 
-
-@try_except(logger=logger)
-def schedule_job(func,args,kwargs):
-    job_scheduler = JobScheduler(scheduler_name=SCHEDULER_NAME,use_redis_backend=False,max_job_instances=1)
-
-    job = job_scheduler.add_job(func=func, args=args, kwargs=kwargs,job_id=get_uuid(8))
-    job_scheduler.run()
-
-    while job_scheduler.job_exists(func):
-        time.sleep(2)
 
 
 @try_except(logger=logger)
@@ -222,7 +232,6 @@ if __name__=='__main__':
     
     args = parser.parse_args()
 
-    job_scheduler = JobScheduler(scheduler_name="core",use_redis_backend=False,max_job_instances=1)
 
     if args.command == 'subscribe':
         rps = RedisPubSub(host=args.host,port=args.port)
@@ -230,11 +239,8 @@ if __name__=='__main__':
 
     elif args.command == 'run':
         # run_and_notify(channel=args.channel,callback=create_sample_file)
-        job = job_scheduler.add_job(func=run_and_notify, args=[args.channel, create_sample_file])
-        job_scheduler.run()
-
-        while job_scheduler.job_exists(run_and_notify):
-            time.sleep(2)
+        run_and_notify(args.channel, create_sample_file)
+    
 
     elif args.command == 'copy':
         copy_and_notify(
