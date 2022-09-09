@@ -1,6 +1,8 @@
 import os, pathlib, sys, argparse, threading, time, shutil
 import subprocess, shlex
+from datetime import datetime
 from multiprocessing.pool import ThreadPool
+from turtle import width
 from dotenv import load_dotenv
 import asyncio
 from rocketry import Rocketry
@@ -17,6 +19,7 @@ sys.path.append(project_dir)
 from src.common.utils import get_uuid, try_except, timer
 from src.common.logger import getLogger
 from src.common.redis_service import RedisPubSub
+from src.common.run_in_shell import run_shell_command
 
 logger = getLogger(__file__)
 
@@ -36,56 +39,56 @@ parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Par
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
 
+redis_pub_sub = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+
 #--> Rocketry Tasks
 scheduler = Rocketry(config={"task_execution": "async"})
 
 @scheduler.task(execution="thread")
-def do_dummy_task():
+def dummy_task():
     test_send_receive()
 
     file_path = create_sample_file()
 
     return file_path
 
-@scheduler.task(after_success(do_dummy_task),execution="thread")
-def do_after_dummy():
-    run_shell_command(command='ls -la -h')
+@scheduler.task(after_success(dummy_task),execution="thread")
+def after_dummy():
+    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+    run_shell_command(command='ls -la -h',redis_pub_sub=rps)
+
+
+@scheduler.task(excecution="thread")
+def dummy_logs_publisher():
+    channel = "/task/dummy_logs_publisher/logs"
+    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+
+    for i in range(100):
+        published = rps.publish(channel=channel,message=datetime.now().isoformat())
+        time.sleep(1)
+
+@scheduler.task(execution="thread")
+def run_iboflow_on_builder():
+    channel = "/task/run_iboflow_on_builder"
+    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+
+    published = rps.publish(channel=channel,message="run")
+
+    if published:
+        message = rps.subscribe_one(channel=channel,wait_forever=True)
+
+        if message is not None and message == "1":
+            return True
+        else: 
+            return False
+    else:
+
+        return False
+
+
 
 #--> Export functions
-
-
-def run_shell_command(command:str,job_id=""):
-    command_args = shlex.split(command)
-
-    logger.info('Subprocess: "' + command + '"')
-
-    try:
-        command_process = subprocess.Popen(
-            command_args,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-        )
-
-        pipe, _ =  command_process.communicate()
-
-        # process_output is now a string, not a file,
-        # you may want to do:
-        # process_output = StringIO(process_output)
-        for line in iter(pipe, b''): # b'\n'-separated lines
-            logger.info(job_id + ":" +line)
     
-    except (OSError,  subprocess.CalledProcessError) as exception:
-        logger.exception(job_id + ":" +'Exception occured: ' + str(exception))
-        logger.error(job_id + ":" +'Subprocess failed')
-        return False
-    else:
-        # no exception was raised
-        logger.info(job_id + ":" +'Subprocess finished')
-
-    return True
-    
-
-
 
 @try_except(logger=logger)
 def run_and_notify(channel:str,callback,callback_args=[],host=REDIS_HOST, port=REDIS_PORT) -> None:
@@ -171,6 +174,8 @@ def test_send_receive(host=REDIS_HOST, port=REDIS_PORT,test_arg='dummy'):
     assert message == incoming_msg
 
     logger.info(incoming_msg)
+
+    
 
 def load_sample_file(path:str) -> None:
     if os.path.exists(path):

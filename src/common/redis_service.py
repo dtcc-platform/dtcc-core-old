@@ -1,3 +1,4 @@
+import asyncio
 from collections import deque
 import os, time, logging, json
 import redis
@@ -115,6 +116,32 @@ class RedisPubSub():
         except Exception as e:
             logger.exception("from redis publish: "+ str(e))
 
+    async def subscribe_async(self,channel:str):
+        try:
+            pubsub = self.client.pubsub(ignore_subscribe_messages=True)
+            pubsub.subscribe(channel) 
+            for raw_message in pubsub.listen():
+                try:
+                    if raw_message["type"] != "message":
+                        continue
+                    if raw_message and (not raw_message['data'] == 1):
+                        message = raw_message["data"]
+                        yield message
+                except redis.ConnectionError as e:
+                    logger.error(e)
+                    logger.error("Will attempt to retry")
+                    
+                except Exception as e:
+                    logger.exception("from redis subscribe: "+str(e))
+                
+        
+                time.sleep(0.01)
+        except redis.ConnectionError as e:
+            logger.error(e)
+        except Exception as e:
+            logger.exception("from redis publish: "+ str(e))
+
+
 def print_callback(msg:str):
     print(msg)
 
@@ -142,11 +169,53 @@ def test_send_receive(host, port):
 
     print(incoming_msg)
 
+async def main():
+    import asyncio
+
+    import async_timeout
+
+    import redis.asyncio as redis_async
+
+    STOPWORD = "STOP"
 
 
+    async def reader(channel: redis_async.client.PubSub):
+        while True:
+            try:
+                async with async_timeout.timeout(1):
+                    message = await channel.get_message(ignore_subscribe_messages=True)
+                    if message is not None:
+                        print(f"(Reader) Message Received: {message}")
+                        if message["data"].decode() == STOPWORD:
+                            print("(Reader) STOP")
+                            break
+                    await asyncio.sleep(0.1)
+            except asyncio.TimeoutError:
+                pass
+
+    r = await redis_async.from_url(f"redis://:{REDIS_PASSWORD}@localhost:6879/0")
+    pubsub = r.pubsub()
+    await pubsub.psubscribe("channel:1")
+
+    
+
+    await r.publish("channel:1", "Hello")
+    await r.publish("channel:1", "World")
+    await r.publish("channel:1", STOPWORD)
+
+    future = asyncio.create_task(reader(pubsub))
+    await future
+
+    
 
 
 if __name__=='__main__':
+    asyncio.run(main())
+
+
+    
+
+if False:
 
     parser = argparse.ArgumentParser()
 
