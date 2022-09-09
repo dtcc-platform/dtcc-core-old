@@ -29,7 +29,7 @@ from dtcc.core import *
 #    def GenerateDataSet(self, project, name):
 
 
-from src.tasks import scheduler 
+from src.tasks import scheduler, redis_pub_sub
 
 app = FastAPI(
     title="DTCC Core API",
@@ -219,6 +219,17 @@ async def disable_task(task_name:str):
 async def run_task(task_name:str):
     task = session[task_name]
     task.force_run = True
+
+def print_callback(msg:str):
+    print(msg)
+
+@router_task.post("/tasks/{task_name}/stream_logs")
+async def stream_task_logs(task_name:str):
+    task = session[task_name]
+    channel = "/task/"+str(task.name) + "/logs"
+    print(channel)
+    redis_pub_sub.subscribe(channel=channel,callback=print_callback)
+
 
 
 # Logging
