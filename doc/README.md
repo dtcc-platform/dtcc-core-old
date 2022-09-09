@@ -1,3 +1,0 @@
-# DTCC Core
-
-Testing documentation
