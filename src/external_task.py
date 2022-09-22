@@ -29,7 +29,7 @@ def run_iboflow():
 
         if message == 'run':
             sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
-            cmd = f'python {sample_logger_path}'
+            cmd = f'python3 {sample_logger_path}'
             success = run_shell_command(command=cmd, channel=logs_channel)
             if success:
                 rps.publish(channel=channel,message="success!")

@@ -13,7 +13,7 @@ python3 -m pip install \
 	argparse \
 	tqdm \
 	rocketry \
-	sse_starlette \
+	sse-starlette \
 	aio-pika \
 	pika
 
