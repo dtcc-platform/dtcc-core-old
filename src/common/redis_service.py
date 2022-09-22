@@ -14,16 +14,21 @@ from src.common.logger import getLogger
 
 logger = getLogger(__file__)
 
-REDIS_PASSWORD = "dtcc_redis"
+
+redis_host =   os.environ.get("REDIS_HOST", "localhost")  #"redis"
+redis_user = os.environ.get("REDIS_USER", "dtcc_rmq" )
+redis_password = os.environ.get("REDIS_PASSWORD", "dtcc_redis")
+redis_port = os.environ.get("REDIS_PORT", "6879") # 6379
+
 class RedisPubSub():
-    def __init__(self,host:str, port=6379) -> None:
+    def __init__(self,host:str=redis_host, port=redis_port) -> None:
         self.host = host
-        self.port = port
-        self.client = self.get_connection(host=host, port=port)
+        self.port = int(port)
+        self.client = self.get_connection(host=self.host, port=self.port)
 
     @staticmethod
     def get_connection(host="localhost", port=6379):
-        return redis.Redis(host=host, port=port, password=REDIS_PASSWORD, decode_responses=True)
+        return redis.Redis(host=host, port=port, password=redis_password, decode_responses=True)
 
     def test_redis(self) -> None:
         test_key = 'test'
@@ -193,7 +198,7 @@ async def main():
             except asyncio.TimeoutError:
                 pass
 
-    r = await redis_async.from_url(f"redis://:{REDIS_PASSWORD}@localhost:6879/0")
+    r = await redis_async.from_url(f"redis://:{redis_password}@localhost:6879/0")
     pubsub = r.pubsub()
     await pubsub.psubscribe("channel:1")
 

@@ -1,19 +1,21 @@
-import subprocess, shlex, logging, time, pathlib, sys
+import subprocess, shlex, logging, time, pathlib, sys, os
 
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[2])
 sys.path.append(project_dir)
 
 from src.common.logger import getLogger
+from src.common.rabbitmq_service import PikaPublisher
 
 logger = getLogger(__file__)
 
 
 
-def run_shell_command(command:str,channel="/",redis_pub_sub=None):
+def run_shell_command(command:str,channel="/",publish=True):
 
-    pub_redis = False
-    if redis_pub_sub is not None: pub_redis=True
+   
+    if publish: 
+        pika_pub = PikaPublisher(queue_name=channel)
 
     command_args = shlex.split(command)
 
@@ -28,26 +30,27 @@ def run_shell_command(command:str,channel="/",redis_pub_sub=None):
             while process.poll() is None:
                 output = process.stdout.read1().decode('utf-8')
                 for i, line in enumerate(output.strip().split('\n')):
-                    if pub_redis:
-                        redis_pub_sub.publish(channel=channel, message=line)
+                    if publish:
+                        pika_pub.publish( message={'log':line})
                     logger.info(channel + ": " +line)
-                time.sleep(1)
+                time.sleep(0.1)
        
     
     except (OSError,  subprocess.CalledProcessError) as exception:
         logger.exception(channel + ":" +'Exception occured: ' + str(exception))
         logger.error(channel + ":" +'Subprocess failed')
-        if pub_redis:
-            redis_pub_sub.publish(channel=channel, message='Exception occured: ' + str(exception))
-            redis_pub_sub.publish(channel=channel, message='Subprocess failed!')
+        if publish:
+            pika_pub.publish( message={'error': 'Exception occured: ' + str(exception)})
+            pika_pub.publish( message={'error':'Subprocess failed!'})
         return False
     else:
         # no exception was raised
         logger.info(channel + ":" +'Subprocess succeded!')
-        if pub_redis:
-            redis_pub_sub.publish(channel=channel, message='Subprocess succeded!')
+        if publish:
+            pika_pub.publish( message={'info': 'Subprocess succeded!'})
 
     return True
 
 if __name__=="__main__":
-    run_shell_command("ls -la -h")
+    sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
+    run_shell_command(command=f'python {sample_logger_path}', channel='test')

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-docker image rm -f dtcc-core-image
-docker container rm -f dtcc-core

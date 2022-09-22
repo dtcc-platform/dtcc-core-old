@@ -3,11 +3,12 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse, StreamingResponse
 import io
 import uvicorn
-from fastapi import FastAPI, Path, responses, status, Body, Query, BackgroundTasks, Response, APIRouter
+from fastapi import FastAPI, Path, responses, status, Body, Query, BackgroundTasks, Response, APIRouter, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, validator
 from typing import List, Literal, Optional
 from enum import Enum, IntEnum
+from sse_starlette.sse import EventSourceResponse
 
 from redbird.oper import in_, between, greater_equal
 
@@ -30,6 +31,7 @@ from dtcc.core import *
 
 
 from src.tasks import scheduler, redis_pub_sub
+from src.common.rabbitmq_service import log_consumer, test_log_consumer
 
 app = FastAPI(
     title="DTCC Core API",
@@ -42,7 +44,7 @@ session = scheduler.session
 # Enable CORS 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:3000"],
+    allow_origins=["http://localhost", "http://localhost:8000", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -217,18 +219,22 @@ async def disable_task(task_name:str):
 
 @router_task.post("/tasks/{task_name}/run")
 async def run_task(task_name:str):
+    print(task_name)
     task = session[task_name]
     task.force_run = True
 
 def print_callback(msg:str):
     print(msg)
 
-@router_task.post("/tasks/{task_name}/stream_logs")
-async def stream_task_logs(task_name:str):
+@router_task.get("/tasks/{task_name}/stream-logs")
+async def stream_task_logs(request: Request, task_name:str):
     task = session[task_name]
-    channel = "/task/"+str(task.name) + "/logs"
-    print(channel)
-    redis_pub_sub.subscribe(channel=channel,callback=print_callback)
+    queue_name = "/task/"+str(task.name) + "/logs"
+    print('---', queue_name)
+    event_generator = log_consumer(request, queue_name) 
+    # event_generator = test_log_consumer(queue_name=queue_name)
+    # EventSourceResponse
+    return EventSourceResponse(event_generator)
 
 
 

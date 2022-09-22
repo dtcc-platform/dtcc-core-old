@@ -28,18 +28,14 @@ load_dotenv(os.path.join(project_dir, 'docker','.env'))
 docker_working_dir = os.getenv('WORKING_DIR')
 shared_data_dir = os.getenv('SHARED_DATA_DIR')
 
-#--> Consts
-REDIS_HOST = "localhost" #"redis"
-REDIS_PORT =  "6879" # 6379
-REDIS_CHANNEL = 'dtcc-core'
-SCHEDULER_NAME = "core"
+REDIS_CHANNEL = 'core'
 
 #--> defaults
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
 
-redis_pub_sub = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+redis_pub_sub = RedisPubSub()
 
 #--> Rocketry Tasks
 scheduler = Rocketry(config={"task_execution": "async"})
@@ -54,23 +50,25 @@ def dummy_task():
 
 @scheduler.task(after_success(dummy_task),execution="thread")
 def after_dummy():
-    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+    rps = RedisPubSub()
     run_shell_command(command='ls -la -h',redis_pub_sub=rps)
+    
 
 
 @scheduler.task(excecution="thread")
-def dummy_logs_publisher():
+async def dummy_logs_publisher():
     channel = "/task/dummy_logs_publisher/logs"
-    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
-
-    for i in range(100):
-        published = rps.publish(channel=channel,message=datetime.now().isoformat())
-        time.sleep(1)
+    sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
+    await run_shell_command(
+        command=f'python {sample_logger_path}',
+        channel=channel,
+        publish=True
+    )
 
 @scheduler.task(execution="thread")
 def run_iboflow_on_builder():
     channel = "/task/run_iboflow_on_builder"
-    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+    rps = RedisPubSub()
 
     published = rps.publish(channel=channel,message="run")
 
@@ -91,8 +89,8 @@ def run_iboflow_on_builder():
     
 
 @try_except(logger=logger)
-def run_and_notify(channel:str,callback,callback_args=[],host=REDIS_HOST, port=REDIS_PORT) -> None:
-    rps = RedisPubSub(host=host,port=port)
+def run_and_notify(channel:str,callback,callback_args=[]) -> None:
+    rps = RedisPubSub()
     pool = ThreadPool(processes=4)
 
     async_result = pool.apply_async(callback, args=(*callback_args,))
@@ -105,9 +103,9 @@ def run_and_notify(channel:str,callback,callback_args=[],host=REDIS_HOST, port=R
 
 
 @try_except(logger=logger)
-def copy_and_notify(src_file_path:str,dst_folder:str,channel:str,host=REDIS_HOST, port=REDIS_PORT):
+def copy_and_notify(src_file_path:str,dst_folder:str,channel:str):
 
-    rps = RedisPubSub(host=host,port=port)
+    rps = RedisPubSub()
 
     
     check_if_path_exists(src_file_path)
@@ -130,7 +128,7 @@ def copy_and_notify(src_file_path:str,dst_folder:str,channel:str,host=REDIS_HOST
 @try_except(logger=logger)
 def run_iboflow(job_id:str):
 
-    rps = RedisPubSub(host=REDIS_HOST,port=REDIS_PORT)
+    rps = RedisPubSub()
     message = rps.subscribe_one(REDIS_CHANNEL,wait_forever=True)
 
     logger.info("received meassge: ", message)
@@ -151,13 +149,13 @@ def check_if_path_exists(path:str) -> None:
 
 #--> Test functions
 
-def test_send_receive(host=REDIS_HOST, port=REDIS_PORT,test_arg='dummy'):
+def test_send_receive(test_arg='dummy'):
     logger.info("printing test arg: "+ test_arg)
     time_dt = subprocess.check_output(['date'])
     message=time_dt.decode('utf-8').replace('\n','')
     channel="core"
 
-    rps = RedisPubSub(host=host,port=port)
+    rps = RedisPubSub()
     
     pool = ThreadPool(processes=1)
 
@@ -217,20 +215,14 @@ if __name__=='__main__':
     test.add_argument("--dst", type=str,default=destination_folder, help="destination folder path")
 
     sub = subparser.add_parser('subscribe')
-    sub.add_argument("--host", "-H", type=str,default=REDIS_HOST, help="hostname")
-    sub.add_argument("--port", "-P", type=int,default=REDIS_PORT, help="port")
     sub.add_argument("--channel", "-C", type=str,default=REDIS_CHANNEL, help="redis channel")
 
 
     pub = subparser.add_parser('run')
-    pub.add_argument("--host", "-H", type=str,default=REDIS_HOST, help="hostname")
-    pub.add_argument("--port", "-P", type=int,default=REDIS_PORT, help="port")
     pub.add_argument("--channel", "-C", type=str,default=REDIS_CHANNEL, help="redis channel")
 
 
     cp = subparser.add_parser('copy')
-    cp.add_argument("--host", "-H", type=str,default=REDIS_HOST, help="hostname")
-    cp.add_argument("--port", "-P", type=int,default=REDIS_PORT, help="port")
     cp.add_argument("--channel", "-C", type=str,default=REDIS_CHANNEL, help="redis channel")
     cp.add_argument("--src", type=str,default=parameters_file_path, help="source file path")
     cp.add_argument("--dst", type=str,default=destination_folder, help="destination folder path")
