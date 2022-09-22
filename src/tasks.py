@@ -2,9 +2,7 @@ import os, pathlib, sys, argparse, threading, time, shutil
 import subprocess, shlex
 from datetime import datetime
 from multiprocessing.pool import ThreadPool
-from turtle import width
 from dotenv import load_dotenv
-import asyncio
 from rocketry import Rocketry
 from rocketry.conds import every
 from rocketry.conds import (
@@ -26,7 +24,7 @@ logger = getLogger(__file__)
 load_dotenv(os.path.join(project_dir, 'docker','.env'))
 
 docker_working_dir = os.getenv('WORKING_DIR')
-shared_data_dir = os.getenv('SHARED_DATA_DIR')
+shared_data_dir = os.getenv('SHARED_DATA_DIR', project_dir)
 
 REDIS_CHANNEL = 'core'
 

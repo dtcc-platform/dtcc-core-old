@@ -11,7 +11,11 @@ python3 -m pip install \
 	h5py \
 	python-dotenv \
 	argparse \
-	tqdm
+	tqdm \
+	rocketry \
+	sse_starlette \
+	aio-pika \
+	pika
 
 # These libraries require all of gdal-dev to be apt installed if you want to install them via pip
 # so we install them like this for now

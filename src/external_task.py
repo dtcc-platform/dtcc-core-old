@@ -20,6 +20,8 @@ def run_iboflow():
     logs_channel = channel + "/logs"
     rps = RedisPubSub()
 
+    logger.info(f"Waiting for  {channel}")
+
     while True:
         message = rps.subscribe_one(channel=channel,wait_forever=True)
 
