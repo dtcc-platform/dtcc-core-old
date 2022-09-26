@@ -67,7 +67,7 @@ async def test_log_consumer(queue_name = "test_queue") -> None:
 
                 async with message.process():
                     print(json.loads(message.body.decode()))
-                    yield json.loads(message.body.decode())
+                    # yield json.loads(message.body.decode())
                     if queue.name in message.body.decode():
                         break
                 time.sleep(0.5)
@@ -104,8 +104,10 @@ class PikaPublisher:
             body=json.dumps(message).encode()
         )
 
+    @try_except(logger=logger)
     def close_connection(self):
         if (self.connection is not None):
+            self.channel.close()
             self.connection.close()
 
 

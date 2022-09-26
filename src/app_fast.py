@@ -30,8 +30,9 @@ from dtcc.core import *
 #    def GenerateDataSet(self, project, name):
 
 
-from src.tasks import scheduler, redis_pub_sub
-from src.common.rabbitmq_service import log_consumer, test_log_consumer
+from src.task_scheduler_publisher import scheduler, pause, resume, terminate, close_client_loop
+from src.common.rabbitmq_service import log_consumer
+from src.common.redis_service import RedisPubSub
 
 app = FastAPI(
     title="DTCC Core API",
@@ -40,6 +41,7 @@ app = FastAPI(
 )
 
 session = scheduler.session
+rps = RedisPubSub()
 
 # Enable CORS 
 app.add_middleware(
@@ -202,38 +204,44 @@ async def patch_task(task_name:str, values:dict):
 # Task Actions
 # ------------
 
-@router_task.post("/tasks/{task_name}/disable")
-async def disable_task(task_name:str):
+@router_task.post("/tasks/{task_name}/pause")
+async def pause_task(task_name:str):
     task = session[task_name]
-    task.disabled = True
+    channel = f"/task/{task_name}"
+    if pause(channel=channel,rps=rps):
+        task.disabled = True
 
-@router_task.post("/tasks/{task_name}/enable")
-async def enable_task(task_name:str):
+@router_task.post("/tasks/{task_name}/resume")
+async def resume_task(task_name:str):
     task = session[task_name]
+    channel = f"/task/{task_name}"
+    resume(channel=channel,rps=rps)
     task.disabled = False
 
 @router_task.post("/tasks/{task_name}/terminate")
-async def disable_task(task_name:str):
+async def terminate_task(task_name:str):
     task = session[task_name]
-    task.force_termination = True
+    channel = f"/task/{task_name}"
+    if terminate(channel=channel,rps=rps):
+        task.force_termination = True
 
-@router_task.post("/tasks/{task_name}/run")
-async def run_task(task_name:str):
-    print(task_name)
+@router_task.post("/tasks/{task_name}/close_client_loop")
+async def terminate_task(task_name:str):
+    task = session[task_name]
+    channel = f"/task/{task_name}"
+    if close_client_loop(channel=channel,rps=rps):
+        task.force_termination = True
+
+@router_task.post("/tasks/{task_name}/start")
+async def start_task(task_name:str):
     task = session[task_name]
     task.force_run = True
 
-def print_callback(msg:str):
-    print(msg)
 
 @router_task.get("/tasks/{task_name}/stream-logs")
 async def stream_task_logs(request: Request, task_name:str):
-    task = session[task_name]
-    queue_name = "/task/"+str(task.name) + "/logs"
-    print('---', queue_name)
+    queue_name = f"/task/{task_name}/logs"
     event_generator = log_consumer(request, queue_name) 
-    # event_generator = test_log_consumer(queue_name=queue_name)
-    # EventSourceResponse
     return EventSourceResponse(event_generator)
 
 

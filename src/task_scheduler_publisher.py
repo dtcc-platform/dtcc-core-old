@@ -1,4 +1,5 @@
-import os, pathlib, sys, argparse, threading, time, shutil
+import os, pathlib, sys, argparse, threading, time, shutil, json
+from symbol import parameters
 import subprocess, shlex
 from datetime import datetime
 from multiprocessing.pool import ThreadPool
@@ -10,6 +11,7 @@ from rocketry.conds import (
     after_success, 
     true, false
 )
+from abc import ABC, abstractmethod
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[1])
 sys.path.append(project_dir)
@@ -17,7 +19,6 @@ sys.path.append(project_dir)
 from src.common.utils import get_uuid, try_except, timer
 from src.common.logger import getLogger
 from src.common.redis_service import RedisPubSub
-from src.common.run_in_shell import run_shell_command
 
 logger = getLogger(__file__)
 
@@ -33,9 +34,72 @@ parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Par
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
 
-redis_pub_sub = RedisPubSub()
+# Task manager / publisher methods
+# --------------------------------
+class TaskRunnerConfig:
+    def __init__(self, task_name:str, parameters={}) -> None:
+        self.channel = f"/task/{task_name}"
+        self.logs_channel = self.channel + "/logs"
+        self.parameters = parameters
 
-#--> Rocketry Tasks
+@try_except(logger=logger)
+def start(channel:str,parameters:dict):
+    rps = RedisPubSub()
+    parameters['cmd'] = 'start'
+    message = json.dumps(parameters)
+    published = rps.publish(channel=channel,message=message)
+
+    if published:
+        while True:
+            message = rps.subscribe_one(channel=channel,wait_forever=True)
+
+            if message is not None: 
+                if message == "success":
+                    return True
+                elif message in ["paused", "resumed"]:
+                    continue
+                elif message in ["terminated", "closed_client_loop", "failed"]:
+                    return False
+            else: 
+                return False
+    else:
+        
+        return False
+
+
+@try_except(logger=logger)
+def pause(channel:str, rps:RedisPubSub):
+    message = {'cmd': "pause" }
+    message = json.dumps(message)
+    return rps.publish(channel=channel,message=message)
+
+@try_except(logger=logger)
+def resume(channel:str, rps:RedisPubSub):
+    message = {'cmd': "resume" }
+    message = json.dumps(message)
+    return rps.publish(channel=channel,message=message)
+
+@try_except(logger=logger)
+def terminate(channel:str, rps:RedisPubSub):
+    message = {'cmd': "terminate" }
+    message = json.dumps(message)
+    return rps.publish(channel=channel,message=message)
+
+@try_except(logger=logger)
+def close_client_loop(channel:str, rps:RedisPubSub):
+    message = {'cmd': "close_client_loop" }
+    message = json.dumps(message)
+    return rps.publish(channel=channel,message=message)
+
+
+
+
+    
+    
+
+# Rocketry Tasks
+# --------------
+
 scheduler = Rocketry(config={"task_execution": "async"})
 
 @scheduler.task(execution="thread")
@@ -48,38 +112,24 @@ def dummy_task():
 
 @scheduler.task(after_success(dummy_task),execution="thread")
 def after_dummy():
-    rps = RedisPubSub()
-    run_shell_command(command='ls -la -h',redis_pub_sub=rps)
-    
+    return True
 
 
-@scheduler.task(excecution="thread")
-async def dummy_logs_publisher():
-    channel = "/task/dummy_logs_publisher/logs"
-    sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
-    await run_shell_command(
-        command=f'python {sample_logger_path}',
-        channel=channel,
-        publish=True
-    )
+@scheduler.task(execution="process")
+def run_sample_python_process():
+    channel = "/task/run_sample_python_process"
+    parameters = {}
 
-@scheduler.task(execution="thread")
+    return start(channel=channel,parameters=parameters)
+
+
+@scheduler.task(execution="process")
 def run_iboflow_on_builder():
     channel = "/task/run_iboflow_on_builder"
-    rps = RedisPubSub()
+    # Load parameters here?
+    parameters = {} 
 
-    published = rps.publish(channel=channel,message="run")
-
-    if published:
-        message = rps.subscribe_one(channel=channel,wait_forever=True)
-
-        if message is not None and message == "1":
-            return True
-        else: 
-            return False
-    else:
-
-        return False
+    return start(channel=channel,parameters=parameters)
 
 
 
@@ -120,21 +170,7 @@ def copy_and_notify(src_file_path:str,dst_folder:str,channel:str):
     published = rps.publish(channel=channel, message=dst_file_path)
     if published:
         logger.info("published")
-
-
-
-@try_except(logger=logger)
-def run_iboflow(job_id:str):
-
-    rps = RedisPubSub()
-    message = rps.subscribe_one(REDIS_CHANNEL,wait_forever=True)
-
-    logger.info("received meassge: ", message)
-
-    iboflow_command = 'ls -la -h'
-
-    run_shell_command(command=iboflow_command)
-
+    
 
 
 #--> Helper functions

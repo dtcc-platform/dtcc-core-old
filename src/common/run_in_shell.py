@@ -1,5 +1,5 @@
-import subprocess, shlex, logging, time, pathlib, sys, os
-
+import subprocess, shlex, logging, time, pathlib, sys, os, threading, signal, traceback
+from typing import Callable
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[2])
 sys.path.append(project_dir)
@@ -11,46 +11,174 @@ logger = getLogger(__file__)
 
 
 
-def run_shell_command(command:str,channel="/",publish=True):
+class RunInShell:
+    def __init__(self,channel="/", publish=True) -> None:
+        self.channel = channel
+        self.publish = publish
+        if publish: 
+            self.pika_pub = PikaPublisher(queue_name=channel)
+        self.process = None
+        
 
-   
-    if publish: 
-        pika_pub = PikaPublisher(queue_name=channel)
+    def start(self, command:str, on_success_callback:Callable=None, on_failure_callback:Callable=None):
+        command_args = shlex.split(command)
 
-    command_args = shlex.split(command)
+        logger.info('Subprocess: "' + command + '"')
 
-    logger.info('Subprocess: "' + command + '"')
+        try:
+            logger.info(self.channel + ":" +'starting process')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'starting process'})
 
-    try:
-        with subprocess.Popen(
-            command_args,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-        ) as process:
+            self.process = subprocess.Popen(
+                command_args,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            ) 
+         
+            stdout_thread = threading.Thread(target=self.__capture_stdout, args=(self.process,on_success_callback,on_failure_callback))
+            stdout_thread.start()
+            logger.info(self.channel + ":" +'start succeded!')
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'start succeded!'})
+            return True
+       
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while starting subprocess')
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while starting subprocess: \n' + str(error)})
+            return False
+       
+    def terminate(self):
+        try:
+            if self.process is not None:
+                logger.info(self.channel + ":" +'terminating process')
+                if self.publish:
+                    self.pika_pub.publish( message={'info': 'terminating process'})
+
+                self.process.terminate()
+                if self.process.poll() is None:
+                    self.process.kill()
+                    # os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+                logger.info(self.channel + ":" +'terminate succeded!')
+                if self.publish:
+                    self.pika_pub.publish( message={'info': 'terminate succeded!'})
+                return True
+
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while terminating subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while terminating subprocess: \n  ' + error})
+       
+        return False
+
+    def pause(self):
+        try:
+            if self.process is not None:
+                if self.process.poll() is None:
+                    logger.info(self.channel + ":" +'pausing process')
+    
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'pausing process'})
+
+                    self.process.send_signal(signal.SIGSTOP)
+
+                    logger.info(self.channel + ":" +'pause succeded!')
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'pause succeded!'})
+                    return True
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while pausing subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while pausing subprocess: \n  ' + error})
+       
+        return False
+
+    def resume(self):
+        try:
+            if self.process is not None:
+                if self.process.poll() is None:
+                    logger.info(self.channel + ":" +'resuming process')
+    
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'resuming process'})
+
+                    self.process.send_signal(signal.SIGCONT)
+                    os.kill(self.process.pid, signal.SIGCONT)
+                    
+
+                    logger.info(self.channel + ":" +'resume succeded!')
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'resume succeded!'})
+                    return True
+
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while resuming subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while resuming subprocess: \n  ' + error})
+        
+       
+        return False
+        
+    def close(self):
+        self.terminate()
+        if self.pika_pub is not None:
+            self.pika_pub.close_connection()
+        
+    def __capture_stdout(self, process: subprocess.Popen, on_success:Callable, on_failure:Callable):
+        try:
             while process.poll() is None:
                 output = process.stdout.read1().decode('utf-8')
                 for i, line in enumerate(output.strip().split('\n')):
-                    if publish:
-                        pika_pub.publish( message={'log':line})
-                    logger.info(channel + ": " +line)
+                    if len(line.strip())>0:
+                        if self.publish:
+                            self.pika_pub.publish( message={'log':line})
+                        logger.info(self.channel + ": " +line)
                 time.sleep(0.1)
-       
-    
-    except (OSError,  subprocess.CalledProcessError) as exception:
-        logger.exception(channel + ":" +'Exception occured: ' + str(exception))
-        logger.error(channel + ":" +'Subprocess failed')
-        if publish:
-            pika_pub.publish( message={'error': 'Exception occured: ' + str(exception)})
-            pika_pub.publish( message={'error':'Subprocess failed!'})
-        return False
-    else:
-        # no exception was raised
-        logger.info(channel + ":" +'Subprocess succeded!')
-        if publish:
-            pika_pub.publish( message={'info': 'Subprocess succeded!'})
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'Task succeded!'})
+            if on_success is not None:
+                on_success()
 
-    return True
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while capturing stdout from subprocess')
+            if on_failure is not None:
+                on_failure()
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while capturing stdout from subprocess: \n  ' + error})
+
+    
+
+def test_run_in_shell(publish=False):
+    sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
+    command=f'python3 {sample_logger_path}'
+
+    run_in_shell = RunInShell(channel='test',publish=publish)
+
+    run_in_shell.start(command=command)
+    time.sleep(1)
+
+    if run_in_shell.pause():
+        for i in range(3):
+            print(i)
+            time.sleep(1)
+
+    if run_in_shell.resume():
+        for i in range(2):
+            print(i)
+            time.sleep(1)
+
+    run_in_shell.terminate()
+
 
 if __name__=="__main__":
-    sample_logger_path = os.path.join(project_dir, "src/tests/sample_logging_process.py")
-    run_shell_command(command=f'python {sample_logger_path}', channel='test')
+    test_run_in_shell(publish=False)
