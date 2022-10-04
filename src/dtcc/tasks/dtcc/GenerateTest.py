@@ -23,3 +23,7 @@ class GenerateTest(TaskRunnerSubscriberInterface):
         return data[-1]
     def process_arguments_on_start(self, message:dict):
         return f'{self.shell_command}'
+
+if __name__ == '__main__':
+    gtest = GenerateTest()
+    gtest.run()
