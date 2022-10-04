@@ -1,4 +1,5 @@
 import os, pathlib, sys, json, time
+import subprocess, shlex, logging, time, pathlib, sys, os, threading, signal, traceback, json
 
 from abc import ABC, abstractmethod
 
@@ -7,8 +8,8 @@ sys.path.append(project_dir)
 
 from src.common.utils import get_uuid, try_except, timer
 from src.common.logger import getLogger
+from src.common.rabbitmq_service import PikaPublisher
 from src.common.redis_service import RedisPubSub
-from src.common.run_in_shell import RunInShell
 
 logger = getLogger(__file__)
 
@@ -18,87 +19,221 @@ class TaskRunnerSubscriberInterface(ABC):
 
     def __init__(self, task_name:str, shell_command:str, publish:bool) -> None:
         self.channel = task_name
+        self.publish = publish
         self.logs_channel = self.channel + "/logs"
-        self.rps = RedisPubSub()
-
-        self.task_runner = RunInShell(channel=self.logs_channel, publish=publish)
+        if publish: 
+            self.rps = RedisPubSub()
+            self.pika_pub = PikaPublisher(queue_name=self.logs_channel)
 
         self.shell_command = shell_command
 
     @try_except(logger=logger)
-    def run(self):
+    def run_subscriber(self):
         while True:
             logger.info(f"Waiting for  {self.channel}")
             raw_message = self.rps.subscribe_one(channel=self.channel,wait_forever=True)
 
-            message = json.loads(raw_message)
-            logger.info("received meassge: ", message)
+            if raw_message is not None: 
+                message = json.loads(raw_message)
+                logger.info("received meassge: ", message)
+                if type(message) is dict:
+                    command = message.get("cmd","")
 
-            command = message['cmd']
+                    if command == 'start':
+                        updated_shell_command = self.process_arguments_on_start(message=message)
+                        self.__start(
+                            command=updated_shell_command
+                        )
+                        message = {'status':'started'}
+                        self.rps.publish(channel=self.channel, message=json.dumps(message))
 
-            if command == 'start':
-                updated_shell_command = self.process_arguments_on_start(message=message)
-                self.task_runner.start(
-                    command=updated_shell_command, 
-                    on_success_callback=self.on_success,
-                    on_failure_callback=self.on_failure
-                )
+                    elif command == 'pause':
+                        self.pause()
+                        message = {'status':'paused'}
+                        self.rps.publish(channel=self.channel, message=json.dumps(message))
 
-            elif command == 'pause':
-                self.pause()
-                message = {'status':'paused'}
-                self.rps.publish(channel=self.channel, message=json.dumps(message))
+                    elif command == 'resume':
+                        self.resume()
+                        message = {'status':'resumed'}
+                        self.rps.publish(channel=self.channel, message=json.dumps(message))
 
-            elif command == 'resume':
-                self.resume()
-                message = {'status':'resumed'}
-                self.rps.publish(channel=self.channel, message=json.dumps(message))
+                    elif command == 'terminate':
+                        self.terminate()
+                        message = {'status':'terminated'}
+                        self.rps.publish(channel=self.channel, message=json.dumps(message))
 
-            elif command == 'terminate':
-                self.terminate()
-                message = {'status':'terminated'}
-                self.rps.publish(channel=self.channel, message=json.dumps(message))
-
-            elif command == "close_client_loop":   
-                message = {'status':'closed_client_loop'}
-                self.rps.publish(channel=self.channel, message=json.dumps(message))
-                self.task_runner.close()
-                break
+                    elif command == "close_client_loop":   
+                        message = {'status':'closed_client_loop'}
+                        self.rps.publish(channel=self.channel, message=json.dumps(message))
+                        self.task_runner.close()
+                        break
 
     def start(self):
-        updated_command = self.process_arguments_on_start(message=message)
-        return self.task_runner.start(command=updated_command)
+        updated_shell_command = self.process_arguments_on_start(message={})
+        return self.__start(
+                    command=updated_shell_command
+                )
+
+    def __start(self, command:str):
+        command_args = shlex.split(command)
+
+        logger.info('Subprocess: "' + command + '"')
+
+        try:
+            logger.info(self.channel + ":" +'starting process')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'starting process'})
+
+            self.process = subprocess.Popen(
+                command_args,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            ) 
+         
+            stdout_thread = threading.Thread(target=self.__capture_stdout, args=(self.process,))
+            stdout_thread.start()
+            logger.info(self.channel + ":" +'start succeded!')
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'start succeded!'})
+            return True
+       
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while starting subprocess')
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while starting subprocess: \n' + str(error)})
+            return False
+       
+    def terminate(self):
+        try:
+            if self.process is not None:
+                logger.info(self.channel + ":" +'terminating process')
+                if self.publish:
+                    self.pika_pub.publish( message={'info': 'terminating process'})
+
+                self.process.terminate()
+                if self.process.poll() is None:
+                    self.process.kill()
+                    # os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+                logger.info(self.channel + ":" +'terminate succeded!')
+                if self.publish:
+                    self.pika_pub.publish( message={'info': 'terminate succeded!'})
+                return True
+
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while terminating subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while terminating subprocess: \n  ' + error})
+       
+        return False
 
     def pause(self):
-        return self.task_runner.pause()
+        try:
+            if self.process is not None:
+                if self.process.poll() is None:
+                    logger.info(self.channel + ":" +'pausing process')
+    
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'pausing process'})
+
+                    self.process.send_signal(signal.SIGSTOP)
+
+                    logger.info(self.channel + ":" +'pause succeded!')
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'pause succeded!'})
+                    return True
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while pausing subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while pausing subprocess: \n  ' + error})
+       
+        return False
 
     def resume(self):
-        return self.task_runner.resume()
+        try:
+            if self.process is not None:
+                if self.process.poll() is None:
+                    logger.info(self.channel + ":" +'resuming process')
+    
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'resuming process'})
 
-    def terminate(self):
-        return self.task_runner.terminate()
+                    self.process.send_signal(signal.SIGCONT)
+                    os.kill(self.process.pid, signal.SIGCONT)
+                    
 
-    @abstractmethod    
-    @try_except
-    def process_return_data(self):
-        return ""
+                    logger.info(self.channel + ":" +'resume succeded!')
+                    if self.publish:
+                        self.pika_pub.publish( message={'info': 'resume succeded!'})
+                    return True
 
-    @try_except
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while resuming subprocess')
+    
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while resuming subprocess: \n  ' + error})
+        
+       
+        return False
+        
+    def close(self):
+        self.terminate()
+        if self.pika_pub is not None:
+            self.pika_pub.close_connection()
+        
+    def __capture_stdout(self, process: subprocess.Popen):
+       
+        try:
+            while process.poll() is None:
+                output = process.stdout.read1().decode('utf-8')
+                for i, line in enumerate(output.strip().split('\n')):
+                    if len(line.strip())>0:
+                        if self.publish:
+                            self.pika_pub.publish( message={'log':line})
+                        logger.info(self.channel + ": " +line)
+                time.sleep(0.1)
+            if self.publish:
+                self.pika_pub.publish( message={'info': 'Task succeded!'})
+            self.on_success()
+
+        except BaseException:
+            error = traceback.format_exc()
+            logger.exception(self.channel + ":" +'Exception occured while capturing stdout from subprocess')
+
+            self.on_failure()
+            if self.publish:
+                self.pika_pub.publish( message={'error': 'Exception occured while capturing stdout from subprocess: \n  ' + error})
+    
+
     def on_success(self):
         return_data = self.process_return_data()
         # NOTE maybe handle results here?
-        logger.info(self.channel + ": Success!")
-        message = {'status':'success', 'data':return_data}
-        self.rps.publish(channel=self.channel, message=json.dumps(message))
+        
+        message = json.dumps({'status':'success', 'data':return_data})
+        logger.info(self.channel + message)
+
+        if self.publish:
+            self.rps.publish(channel=self.channel, message=message)
     
 
-    @try_except
+  
     def on_failure(self):
-        # NOTE maybe handle results here?
-        logger.info(self.channel + ": Falied!")
-        message = {'status':'failed'}
-        self.rps.publish(channel=self.channel, message=message)
+        logger.info(self.channel + ": Failed!")
+        message = json.dumps({'status':'failed'})
+        if self.publish:
+            self.rps.publish(channel=self.channel, message=message)
 
+    @abstractmethod    
+    def process_return_data(self):
+        return "dummy result"
+
+    
     @abstractmethod
     def process_arguments_on_start(self, message:dict) -> str:
         """
@@ -124,6 +259,9 @@ class SamplePythonProcessRunner(TaskRunnerSubscriberInterface):
 
     def process_arguments_on_start(self, message:dict):
         return self.shell_command
+
+    def process_return_data(self):
+        return "dummy result"
 
 
 def test_run_from_terminal():
@@ -151,7 +289,7 @@ def test_run_from_terminal():
 
 def test_run_from_dtcc_core():
     sample_process_runner = SamplePythonProcessRunner(publish=True)
-    sample_process_runner.run()
+    sample_process_runner.run_subscriber()
 
 if __name__ == '__main__':
     test_run_from_dtcc_core()

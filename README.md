@@ -29,3 +29,8 @@ DTCC Core is licensed under the
 
 Copyright is held by the individual authors as listed at the top of
 each source file.
+
+
+## API test
+
+- curl -X POST localhost:8090/tasks/generateTest/start

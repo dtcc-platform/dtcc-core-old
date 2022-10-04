@@ -235,7 +235,8 @@ async def terminate_task(task_name:str):
 @router_task.post("/tasks/{task_name}/start")
 async def start_task(task_name:str):
     task = session[task_name]
-    task.force_run = True
+    if not task.is_running:
+        task.force_run = True
 
 
 @router_task.get("/tasks/{task_name}/stream-logs")

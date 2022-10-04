@@ -26,4 +26,5 @@ class GenerateTest(TaskRunnerSubscriberInterface):
 
 if __name__ == '__main__':
     gtest = GenerateTest(publish=True)
-    gtest.run()
+    gtest.run_subscriber()
+    # gtest.start()
