@@ -58,9 +58,12 @@ def start(channel:str,parameters:dict):
     parameters['cmd'] = 'start'
     message = json.dumps(parameters)
     published = rps.publish(channel=channel,message=message)
-
+    
+    
     if published:
+        logger.info(f"started {channel}")
         while True:
+            logger.info(f"Waiting for  {channel}")
             message = rps.subscribe_one(channel=channel,wait_forever=True)
 
             if message is not None: 
