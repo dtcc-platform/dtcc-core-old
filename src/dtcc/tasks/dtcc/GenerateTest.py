@@ -9,7 +9,7 @@ from task_runner_subscriber import TaskRunnerSubscriberInterface
 
 class GenerateTest(TaskRunnerSubscriberInterface):
     def __init__(self, publish=False) -> None:
-        command = f'ls_out.sh'
+        command = f'./ls_out.sh'
         
         TaskRunnerSubscriberInterface.__init__(self,
             task_name="/task/dtcc/generate-test",

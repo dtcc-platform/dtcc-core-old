@@ -145,8 +145,8 @@ class RunInShell:
                 time.sleep(0.1)
             if self.publish:
                 self.pika_pub.publish( message={'info': 'Task succeded!'})
-            if on_success is not None:
-                on_success()
+            #if on_success is not None:
+            on_success()
 
         except BaseException:
             error = traceback.format_exc()
