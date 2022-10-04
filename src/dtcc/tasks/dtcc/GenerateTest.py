@@ -8,9 +8,8 @@ class GenerateTest(TaskRunnerSubscriberInterface):
     def __init__(self, publish=False) -> None:
         command = f'ls'
         
-
         TaskRunnerSubscriberInterface.__init__(self,
-            task_name="generate-test",
+            task_name="/task/dtcc/generate-test",
             publish=publish,
             shell_command=command
         )
@@ -20,5 +19,4 @@ class GenerateTest(TaskRunnerSubscriberInterface):
             data = src.readlines()
         return data[-1]
     def process_arguments_on_start(self, message:dict):
-
-        return f'{self.shell_command}   |tee ls_out.txt'
+        return f'{self.shell_command} |tee ls_out.txt'
