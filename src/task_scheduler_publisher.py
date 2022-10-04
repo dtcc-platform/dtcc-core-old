@@ -34,6 +34,16 @@ parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Par
 destination_folder = os.path.join(shared_data_dir,'vasnas')
 
 
+# Shared data management
+class SharedVolumeManager:
+    def __init__(self) -> None:
+        self.shared_data_dir = shared_data_dir
+    def save(self):
+        pass
+    def load(self):
+        pass
+
+
 # Task manager / publisher methods
 # --------------------------------
 class TaskRunnerConfig:
@@ -54,11 +64,14 @@ def start(channel:str,parameters:dict):
             message = rps.subscribe_one(channel=channel,wait_forever=True)
 
             if message is not None: 
-                if message == "success":
+                logger.info(message)
+                loaded_message = json.loads(message)
+                status = loaded_message.get('status',"")
+                if status == "success":
                     return True
-                elif message in ["paused", "resumed"]:
+                elif status in ["paused", "resumed"]:
                     continue
-                elif message in ["terminated", "closed_client_loop", "failed"]:
+                elif status in ["terminated", "closed_client_loop", "failed"]:
                     return False
             else: 
                 return False
