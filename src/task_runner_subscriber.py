@@ -40,7 +40,7 @@ class TaskRunnerSubscriberInterface(ABC):
                 updated_shell_command = self.process_arguments_on_start(message=message)
                 self.task_runner.start(
                     command=updated_shell_command, 
-                    on_success_callback=self.on_succeess,
+                    on_success_callback=self.on_success,
                     on_failure_callback=self.on_failure
                 )
 
@@ -73,11 +73,18 @@ class TaskRunnerSubscriberInterface(ABC):
     def terminate(self):
         return self.task_runner.terminate()
 
+    @abstractmethod    
     @try_except
-    def on_succeess(self):
+    def process_return_data(self):
+        return ""
+
+    @try_except
+    def on_success(self):
+        return_data = self.process_return_data()
         # NOTE maybe handle results here?
         logger.info(self.channel + ": Success!")
-        self.rps.publish(channel=self.channel, message='success')
+        self.rps.publish(channel=self.channel, message=return_data)
+    
 
     @try_except
     def on_failure(self):
