@@ -122,6 +122,13 @@ def run_sample_python_process():
 
     return start(channel=channel,parameters=parameters)
 
+@scheduler.task(execution="process")
+def dtccGenereateTest():
+    channel = "/task/dtcc/generate-test"
+    parameters = {}
+
+    return start(channel=channel,parameters=parameters)
+
 
 @scheduler.task(execution="process")
 def run_iboflow_on_builder():

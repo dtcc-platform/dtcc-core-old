@@ -4,7 +4,7 @@
 import h5py, numpy
 
 from dtcc.model import *
-from dtcc.logging import *
+from dtcc.DtccLogging import *
 import dtcc.hdf5
 import dtcc.protobuf
 
