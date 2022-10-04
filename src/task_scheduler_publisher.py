@@ -136,7 +136,7 @@ def run_sample_python_process():
     return start(channel=channel,parameters=parameters)
 
 @scheduler.task(execution="process")
-def dtcc_generate_test():
+def generateTest():
     channel = "/task/dtcc/generate-test"
     parameters = {}
 

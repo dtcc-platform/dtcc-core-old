@@ -25,5 +25,5 @@ class GenerateTest(TaskRunnerSubscriberInterface):
         return f'{self.shell_command}'
 
 if __name__ == '__main__':
-    gtest = GenerateTest()
+    gtest = GenerateTest(publish=True)
     gtest.run()

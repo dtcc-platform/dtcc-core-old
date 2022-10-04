@@ -17,7 +17,7 @@ logger = getLogger(__file__)
 class TaskRunnerSubscriberInterface(ABC):
 
     def __init__(self, task_name:str, shell_command:str, publish:bool) -> None:
-        self.channel = f"/task/{task_name}"
+        self.channel = task_name
         self.logs_channel = self.channel + "/logs"
         self.rps = RedisPubSub()
 
