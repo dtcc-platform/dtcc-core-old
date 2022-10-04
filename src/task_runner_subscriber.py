@@ -62,7 +62,8 @@ class TaskRunnerSubscriberInterface(ABC):
                 break
 
     def start(self):
-        return self.task_runner.start(command=self.shell_command)
+        updated_command = self.process_arguments_on_start(message=message)
+        return self.task_runner.start(command=updated_command)
 
     def pause(self):
         return self.task_runner.pause()
