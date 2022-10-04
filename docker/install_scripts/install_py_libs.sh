@@ -15,7 +15,8 @@ python3 -m pip install \
 	rocketry \
 	sse-starlette \
 	aio-pika \
-	pika
+	pika \
+	shapely
 
 # These libraries require all of gdal-dev to be apt installed if you want to install them via pip
 # so we install them like this for now

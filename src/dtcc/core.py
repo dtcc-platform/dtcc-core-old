@@ -4,7 +4,7 @@
 import os
 
 from dtcc.model import *
-from dtcc.logging import *
+from dtcc.DtccLogging import *
 from dtcc.builder import *
 from dtcc.iboflow import *
 
