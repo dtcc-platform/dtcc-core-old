@@ -46,18 +46,22 @@ class TaskRunnerSubscriberInterface(ABC):
 
             elif command == 'pause':
                 self.pause()
-                self.rps.publish(channel=self.channel, message='paused')
+                message = {'status':'paused'}
+                self.rps.publish(channel=self.channel, message=json.dumps(message))
 
             elif command == 'resume':
                 self.resume()
-                self.rps.publish(channel=self.channel, message='resumed')
+                message = {'status':'resumed'}
+                self.rps.publish(channel=self.channel, message=json.dumps(message))
 
             elif command == 'terminate':
                 self.terminate()
-                self.rps.publish(channel=self.channel, message='terminated')
+                message = {'status':'terminated'}
+                self.rps.publish(channel=self.channel, message=json.dumps(message))
 
             elif command == "close_client_loop":   
-                self.rps.publish(channel=self.channel, message='closed_client_loop')
+                message = {'status':'closed_client_loop'}
+                self.rps.publish(channel=self.channel, message=json.dumps(message))
                 self.task_runner.close()
                 break
 
@@ -83,14 +87,16 @@ class TaskRunnerSubscriberInterface(ABC):
         return_data = self.process_return_data()
         # NOTE maybe handle results here?
         logger.info(self.channel + ": Success!")
-        self.rps.publish(channel=self.channel, message=return_data)
+        message = {'status':'success', 'data':return_data}
+        self.rps.publish(channel=self.channel, message=json.dumps(message))
     
 
     @try_except
     def on_failure(self):
         # NOTE maybe handle results here?
         logger.info(self.channel + ": Falied!")
-        self.rps.publish(channel=self.channel, message='failed')
+        message = {'status':'failed'}
+        self.rps.publish(channel=self.channel, message=message)
 
     @abstractmethod
     def process_arguments_on_start(self, message:dict) -> str:
