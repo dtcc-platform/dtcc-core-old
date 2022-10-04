@@ -7,7 +7,7 @@ sys.path.append(project_folder_path)
 
 
 log_format = "%(asctime)-15s %(levelname)-5s [%(filename)s:%(lineno)d] %(message)s"
-log_level = "DEBUG"
+log_level = "INFO"
 
 logger_config = {
     "version": 1,

@@ -17,7 +17,7 @@ sys.path.append(project_dir)
 
 #sys.path.append( str((Path(__file__).parent / "../src").resolve() ))
 #from dtcc import core
-from dtcc.core import *
+# from dtcc.core import *
 #import sys
 #sys.path.insert(0, '/home/dtcc/dtcc-core/')
 #from dtcc.core import *
@@ -53,33 +53,33 @@ app.add_middleware(
 )
 
 
-c = Core()
+# c = Core()
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
 
-@app.get("/api/get-projects")
-async def root():
-    response=c.GetProjects()
-    return response
-@app.get("/api/GetAvailableDataSetNames")
-async def availdatasetnames():
-    response=c.GetAvailableDataSetNames()
-    return response
-@app.get("/api/GetGeneratedDataSetNames/{project}")
-async def gendatasetnames(project):
-    response=c.GetGeneratedDataSetNames(project)
-    return response
-#    def GetDataSet(self, project, name):
-@app.get("/api/GetDataSet/{project}/{name}")
-async def dataset(project,name):
-    response=c.GetDataSet(project,name)
-#    print(response)
-#    file = io.BytesIO(response["data"])
-#    return FileResponse(file, media_type="attachment/x-protobuf")
-#    return StreamingResponse(content=response["data"])
-    return StreamingResponse(io.BytesIO(response["data"]), media_type="attachment/x-protobuf")
+# @app.get("/api/get-projects")
+# async def root():
+#     response=c.GetProjects()
+#     return response
+# @app.get("/api/GetAvailableDataSetNames")
+# async def availdatasetnames():
+#     response=c.GetAvailableDataSetNames()
+#     return response
+# @app.get("/api/GetGeneratedDataSetNames/{project}")
+# async def gendatasetnames(project):
+#     response=c.GetGeneratedDataSetNames(project)
+#     return response
+# #    def GetDataSet(self, project, name):
+# @app.get("/api/GetDataSet/{project}/{name}")
+# async def dataset(project,name):
+#     response=c.GetDataSet(project,name)
+# #    print(response)
+# #    file = io.BytesIO(response["data"])
+# #    return FileResponse(file, media_type="attachment/x-protobuf")
+# #    return StreamingResponse(content=response["data"])
+#     return StreamingResponse(io.BytesIO(response["data"]), media_type="attachment/x-protobuf")
 
 
 @app.on_event('startup')

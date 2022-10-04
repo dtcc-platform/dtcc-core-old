@@ -23,7 +23,7 @@ class Server(uvicorn.Server):
 
 async def main():
     "Run Rocketry and FastAPI"
-    server = Server(config=uvicorn.Config(app_fastapi, workers=1, loop="asyncio", port=fastapi_port, host="0.0.0.0"))
+    server = Server(config=uvicorn.Config(app_fastapi, workers=1, loop="asyncio", port=fastapi_port, host="0.0.0.0",log_level='info'))
 
     api = asyncio.create_task(server.serve())
     sched = asyncio.create_task(app_rocketry.serve())
