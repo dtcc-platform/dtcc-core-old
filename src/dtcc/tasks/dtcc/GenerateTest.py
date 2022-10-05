@@ -1,5 +1,9 @@
+#/usr/bin/python3 
+
 import sys,os
 import pathlib
+
+
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[3])
 print(project_dir)
