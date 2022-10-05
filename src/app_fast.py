@@ -46,7 +46,7 @@ rps = RedisPubSub()
 # Enable CORS 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:8000", "http://localhost:3000"],
+    allow_origins=["http://localhost", "http://localhost:8000", "http://localhost:3000", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -226,8 +226,8 @@ async def terminate_task(task_name:str):
     if terminate(channel=channel,rps=rps):
         task.force_termination = True
 
-@router_task.post("/tasks/{task_name}/close_client_loop")
-async def terminate_task(task_name:str):
+@router_task.post("/tasks/{task_name}/end-subsciber-loop")
+async def end_subscriber_loop(task_name:str):
     task = session[task_name]
     channel = f"/task/{task_name}"
     if close_client_loop(channel=channel,rps=rps):
@@ -246,6 +246,16 @@ async def stream_task_logs(request: Request, task_name:str):
     queue_name = f"/task/dtcc/{channel}/logs"
     event_generator = log_consumer(request, queue_name) 
     return EventSourceResponse(event_generator)
+
+
+@router_task.post("/tasks/{task_name}/get-result")
+async def get_result(task_name:str):
+    task = session[task_name]
+    if not task.is_running:
+        if task.status == "success":
+            return 
+    else:
+        return status.HTTP_425_TOO_EARLY
 
 
 
