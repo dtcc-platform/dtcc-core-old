@@ -91,6 +91,10 @@ class PikaPublisher:
     def __init__(self, queue_name):
         self.publish_queue_name = queue_name
         self.creds = pika.PlainCredentials(rabbitmq_user, rabbitmq_password)
+        self.connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=rabbitmq_host,port=rabbitmq_port, credentials=self.creds )
+        )
+        self.channel = self.connection.channel()
         
         # self.channel = self.connection.channel()
         logger.info('Pika connection initialized')
@@ -103,22 +107,30 @@ class PikaPublisher:
     @try_except(logger=logger)
     def ___publish(self, message: dict):
         """Method to publish message to RabbitMQ"""
-        connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=rabbitmq_host,port=rabbitmq_port, credentials=self.creds )
-        )
-        channel = connection.channel()
-        channel.basic_publish(
-            exchange='',
-            routing_key=self.publish_queue_name,
-            body=json.dumps(message).encode()
-        )
-        channel.close()
-        connection.close()
+        try:
+            if self.channel.is_closed():
+                self.channel = self.connection.channel()
+            self.channel.basic_publish(
+                exchange='',
+                routing_key=self.publish_queue_name,
+                body=json.dumps(message).encode()
+            )
+        except:
+            self.connection = pika.BlockingConnection(
+                pika.ConnectionParameters(host=rabbitmq_host,port=rabbitmq_port, credentials=self.creds )
+            )
+            self.channel = self.connection.channel()
+            self.channel.basic_publish(
+                exchange='',
+                routing_key=self.publish_queue_name,
+                body=json.dumps(message).encode()
+            )
+       
 
     @try_except(logger=logger)
     def close_connection(self):
         if (self.connection is not None):
-            
+            self.channel.close()
             self.connection.close()
 
 
