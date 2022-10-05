@@ -1,4 +1,5 @@
 import queue
+import threading
 import pika
 import aio_pika
 import os, pathlib, sys, json, uuid, time, asyncio
@@ -45,7 +46,8 @@ async def log_consumer(request, queue_name = "test_queue") -> None:
 
                     if queue.name in message.body.decode():
                         break
-                time.sleep(0.2)
+                time.sleep(0.01)
+            
 
 async def test_log_consumer(queue_name = "test_queue") -> None:
     connection = await aio_pika.connect_robust(
@@ -88,26 +90,35 @@ class PikaPublisher:
 
     def __init__(self, queue_name):
         self.publish_queue_name = queue_name
-        creds = pika.PlainCredentials(rabbitmq_user, rabbitmq_password)
-        self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=rabbitmq_host,port=rabbitmq_port, credentials=creds )
-        )
-        self.channel = self.connection.channel()
+        self.creds = pika.PlainCredentials(rabbitmq_user, rabbitmq_password)
+        
+        # self.channel = self.connection.channel()
         logger.info('Pika connection initialized')
 
+    def publish(self,message: dict):
+        t = threading.Thread(target=self.___publish, args=(message,))
+
+        t.start()
+
     @try_except(logger=logger)
-    def publish(self, message: dict):
+    def ___publish(self, message: dict):
         """Method to publish message to RabbitMQ"""
-        self.channel.basic_publish(
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=rabbitmq_host,port=rabbitmq_port, credentials=self.creds )
+        )
+        channel = connection.channel()
+        channel.basic_publish(
             exchange='',
             routing_key=self.publish_queue_name,
             body=json.dumps(message).encode()
         )
+        channel.close()
+        connection.close()
 
     @try_except(logger=logger)
     def close_connection(self):
         if (self.connection is not None):
-            self.channel.close()
+            
             self.connection.close()
 
 
