@@ -21,7 +21,7 @@ class GenerateCitymodel(TaskRunnerSubscriberInterface):
         command = f'/home/dtcc/dtcc-core/dtcc-builder/bin/dtcc-generate-citymodel'
 
         TaskRunnerSubscriberInterface.__init__(self,
-            task_name="dtcc-generate-citymodel",
+            task_name="task/dtcc/generate-citymodel",
             publish=publish,
             shell_command=command
         )

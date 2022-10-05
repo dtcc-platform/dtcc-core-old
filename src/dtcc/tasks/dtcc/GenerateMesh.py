@@ -6,7 +6,7 @@ class GenerateMesh(TaskRunnerSubscriberInterface):
         
 
         TaskRunnerSubscriberInterface.__init__(self,
-            task_name="dtcc-generate-mesh",
+            task_name="task/dtcc/generate-mesh",
             publish=publish,
             shell_command=command
         )
