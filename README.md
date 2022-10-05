@@ -34,3 +34,10 @@ each source file.
 ## API test
 
 - curl -X POST localhost:8090/tasks/generateTest/start
+
+## tmux
+
+Split screen vertically: Ctrlb and Shift 5
+Split screen horizontally: Ctrlb and Shift "
+Toggle between panes: Ctrl b and o
+Close current pane: Ctrl b and x

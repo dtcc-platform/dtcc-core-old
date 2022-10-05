@@ -100,6 +100,7 @@ class TaskRunnerSubscriberInterface(ABC):
        
         except BaseException:
             error = traceback.format_exc()
+            self.on_failure(error=error)
             logger.exception(self.channel + ":" +'Exception occured while starting subprocess')
             if self.publish:
                 self.pika_pub.publish( message={'error': 'Exception occured while starting subprocess: \n' + str(error)})
@@ -206,7 +207,7 @@ class TaskRunnerSubscriberInterface(ABC):
             error = traceback.format_exc()
             logger.exception(self.channel + ":" +'Exception occured while capturing stdout from subprocess')
 
-            self.on_failure()
+            self.on_failure(error=error)
             if self.publish:
                 self.pika_pub.publish( message={'error': 'Exception occured while capturing stdout from subprocess: \n  ' + error})
     
@@ -219,14 +220,16 @@ class TaskRunnerSubscriberInterface(ABC):
         logger.info(self.channel + message)
 
         if self.publish:
+            time.sleep(0.5)
             self.rps.publish(channel=self.channel, message=message)
     
 
   
-    def on_failure(self):
+    def on_failure(self, error):
         logger.info(self.channel + ": Failed!")
-        message = json.dumps({'status':'failed'})
+        message = json.dumps({'status':'failed', "error":error})
         if self.publish:
+            time.sleep(0.5)
             self.rps.publish(channel=self.channel, message=message)
 
     @abstractmethod    

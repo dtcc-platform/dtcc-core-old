@@ -122,6 +122,7 @@ class Log(BaseModel):
     timestamp: Optional[datetime.datetime] = Field(alias="created")
     task_name: str
     action: str
+    result: Optional[str]
 
 # Session Config
 # --------------
