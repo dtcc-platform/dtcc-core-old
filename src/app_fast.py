@@ -246,6 +246,7 @@ async def start_task(task_name:str):
 async def stream_task_logs(request: Request, task_name:str):
     channel = re.sub(r'(?<!^)(?=[A-Z])', '-', task_name).lower()
     queue_name = f"/task/dtcc/{channel}/logs"
+    print(queue_name)
     event_generator = log_consumer(request, queue_name) 
     return EventSourceResponse(event_generator)
 

@@ -198,7 +198,7 @@ class TaskRunnerSubscriberInterface(ABC):
                         if self.publish:
                             self.pika_pub.publish( message={'log':line})
                         logger.info(self.channel + ": " +line)
-                time.sleep(0.1)
+                # time.sleep(0.01)
             if self.publish:
                 self.pika_pub.publish( message={'info': 'Task succeded!'})
             self.on_success()

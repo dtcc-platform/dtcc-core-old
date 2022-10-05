@@ -72,7 +72,7 @@ async def test_log_consumer(queue_name = "test_queue") -> None:
                     # yield json.loads(message.body.decode())
                     if queue.name in message.body.decode():
                         break
-                time.sleep(0.5)
+                # time.sleep(0.5)
 
 
 async def get_publish_channel():
@@ -100,6 +100,7 @@ class PikaPublisher:
         logger.info('Pika connection initialized')
 
     def publish(self,message: dict):
+
         t = threading.Thread(target=self.___publish, args=(message,))
 
         t.start()
@@ -135,4 +136,4 @@ class PikaPublisher:
 
 
 if __name__=='__main__':
-    asyncio.run(test_log_consumer(queue_name='test'))
+    asyncio.run(test_log_consumer(queue_name='/task/dtcc/generate-citymodel/logs'))
