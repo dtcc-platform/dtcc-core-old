@@ -30,6 +30,8 @@ shared_data_dir = os.getenv('SHARED_DATA_DIR', project_dir)
 
 REDIS_CHANNEL = 'core'
 
+rps = RedisPubSub()
+
 #--> defaults
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
@@ -146,14 +148,11 @@ def generateTest(session=Session()):
     parameters = {}
 
     success, data = start(channel=channel,parameters=parameters)
+    
     if success:
-        task = session[task_name]
-        repo = session.get_repo()
-        print("task: ", task)
-        print("repo: ",repo)
-        # data = repo.filter_by(name=task_name,session=task["session"])
-        # print(data)
-        return json.dumps(data)
+        data_str = json.dumps(data)
+        rps.client.set(task_name, data_str)
+        return True
     else:
         return False
 
@@ -166,6 +165,8 @@ def generateCityModel(session=Session()):
     success, data = start(channel=channel,parameters=parameters)
 
     if success:
+        data_str = json.dumps(data)
+        rps.client.set(task_name, data_str)
         return True
     else:
         return False
@@ -179,9 +180,12 @@ def generateMesh(session=Session()):
     success, data = start(channel=channel,parameters=parameters)
 
     if success:
+        data_str = json.dumps(data)
+        rps.client.set(task_name, data_str)
         return True
     else:
         return False
+
 
 @scheduler.task(execution="process")
 def run_iboflow_on_builder():

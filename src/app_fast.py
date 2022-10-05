@@ -237,6 +237,7 @@ async def end_subscriber_loop(task_name:str):
 async def start_task(task_name:str):
     task = session[task_name]
     task.set_cached()
+
     if not task.is_running:
         task.force_run = True
 
@@ -252,9 +253,13 @@ async def stream_task_logs(request: Request, task_name:str):
 @router_task.get("/tasks/{task_name}/get-result")
 async def get_result(task_name:str):
     task = session[task_name]
+    
     if not task.is_running:
         if task.status == "success":
-            return status.HTTP_200_OK
+            data = rps.client.get(task_name)
+            return data
+        else:
+            return status.HTTP_425_TOO_EARLY
     else:
         return status.HTTP_425_TOO_EARLY
 
