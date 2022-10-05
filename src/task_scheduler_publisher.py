@@ -30,6 +30,8 @@ shared_data_dir = os.getenv('SHARED_DATA_DIR', project_dir)
 
 REDIS_CHANNEL = 'core'
 
+rps = RedisPubSub()
+
 #--> defaults
 parameters_file_path = os.path.join(project_dir, "unittests/data/MinimalCase/Parameters.json")
 destination_folder = os.path.join(shared_data_dir,'vasnas')
