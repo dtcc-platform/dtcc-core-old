@@ -1,4 +1,4 @@
-import os, pathlib, sys, datetime, time
+import os, pathlib, sys, datetime, time, re
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, StreamingResponse
 import io
@@ -242,7 +242,8 @@ async def start_task(task_name:str):
 
 @router_task.get("/tasks/{task_name}/stream-logs")
 async def stream_task_logs(request: Request, task_name:str):
-    queue_name = f"/task/{task_name}/logs"
+    channel = re.sub(r'(?<!^)(?=[A-Z])', '-', task_name).lower()
+    queue_name = f"/task/dtcc/{channel}/logs"
     event_generator = log_consumer(request, queue_name) 
     return EventSourceResponse(event_generator)
 
