@@ -8,7 +8,7 @@ class GenerateMesh(TaskRunnerSubscriberInterface):
         
 
         TaskRunnerSubscriberInterface.__init__(self,
-            task_name="dtcc-generate-mesh",
+            task_name="/task/dtcc/generate-mesh",
             publish=publish,
             shell_command=command
         )
@@ -19,3 +19,8 @@ class GenerateMesh(TaskRunnerSubscriberInterface):
         if self.outputDirectory is None:
             self.outputDirectory = self.inputDirectory
         return f'self.shell_command {self.inputDirectory}'
+
+
+if __name__ == '__main__':
+    gmesh = GenerateMesh(publish=True)
+    gmesh.run_subscriber()

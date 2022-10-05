@@ -11,6 +11,7 @@ from rocketry.conds import (
     after_success, 
     true, false
 )
+from rocketry.args import Session
 from abc import ABC, abstractmethod
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[1])
@@ -71,16 +72,16 @@ def start(channel:str,parameters:dict):
                 loaded_message = json.loads(message)
                 status = loaded_message.get('status',"")
                 if status == "success":
-                    return True
+                    return True, loaded_message
                 elif status in ["paused", "resumed"]:
                     continue
                 elif status in ["terminated", "closed_client_loop", "failed"]:
-                    return False
+                    return False, loaded_message
             else: 
-                return False
+                return False, loaded_message
     else:
         
-        return False
+        return False, ""
 
 
 @try_except(logger=logger)
@@ -138,13 +139,49 @@ def run_sample_python_process():
 
     return start(channel=channel,parameters=parameters)
 
-@scheduler.task(execution="thread")
-def generateTest():
+@scheduler.task(execution="process")
+def generateTest(session=Session()):
     channel = "/task/dtcc/generate-test"
+    task_name = "generateTest"
     parameters = {}
 
-    return start(channel=channel,parameters=parameters)
+    success, data = start(channel=channel,parameters=parameters)
+    if success:
+        task = session[task_name]
+        repo = session.get_repo()
+        print("task: ", task)
+        print("repo: ",repo)
+        # data = repo.filter_by(name=task_name,session=task["session"])
+        # print(data)
+        return json.dumps(data)
+    else:
+        return False
 
+@scheduler.task(execution="process")
+def generateCityModel(session=Session()):
+    channel = "/task/dtcc/generate-citymodel"
+    task_name = "generateCityModel"
+    parameters = {}
+
+    success, data = start(channel=channel,parameters=parameters)
+
+    if success:
+        return True
+    else:
+        return False
+
+@scheduler.task(execution="process")
+def generateMesh(session=Session()):
+    channel = "/task/dtcc/generate-mesh"
+    task_name = "generateMesh"
+    parameters = {}
+
+    success, data = start(channel=channel,parameters=parameters)
+
+    if success:
+        return True
+    else:
+        return False
 
 @scheduler.task(execution="process")
 def run_iboflow_on_builder():
