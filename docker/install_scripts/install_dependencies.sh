@@ -6,7 +6,8 @@ apt-get update && apt-get install -y \
     nano \
     net-tools \
     wget \
-    unzip
+    unzip \
+    tmux
 
 #./install_protobuf.sh
 ./install_python.sh
