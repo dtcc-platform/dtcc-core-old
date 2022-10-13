@@ -43,3 +43,18 @@ Split screen vertically: Ctrlb and Shift 5
 Split screen horizontally: Ctrlb and Shift "
 Toggle between panes: Ctrl b and o
 Close current pane: Ctrl b and x
+
+
+## Run fast api test
+
+- dtcc-docker: 
+    - docker-compose up -d rabbitmq
+- dtcc-core:
+    - python3 -m pip install -r src/requirements.txt
+    - python3 src/test_fast_api.py
+
+docs page: 
+- http://localhost:8070/docs 
+- start
+Stream logs:
+- http://localhost:8070/task/stream-logs

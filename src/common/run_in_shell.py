@@ -14,20 +14,19 @@ logger = getLogger(__file__)
 
 
 class RunInShell(ABC):
-    def __init__(self,channel="/", publish=True) -> None:
-        self.channel = channel
-        self.logs_channel 
+    def __init__(self,task_name="test", publish=True,shell_command="ls") -> None:
+        self.channel = f"/task/{task_name}"
         self.publish = publish
         if publish: 
-            self.pika_pub = PikaPublisher(queue_name=channel)
+            self.pika_pub = PikaPublisher(queue_name=self.channel)
         self.process = None
-        self.rps = RedisPubSub()
+        self.command = shell_command
         
 
-    def start(self, command:str, on_success_callback=None, on_failure_callback=None):
-        command_args = shlex.split(command)
+    def start(self):
+        command_args = shlex.split(self.command)
 
-        logger.info('Subprocess: "' + command + '"')
+        logger.info('Subprocess: "' + self.command + '"')
 
         try:
             logger.info(self.channel + ":" +'starting process')
@@ -38,12 +37,11 @@ class RunInShell(ABC):
             self.process = subprocess.Popen(
                 command_args,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
+                stderr=subprocess.STDOUT
             ) 
          
-            # stdout_thread = threading.Thread(target=self.__capture_stdout, args=(self.process,on_success_callback,on_failure_callback))
-            # stdout_thread.start()
-            self.__capture_stdout(self.process, on_success=on_success_callback, on_failure=on_failure_callback)
+            stdout_thread = threading.Thread(target=self.__capture_stdout, args=(self.process,))
+            stdout_thread.start()
             logger.info(self.channel + ":" +'start succeded!')
             if self.publish:
                 self.pika_pub.publish( message={'info': 'start succeded!'})
@@ -151,7 +149,6 @@ class RunInShell(ABC):
                 time.sleep(0.1)
             if self.publish:
                 self.pika_pub.publish( message={'info': 'Task succeded!'})
-            #if on_success is not None:
             self.on_success()
 
         except BaseException:
@@ -164,7 +161,6 @@ class RunInShell(ABC):
     
 
     def on_success(self):
-        logger.info("###################### on success called !!!!!!")
         return_data = self.process_return_data()
         # NOTE maybe handle results here?
         
@@ -172,20 +168,30 @@ class RunInShell(ABC):
         logger.info(self.channel + message)
 
         if self.publish:
-            self.rps.publish(channel=self.channel, message=message)
+            time.sleep(0.5)
+            self.pika_pub.publish( message=message)
     
 
   
-    def on_failure(self):
-        # NOTE maybe handle results here?
+    def on_failure(self, error):
         logger.info(self.channel + ": Failed!")
-        message = json.dumps({'status':'failed'})
+        message = json.dumps({'status':'failed', "error":error})
         if self.publish:
-            self.rps.publish(channel=self.channel, message=message)
+            time.sleep(0.5)
+            self.pika_pub.publish( message=message)
 
     @abstractmethod    
     def process_return_data(self):
         return "dummy result"
+
+    
+    @abstractmethod
+    def process_arguments_on_start(self, message:dict) -> str:
+        """
+        Pass in arguments based on the recived message if needed
+        Otherwise just return the original shell command
+        """
+        return self.shell_command
     
 
 def test_run_in_shell(publish=False):
