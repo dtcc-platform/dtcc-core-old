@@ -34,6 +34,8 @@ each source file.
 ## API test
 
 - curl -X POST localhost:8090/tasks/generateTest/start
+- curl -X POST localhost:8090/tasks/generateCityModel/start
+- curl -X GET localhost:8090/tasks/generateTest/get-result
 
 ## tmux
 
