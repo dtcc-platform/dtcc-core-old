@@ -1,8 +1,13 @@
 __pycache__
 *.pyc
+.pytest_cache
+logs
+data
+dist
 
 ## IDEs and editors
 .idea
 .vscode
+LASzip
 
 .DS_Store

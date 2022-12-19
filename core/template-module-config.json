@@ -1,0 +1,15 @@
+{
+	"name": "run_sample_python_process",
+	"description": "Tests the api and module registry",
+	"tools":
+	[
+		{
+			"name": "test",
+			"description": "dummy command",
+			"category": "simulation",
+			"parameters":[],
+			"input": [],
+			"output":[]
+		}
+	]
+}

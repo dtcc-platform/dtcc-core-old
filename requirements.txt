@@ -1,0 +1,14 @@
+pika
+fastapi
+uvicorn[standard]
+python-dotenv
+argparse
+tqdm
+sse-starlette
+aio-pika
+pika
+pydantic
+pymongo
+minio
+wget
+pytest

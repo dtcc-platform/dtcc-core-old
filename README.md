@@ -1,6 +1,6 @@
 # DTCC Core
 
-DTCC Core is the common database and API for the DTCC Platform.
+Common Rest API, PubSub and database handlers for DTCC Platform.
 
 This project is part the
 [Digital Twin Platform (DTCC Platform)](https://gitlab.com/dtcc-platform)
@@ -37,9 +37,8 @@ each source file.
 - curl -X POST localhost:8090/tasks/generateCityModel/start
 - curl -X GET localhost:8090/tasks/generateTest/get-result
 
-## tmux
-
-Split screen vertically: Ctrlb and Shift 5
-Split screen horizontally: Ctrlb and Shift "
-Toggle between panes: Ctrl b and o
-Close current pane: Ctrl b and x
+## Poetry 
+- install poetry: `curl -sSL https://install.python-poetry.org | python3 -`
+- create venv: `poetry shell`
+- activate venv: `source $(poetry env info --path)/bin/activate`
+- install libs: `poetry install`

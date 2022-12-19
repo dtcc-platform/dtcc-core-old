@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "dtcc-core"
+version = "0.1.0"
+description = "Common Rest API, PubSub and database handlers for DTCC Platform"
+authors = ["sidkas <sidkas@protonmail.ch>"]
+readme = "README.md"
+packages = [{include = "core"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pika = "^1.3.1"
+aio-pika = "^8.2.5"
+fastapi = "^0.88.0"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+python-dotenv = "^0.21.0"
+tqdm = "^4.64.1"
+sse-starlette = "^1.2.1"
+pydantic = "^1.10.2"
+pymongo = "^4.3.3"
+minio = "^7.1.12"
+wget = "^3.2"
+argparse = "^1.4.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.0"
+
+[tool.poetry.scripts]
+api = 'core.api:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
