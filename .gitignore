@@ -3,7 +3,6 @@ __pycache__
 .pytest_cache
 logs
 data
-dist
 
 ## IDEs and editors
 .idea

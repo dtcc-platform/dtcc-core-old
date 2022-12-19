@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Common Rest API, PubSub and database handlers for DTCC Platform"
 authors = ["sidkas <sidkas@protonmail.ch>"]
 readme = "README.md"
+license = "MIT"
 packages = [{include = "core"}]
+homepage = "https://platform.dtcc.chalmers.se/"
+repository = "https://gitlab.com/dtcc-platform/dtcc-core"
 
 [tool.poetry.dependencies]
 python = "^3.9"
