@@ -45,7 +45,8 @@ registry_manager = RegistryManager()
 def load_module_config():
     indexed_modules_config = {}
     modules_list = []
-    config_file_paths = find_all_files_in_folder(project_dir,"module-config.json")
+    module_dir = "./"
+    config_file_paths = find_all_files_in_folder(module_dir,"module-config.json")
 
     for config_file_path in config_file_paths:
         modules_list.append(json.load(open(config_file_path,'r')))

@@ -3,7 +3,8 @@ from logging.handlers import RotatingFileHandler
 
 
 project_folder_path = str(pathlib.Path(__file__).resolve().parents[1])
-sys.path.append(project_folder_path)
+if "site-packages" in project_folder_path:
+    project_folder_path = "./"
 
 
 log_format = "%(asctime)-15s %(levelname)-5s [%(filename)s:%(lineno)d] %(message)s"

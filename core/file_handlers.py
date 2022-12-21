@@ -1,7 +1,7 @@
 import time, pathlib, sys, datetime, threading, json, os, shutil, wget, tempfile
 from functools import lru_cache
 import minio
-project_dir = str(pathlib.Path(__file__).resolve().parents[1])
+project_dir = str(pathlib.Path(__file__).resolve().parents[0])
 sys.path.append(project_dir)
 
 from logger import getLogger
@@ -10,7 +10,7 @@ from utils import file_exists, find_all_files_in_folder, try_except
 
 logger = getLogger(__file__)
 
-data_dir = os.path.join(project_dir, "data")
+data_dir = os.path.join("./", "data")
 os.makedirs(data_dir,exist_ok=True)
 
 shared_data_dir = os.environ.get('SHARED_DATA_DIR', data_dir)
