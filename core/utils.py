@@ -59,13 +59,12 @@ def get_size_mb(path = '.'):
 def find_all_files_in_folder(folder, extension):
     if os.path.exists(folder):
         paths= []
-        check_paths = []
         for path, subdirs, files in os.walk(folder):
             for file_path in files:
                 if file_path.endswith(extension) and not file_path.startswith('.'):
-                    if not any(file_path in s for s in check_paths):
+                    full_path = os.path.join(path ,file_path)
+                    if not any(full_path in s for s in paths):
                         paths.append(os.path.join(path , file_path))
-                        check_paths.append(file_path)
         return paths
     else:
         raise Exception("path does not exist -> "+ folder)
