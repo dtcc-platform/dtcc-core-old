@@ -11,7 +11,7 @@ run_function() {
 }
 
 
-files=(wrappers/*.py)
+files=(/wrappers/*.py)
 for file in "${files[@]::${#files[@]}-1}" ; do
     # Non-blocking background processes
     echo "Starting $file" 
