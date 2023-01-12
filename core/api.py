@@ -297,9 +297,36 @@ async def stream_task_stdout(msg:RequestMessage, request: Request):
 1) get task logs Maybe filter on status and timestamp 
 2) get task logs per module/tool/taskid
 """ 
+# Logging
+# -------
+
+router_logs = APIRouter(tags=["logs"])
+
+@router_logs.get("/logs", description="Get tasks")
+async def get_task_logs(action: Optional[List[Literal['run', 'success', 'fail', 'terminate', 'crash', 'inaction']]] = Query(default=[]),
+                        min_created: Optional[int]=Query(default=None), max_created: Optional[int] = Query(default=None),
+                        past: Optional[int]=Query(default=None),
+                        limit: Optional[int]=Query(default=None),
+                        task: Optional[List[str]] = Query(default=None)):
+    filter = {}
+    logs = {}
+
+    return logs
+
+@router_logs.get("/task/{task_name}/logs", description="Get tasks")
+async def get_task_logs(task_name:str,
+                        action: Optional[List[Literal['run', 'success', 'fail', 'terminate', 'crash', 'inaction']]] = Query(default=[]),
+                        min_created: Optional[int]=Query(default=None), max_created: Optional[int] = Query(default=None)):
+    filter = {}
+    logs = {}
+
+    return logs
 
 
+# Add routers
+# -----------
 app.include_router(router_task)
+
 
 fastapi_port = int(os.environ.get("FASTAPI_PORT", "8070"))
 

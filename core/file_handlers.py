@@ -1,6 +1,5 @@
 import time, pathlib, sys, datetime, threading, json, os, shutil, wget, tempfile
 from functools import lru_cache
-import minio
 project_dir = str(pathlib.Path(__file__).resolve().parents[0])
 sys.path.append(project_dir)
 
@@ -15,7 +14,7 @@ os.makedirs(data_dir,exist_ok=True)
 
 shared_data_dir = os.environ.get('SHARED_DATA_DIR', data_dir)
 
-class LocalFileHandler:
+class SharedDirectoryFileHandler:
     def __init__(self,destination_prefix="") -> None:
         if destination_prefix == '/':
             raise Exception("destination prefix cannot be /")
@@ -76,68 +75,8 @@ class LocalFileHandler:
         return dst_file_path
 
 
-
-HOST =   os.environ.get("MINIO_HOST", "localhost")
-ACCESS_KEY = os.environ.get('MINIO_USER', 'dtcc_admin')
-SECRET_KEY = os.environ.get('MINIO_PASSWORD', 'dtcc_minio')
-URI = f"http://{HOST}:9000"
-
-
-
-class MinioFileHandler:
-    def __init__(self, bucketname="test_bucket") -> None:
-        self.bucketname = bucketname
-        self.connect()
-
-    def connect(self):
-        try:
-            self.client = minio.Minio(URI, access_key=ACCESS_KEY, secret_key=SECRET_KEY, secure=False)
-            self.make_bucket()
-        except:
-            logger.exception("Error while connecting to minio")
-
-    def list_buckets(self):
-        return self.client.list_buckets()
-
-    def list_objects(self, prefix="modulename/toolname/task_id"):
-        objects = self.client.list_objects(self.bucketname, prefix=prefix)
-        return objects
-
-    def make_bucket(self):
-        found = self.client.bucket_exists(self.bucketname)
-        if not found:
-            self.client.make_bucket(self.bucketname)
-            logger.error(f"Bucket: {self.bucketname} created!")
-        else:
-            logger.error(f"Bucket: {self.bucketname} already exists")
-
-    def upload_file(self, local_file_path:str, prefix="modulename/toolname/task_id",progress_callback=None ):
-        def upload_progress(chunk):
-            progress_callback + chunk # Notice! No len()
-            progress_callback.show_progress()
-
-        file_name = os.path.split(local_file_path)[1]
-        print(file_name)
-        object_name = prefix + '/' + file_name
-        self.client.fput_object(self.bucketname, object_name,local_file_path,progress=upload_progress)
-        logger.info("It is successfully uploaded to bucket")
-
-    def download_file(self, local_file_path:str, prefix="modulename/toolname/task_id",progress_callback=None):
-        def download_progress(chunk):
-            progress_callback + chunk # Notice! No len()
-            progress_callback.show_progress()
-
-        file_name = os.path.split(local_file_path)[1]
-        print(file_name)
-        object_name = prefix + '/' + file_name
-        self.client.fget_object(self.bucketname, object_name,local_file_path,progress=download_progress)
-        logger.info("It is successfully uploaded to bucket")
-
-
-
-
 def test_local_file_handler_copy():
-    local_file_handler = LocalFileHandler(destination_prefix="helloworld/test")
+    local_file_handler = SharedDirectoryFileHandler(destination_prefix="helloworld/test")
     data_directory = local_file_handler.get_data_dir()
 
     print(local_file_handler.list(extention=".json"))
@@ -154,7 +93,7 @@ def test_local_file_handler_copy():
 
 
 def test_local_file_handler_download_url():
-    local_file_handler = LocalFileHandler(destination_prefix="helloworld/test")
+    local_file_handler = SharedDirectoryFileHandler(destination_prefix="helloworld/test")
 
     dst_path = local_file_handler.download_file_from_url(
         url="https://gitlab.com/dtcc-platform/dtcc-modules/-/raw/main/dtcc-modules-conf.json",

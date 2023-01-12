@@ -54,7 +54,7 @@ def get_size_mb(path = '.'):
         for f in filenames:
             fp = os.path.join(dirpath, f)
             total_size += os.path.getsize(fp)
-    return int(total_size / (1024 * 1024))
+    return round(total_size / (1024 * 1024), ndigits=3)
 
 def find_all_files_in_folder(folder, extension):
     if os.path.exists(folder):

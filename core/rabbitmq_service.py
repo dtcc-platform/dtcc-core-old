@@ -8,8 +8,9 @@ logging.getLogger("pika").setLevel(logging.WARNING)
 project_dir = str(pathlib.Path(__file__).resolve().parents[0])
 sys.path.append(project_dir)
 
-from utils import try_except, ProgressBar
+from utils import try_except
 from logger import getLogger
+from minio_progress import BaseProgress, format_string, _REFRESH_CHAR
 
 logger = getLogger(__file__)
 
@@ -173,28 +174,27 @@ class PikaPubSub:
         print(" [x] Done")
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
-class PikaProgressBar(ProgressBar):
-    """Extends ProgressBar to allow you to use it straighforward on a script.
-    Accepts an extra keyword argument named `stdout` (by default use sys.stdout)
-    and may be any file-object to which send the progress status.
-    """
-    def __init__(self, module, tool, task_id, channel, *args, **kwargs):
-        super(PikaProgressBar, self).__init__(*args, **kwargs)
-        self.stdout = kwargs.get('stdout', sys.stdout)
+
+
+class PikaProgress(BaseProgress):
+    def __init__(self, module, tool, task_id, channel, interval=1, stdout=sys.stdout):
+        super().__init__(interval, stdout)
         self.module = module
         self.tool = tool
         self.task_id = task_id
         self.client = PikaPubSub(queue_name=channel)
 
-    def show_progress(self):
-        if hasattr(self.stdout, 'isatty') and self.stdout.isatty():
-            self.stdout.write('\r')
-        else:
-            self.stdout.write('\n')
-        self.stdout.write(str(self))
-        message = {"module": self.module, "tool": self.tool, "task_id":self.task_id, "progress":self.progress }
+    def emit_status(self, current_size, total_length, displayed_time, prefix):
+
+        formatted_str = prefix + format_string(
+            current_size, total_length, displayed_time)
+        self.stdout.write(_REFRESH_CHAR + formatted_str + ' ' *
+                          max(self.last_printed_len - len(formatted_str), 0))
+        message = {"module": self.module, "tool": self.tool, "task_id":self.task_id, "current_size":current_size, "total_length":total_length, "prefix":prefix }
         self.client.publish(message=message)
+
         self.stdout.flush()
+        self.last_printed_len = len(formatted_str)
 
 if __name__=='__main__':
     asyncio.run(test_log_consumer(queue_name='/task/dtcc/generate-citymodel/logs'))

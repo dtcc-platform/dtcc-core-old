@@ -1,18 +1,19 @@
 import subprocess, shlex, logging, time, pathlib, sys, os, signal, traceback, json, datetime, tempfile, pickle
 import threading
 from abc import ABC, abstractmethod
-from typing import Union
+from typing import Union, List
 
 project_dir = str(pathlib.Path(__file__).resolve().parents[0])
 sys.path.append(project_dir)
 
 from logger import getLogger
-from utils import try_except, get_uuid, DictStorage, get_time_diff
-from rabbitmq_service import PikaPubSub
+from utils import try_except, get_uuid, DictStorage, get_time_diff, find_all_files_in_folder
+from rabbitmq_service import PikaPubSub, PikaProgress
 from registry_manager import RegistryManager
 from data_models import ModuleStatus, ModuleRegistry, Stdout
 from mogodb_service import MongodbService
-from file_handlers import LocalFileHandler
+from file_handlers import SharedDirectoryFileHandler
+from minio_service import MinioFileHandler, MinioObject
 
 logger = getLogger(__file__)
 
@@ -49,7 +50,7 @@ class PubSubBase(ABC):
         
         # Storage
         self.mongodb_client = MongodbService(table_name="tasks")        
-        self.local_file_handler = LocalFileHandler(destination_prefix=self.file_storage_prefix)
+        self.local_file_handler = SharedDirectoryFileHandler(destination_prefix=self.file_storage_prefix)
         
        
 
@@ -84,6 +85,73 @@ class PubSubBase(ABC):
             os.makedirs(dir_path, exist_ok=True)
             file_path = os.path.join(dir_path, "session_data.pickle")
             pickle.dump(task_data, open(file_path,mode='wb'))
+
+    def upload_file(self,file_path:str, prefix:str="/", bucket_name="dtcc") -> MinioObject:
+        """
+        file_path: relative or absolute path to file in local storage / shared volume
+        prefix: path in minio to store the object, default "/" (root)
+        bucket_name: bucket name for the object in minio
+        """
+        minio_handler = MinioFileHandler(bucketname=bucket_name)
+        progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id)
+        if prefix is None:
+            prefix = self.file_storage_prefix
+        return minio_handler.upload_file(
+            local_file_path=file_path,
+            prefix=prefix, 
+            progress_callback=progress_publisher
+        )
+
+    def upload_folder(self,folder_path:str, extension="", prefix:str="/", bucket_name="dtcc") -> List[MinioObject]:
+        """
+        folder_path: relative or absolute path to folder in local storage / shared volume
+        extension: 
+            Filter? use extension to filter files in the folder 
+            All files? Leave it blank
+        prefix: path in minio to store the object, default "/" (root)
+        bucket_name: bucket name for the object in minio
+        """
+        ## TODO get bucket_name from enviroment or maybe api?
+        folder_name = folder_path.split('/')[-1]
+        files = find_all_files_in_folder(folder=folder_path,extension=extension)
+
+        prefix = prefix + "/" + self.file_storage_prefix + "/" + folder_name
+
+        fileobjects = []
+        for file_path in files:
+            obj = self.upload_file(file_path=file_path, prefix=prefix, bucket_name=bucket_name)
+            fileobjects.append(obj)
+        
+        return fileobjects
+
+    def download_object(self,local_storage_path:str="./", prefix:str="/", file_name:str=None, bucket_name="dtcc") -> MinioObject:
+        """
+        local_storage_path: Absolute/relative path to Local storage or shared volume
+        prefix: path to the object in minio
+        file_name: 
+            object == file? specify the file name that exists within prefix contect in minio
+            folder? Leave it empty if the object is a folder
+        bucket_name: bucket name for the object in minio
+        """
+        minio_handler = MinioFileHandler(bucketname=bucket_name, make_bucket=False)
+        file_paths = []
+        if file_name is not None:
+            file_objects = minio_handler.list_objects(prefix=prefix)
+            for o in file_objects:
+                file_paths.append(os.path.join(local_storage_path, o.object_name))
+        else:
+            file_paths.append(os.path.join(local_storage_path, file_name))
+        
+        for file_path in file_paths:
+            progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id)
+            if prefix is None:
+                prefix = self.file_storage_prefix
+            return minio_handler.download_file(
+                local_file_path=file_path, #<<--- CHECK THIS OUT
+                prefix=prefix, 
+                progress_callback=progress_publisher
+            )
+
 
     @try_except(logger=logger)
     def listen(self):
