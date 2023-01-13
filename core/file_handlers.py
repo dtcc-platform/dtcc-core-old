@@ -24,6 +24,7 @@ class SharedDirectoryFileHandler:
         
     @try_except(logger=logger)
     def get_data_dir(self) -> str:
+        os.makedirs(self.dst_folder_path,exist_ok=True)
         return self.dst_folder_path
 
     @try_except(logger=logger)

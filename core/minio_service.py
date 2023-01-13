@@ -64,13 +64,15 @@ class MinioFileHandler:
         prefix: path for file in minio
         """
         file_name = os.path.split(local_file_path)[1]
+        size = os.path.getsize(local_file_path)
+        progress_callback.set_meta(total_length=size, object_name=file_name)
         print(file_name)
         object_name = prefix + '/' + file_name
         file_object = self.client.fput_object(self.bucketname, object_name,local_file_path,progress=progress_callback)
         
-        size = os.path.getsize(local_file_path)
+        
         logger.info(f"{object_name} is successfully uploaded to bucket {self.bucketname}")
-        return MinioObject(bucket_name=self.bucketname, prefix=prefix, object_name=file_name,size=size, etag=file_object.etag,last_modified=file_object.last_modified )
+        return MinioObject(bucket_name=self.bucketname, prefix=prefix, file_name=file_name,size=size, etag=file_object.etag,last_modified=file_object.last_modified )
 
    
     @try_except(logger=logger)
@@ -85,7 +87,7 @@ class MinioFileHandler:
             object_name = prefix + '/' + file_name
             file_object = self.client.fget_object(self.bucketname, object_name,local_file_path,progress=progress_callback)
             logger.info("It is successfully uploaded to bucket")
-            file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, object_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=str(file_object.last_modified) )
+            file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, file_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=str(file_object.last_modified) )
 
             return file_info
         except minio.S3Error as e:
@@ -100,7 +102,7 @@ class MinioFileHandler:
         object_name = prefix + '/' + file_name
         file_object = self.client.get_object(self.bucketname, object_name)
         logger.info("It is successfully uploaded to bucket")
-        file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, object_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=file_object.last_modified , is_dir=file_object.is_dir)
+        file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, file_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=file_object.last_modified , is_dir=file_object.is_dir)
 
         return file_info
      

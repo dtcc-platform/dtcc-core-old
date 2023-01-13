@@ -93,7 +93,7 @@ class PubSubBase(ABC):
         bucket_name: bucket name for the object in minio
         """
         minio_handler = MinioFileHandler(bucketname=bucket_name)
-        progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id)
+        progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id, channel=self.logs_channel)
         if prefix is None:
             prefix = self.file_storage_prefix
         return minio_handler.upload_file(
@@ -124,7 +124,7 @@ class PubSubBase(ABC):
         
         return fileobjects
 
-    def download_object(self,local_storage_path:str="./", prefix:str="/", file_name:str=None, bucket_name="dtcc") -> MinioObject:
+    def download_object(self,local_storage_path:str="./", prefix:str="/", file_name:str=None, bucket_name="dtcc") -> List[MinioObject]:
         """
         local_storage_path: Absolute/relative path to Local storage or shared volume
         prefix: path to the object in minio
@@ -135,22 +135,27 @@ class PubSubBase(ABC):
         """
         minio_handler = MinioFileHandler(bucketname=bucket_name, make_bucket=False)
         file_paths = []
-        if file_name is not None:
+        if file_name is None:
             file_objects = minio_handler.list_objects(prefix=prefix)
             for o in file_objects:
-                file_paths.append(os.path.join(local_storage_path, o.object_name))
+                file_paths.append((os.path.join(local_storage_path, o.object_name), o.object_name, o.size))
         else:
-            file_paths.append(os.path.join(local_storage_path, file_name))
+            o = minio_handler.get_object_info(prefix=prefix, file_name=file_name)
+            file_paths.append((os.path.join(local_storage_path, file_name),o.file_name, o.size))
         
-        for file_path in file_paths:
-            progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id)
+        file_info_objects = []
+        for file_path, object_name, size in file_paths:
+            progress_publisher = PikaProgress(module=self.module, tool=self.tool, task_id=self.task_id, channel=self.logs_channel)
+            progress_publisher.set_meta(total_length=size, object_name=object_name)
             if prefix is None:
                 prefix = self.file_storage_prefix
-            return minio_handler.download_file(
-                local_file_path=file_path, #<<--- CHECK THIS OUT
+            obj = minio_handler.download_file(
+                local_file_path=file_path, 
                 prefix=prefix, 
                 progress_callback=progress_publisher
             )
+            file_info_objects.append(obj)
+        return file_info_objects
 
 
     @try_except(logger=logger)
@@ -242,7 +247,7 @@ class PubSubBase(ABC):
         self.status = ModuleRegistry(
             token=self.token,
             task_id=self.task_id, 
-            module=self.module, 
+            module_name=self.module, 
             tool=self.tool, 
             last_seen=datetime.datetime.now().isoformat(), 
             is_running=self.is_process_running, 

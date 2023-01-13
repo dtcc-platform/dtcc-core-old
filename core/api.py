@@ -107,7 +107,7 @@ async def get_tasks():
         print(registered_module.status, time_diff_minutes)
         if time_diff_minutes<2 and registered_module.status == ModuleStatus.waiting.value:
             print(registered_module)
-            module_exists, module_info = check_if_module_exists(registered_module.module, registered_module.tool)
+            module_exists, module_info = check_if_module_exists(registered_module.module_name, registered_module.tool)
             if module_exists:
                 print(module_info)
                 module_config = ModuleConfig.parse_obj(module_info)

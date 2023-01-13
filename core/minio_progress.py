@@ -94,6 +94,12 @@ class BaseProgress(Thread):
                                   total_length=self.total_length,
                                   displayed_time=displayed_time,
                                   prefix=self.prefix)
+                if self.total_length is None:
+                    self.done_progress()
+                    return
+                elif int(self.total_length) <= 0:
+                    self.done_progress()
+                    return
                 continue
 
             current_size, total_length = task
@@ -105,6 +111,13 @@ class BaseProgress(Thread):
             self.display_queue.task_done()
             if current_size == total_length:
                 # once we have done uploading everything return
+                self.done_progress()
+                return
+
+            if total_length is None:
+                self.done_progress()
+                return
+            elif int(total_length) <= 0:
                 self.done_progress()
                 return
 
@@ -175,25 +188,35 @@ def format_string(current_size, total_length, elapsed_time):
     :param total_length: Total object size
     :param elapsed_time: number of seconds passed since start
     """
+    if current_size is None:
+        current_size = 0
 
     n_to_mb = current_size / _KILOBYTE / _KILOBYTE
     elapsed_str = seconds_to_time(elapsed_time)
 
     rate = _RATE_FORMAT % (
         n_to_mb / elapsed_time) if elapsed_time else _UNKNOWN_SIZE
-    frac = float(current_size) / total_length
+    
+    frac = float(current_size) / total_length if total_length is not None and total_length>0 else 0
     bar_length = int(frac * _BAR_SIZE)
     bar = (_FINISHED_BAR * bar_length +
            _REMAINING_BAR * (_BAR_SIZE - bar_length))
     percentage = _PERCENTAGE_FORMAT % (frac * 100)
-    left_str = (
-        seconds_to_time(
-            elapsed_time / current_size * (total_length - current_size))
-        if current_size else _UNKNOWN_SIZE)
 
-    humanized_total = _HUMANINZED_FORMAT % (
-        total_length / _KILOBYTE / _KILOBYTE) + _STR_MEGABYTE
-    humanized_n = _HUMANINZED_FORMAT % n_to_mb + _STR_MEGABYTE
+    try:
+        left_str = (
+            seconds_to_time(
+                elapsed_time / current_size * (total_length - current_size))
+            if current_size else _UNKNOWN_SIZE)
+        humanized_total = _HUMANINZED_FORMAT % (
+            total_length / _KILOBYTE / _KILOBYTE) + _STR_MEGABYTE
+        humanized_n = _HUMANINZED_FORMAT % n_to_mb + _STR_MEGABYTE
+    except:
+        left_str = 0
+        humanized_total = 0
+        humanized_n = 0
+
+    
 
     return _DISPLAY_FORMAT % (bar, humanized_n, humanized_total, percentage,
                               elapsed_str, left_str, rate)
