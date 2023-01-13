@@ -100,9 +100,8 @@ class MinioFileHandler:
         prefix: path for file in minio
         """
         object_name = prefix + '/' + file_name
-        file_object = self.client.get_object(self.bucketname, object_name)
-        logger.info("It is successfully uploaded to bucket")
-        file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, file_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=file_object.last_modified , is_dir=file_object.is_dir)
+        file_object = self.client.stat_object(self.bucketname, object_name)
+        file_info = MinioObject(bucket_name=self.bucketname, prefix=prefix, file_name=file_object.object_name,size=file_object.size, etag=file_object.etag,last_modified=str(file_object.last_modified) , is_dir=file_object.is_dir)
 
         return file_info
      
@@ -124,5 +123,13 @@ def test_minio_file_handler():
     )
     print(mf)
 
+def test_get_info():
+    minio_file_handler = MinioFileHandler(bucketname="dtcc")
+
+    o = minio_file_handler.get_object_info(prefix="/solardata", file_name="City34k.stl")
+
+    print(o)
+
+
 if __name__=='__main__':
-    test_minio_file_handler()
+    test_get_info()
