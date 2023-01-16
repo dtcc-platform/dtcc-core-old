@@ -47,6 +47,6 @@ each source file.
     poetry build
     pip install dist/{wheel_file}.whl
     ```
-- add poetry to path: `export  PATH="~/.local/bin:$PATH"`
+- add poetry to path: `export  PATH="~/.local/bin:$PATH"` to ~/.bashrc
 - Error "`Failed to unlock the collection!`": 
     - run -> `export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring`

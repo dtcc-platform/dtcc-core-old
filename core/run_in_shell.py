@@ -34,7 +34,7 @@ class RunInShell(PubSubBase):
             self.shell_command = self.run_command(parameters=self.run_parameters)
             shell_command_args = shlex.split(self.shell_command)
 
-            logger.info('Subprocess: "' + self.shell_command + '"')
+            logger.info('Subprocess shell command: "' + self.shell_command + '"')
             logger.info(self.channel + ":" +'starting process')
     
             if self.publish:
@@ -154,6 +154,12 @@ class RunInShell(PubSubBase):
                     # ---------------
 
                 time.sleep(0.01)
+
+            stdout_string = "\n".join(self.stdout_storage)
+            if "error" in stdout_string.lower():
+                logger.error("From Capture stdout: "+stdout_string)
+                raise Exception(f"Task {self.shell_command} completed with an error!!")
+                
             self.is_process_running = False
             if self.publish:
                 status = self.update_status(status=ModuleStatus.success, info='Task succeded! Now processing the output...')
